@@ -1,0 +1,6 @@
+heating_energy_source,electricity_kwh_month,natural_gas_m3_month,coal_kg_month,wood_kg_month,source,notes
+electricity,250,0,0,0,IEA household energy averages (nominal mapping),Extends heating_estimates.csv
+natural gas,50,15,0,0,IEA household energy averages (nominal mapping),15 m3 heating + 50 kWh appliance baseline
+coal,40,0,250,0,Nominal mapping,250 kg coal heat + 40 kWh appliance baseline
+wood,40,0,0,200,Nominal mapping,200 kg wood heat + 40 kWh appliance baseline
+none,50,0,0,0,IEA household energy averages (nominal mapping),Appliance baseline only

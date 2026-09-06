@@ -1,0 +1,111 @@
+{
+  "model_version": "final-xgboost-v25",
+  "dataset_version": "carbonsense-synthetic-v2.5",
+  "trained_at": "2026-09-04T15:47:45.281248+00:00",
+  "seed": 42,
+  "n_features": 36,
+  "feature_names": [
+    "grid_factor",
+    "grocery_factor",
+    "household_size",
+    "vehicle_monthly_distance_km",
+    "monthly_grocery_bill",
+    "how_long_tv_pc_daily_hour",
+    "how_long_internet_daily_hour",
+    "how_many_new_clothes_monthly",
+    "waste_bag_weekly_count",
+    "transport_public",
+    "transport_walk/bicycle",
+    "vehicle_type_electric",
+    "vehicle_type_hybrid",
+    "vehicle_type_lpg",
+    "vehicle_type_none",
+    "vehicle_type_petrol",
+    "air_often",
+    "air_rarely",
+    "air_very_frequently",
+    "heating_natural_gas",
+    "heating_wood",
+    "diet_pescatarian",
+    "diet_vegan",
+    "diet_vegetarian",
+    "waste_bag_size_large",
+    "waste_bag_size_medium",
+    "waste_bag_size_small",
+    "recycle_paper",
+    "recycle_plastic",
+    "recycle_metal",
+    "recycle_glass",
+    "cook_stove",
+    "cook_oven",
+    "cook_microwave",
+    "cook_grill",
+    "cook_airfryer"
+  ],
+  "all_model_results": [
+    {
+      "model": "GradientBoosting",
+      "r2": 0.9475,
+      "r2_train": 0.9855,
+      "gap": 0.038,
+      "mae": 32.9,
+      "rmse": 46.3,
+      "time_s": 9.4
+    },
+    {
+      "model": "XGBoost",
+      "r2": 0.9514,
+      "r2_train": 0.9819,
+      "gap": 0.0306,
+      "mae": 32.2,
+      "rmse": 44.6,
+      "time_s": 2.6,
+      "cv_r2_mean": 0.9506,
+      "cv_r2_std": 0.0051
+    },
+    {
+      "model": "RandomForest",
+      "r2": 0.8124,
+      "r2_train": 0.9076,
+      "gap": 0.0951,
+      "mae": 62.5,
+      "rmse": 87.6,
+      "time_s": 2.3
+    },
+    {
+      "model": "LinearRegression",
+      "r2": 0.7982,
+      "r2_train": 0.8104,
+      "gap": 0.0123,
+      "mae": 64.6,
+      "rmse": 90.8,
+      "time_s": 0.1
+    },
+    {
+      "model": "SVR",
+      "r2": 0.2277,
+      "r2_train": 0.2398,
+      "gap": 0.0121,
+      "mae": 131.1,
+      "rmse": 177.7,
+      "time_s": 12.3
+    }
+  ],
+  "best_model": "XGBoost",
+  "metrics": {
+    "r2": 0.9514,
+    "r2_train": 0.9819,
+    "gap": 0.0306,
+    "cv_r2_mean": 0.9506,
+    "cv_r2_std": 0.0051,
+    "mae": 32.2,
+    "rmse": 44.6
+  },
+  "conformal_prediction": {
+    "alpha": 0.1,
+    "method": "split-conformal, finite-sample corrected (seed 42)",
+    "quantile_90": 71.26,
+    "empirical_test_coverage": 0.9135
+  },
+  "note": "Trained on the cited-factor v2.5 dataset (grid_factor/grocery_factor as continuous model inputs; country/region are audit labels). Synthetic factor-formula targets, not measured emissions."
+}

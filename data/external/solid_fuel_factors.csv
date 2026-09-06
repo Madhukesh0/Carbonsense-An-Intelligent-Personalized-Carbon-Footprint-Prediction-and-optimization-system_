@@ -1,0 +1,3 @@
+fuel,kgco2e_per_kg,source,notes
+coal,2.4,DEFRA 2024 domestic fuel factors,Household coal combustion
+wood,0.15,IPCC accounting convention (nominal),Supply-chain only; biogenic combustion CO2 excluded per IPCC territorial reporting

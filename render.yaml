@@ -1,0 +1,31 @@
+# Render.com free-tier deployment for CarbonSense (no Docker).
+# One Python web service serves both the API and the built SPA.
+services:
+  - type: web
+    name: carbonsense
+    runtime: python
+    plan: free
+    buildCommand: |
+      pip install -r requirements.txt
+      pip install -r requirements-deploy.txt
+      npx pnpm install --frozen-lockfile
+      npx pnpm run build
+    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12"
+      - key: NODE_VERSION
+        value: "22"
+      - key: MONGODB_URI
+        sync: false      # set in the Render dashboard (Atlas connection string)
+      - key: JWT_SECRET
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false      # optional; assistant falls back to built-in replies
+      - key: GEMINI_MODEL
+        value: gemini-3.6-flash
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: FRONTEND_DIST
+        value: dist/public

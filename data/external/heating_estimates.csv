@@ -1,0 +1,6 @@
+heating_energy_source,electricity_kwh_month,natural_gas_m3_month,source
+electricity,250,0,IEA household energy averages (nominal mapping)
+natural gas,50,15,IEA household energy averages (nominal mapping)
+coal,40,0,IEA household energy averages (nominal mapping)
+wood,40,0,IEA household energy averages (nominal mapping)
+none,50,0,IEA household energy averages (nominal mapping)

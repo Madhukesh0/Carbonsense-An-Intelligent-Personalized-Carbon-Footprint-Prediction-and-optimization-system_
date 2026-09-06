@@ -1,0 +1,15 @@
+country_iso3,country_name,territorial_tco2_per_capita_yr,consumption_based_tco2_per_capita_yr,household_share_estimate,expected_lifestyle_kgco2e_month,source,year
+ARG,Argentina,4.5,6.0,0.65,325.0,Global Carbon Budget 2023 / OWID consumption-based (Peters et al.),2023
+AUS,Australia,13.9,15.3,0.65,828.8,Global Carbon Budget 2023 / OWID consumption-based (Peters et al.),2023
+BRA,Brazil,2.3,2.6,0.65,140.8,Global Carbon Budget 2023 / OWID consumption-based (Peters et al.),2023
+CAN,Canada,13.4,14.7,0.65,796.3,Global Carbon Budget 2023 / OWID consumption-based (Peters et al.),2023
+CHN,China,8.2,8.5,0.65,460.4,Global Carbon Budget 2023 / OWID consumption-based (Peters et al.),2023
+DEU,Germany,7.5,8.4,0.65,455.0,Global Carbon Budget 2023 / OWID consumption-based (Peters et al.),2023
+FRA,France,3.7,6.6,0.65,357.5,Global Carbon Budget 2023 / OWID consumption-based (Peters et al.),2023
+GBR,United Kingdom,4.6,8.5,0.65,460.4,Global Carbon Budget 2023 / OWID consumption-based (Peters et al.),2023
+IND,India,2.1,2.0,0.65,108.3,Global Carbon Budget 2023 / OWID consumption-based (Peters et al.),2023
+JPN,Japan,8.0,9.5,0.65,514.6,Global Carbon Budget 2023 / OWID consumption-based (Peters et al.),2023
+RUS,Russia,10.5,11.0,0.65,595.8,Global Carbon Budget 2023 / OWID consumption-based (Peters et al.),2023
+USA,United States,14.3,14.9,0.65,806.3,Global Carbon Budget 2023 / OWID consumption-based (Peters et al.),2023
+ZAF,South Africa,6.8,7.0,0.65,379.2,Global Carbon Budget 2023 / OWID consumption-based (Peters et al.),2023
+WLD,World average,4.6,4.7,0.65,254.6,Global Carbon Budget 2023 / OWID consumption-based (Peters et al.),2023

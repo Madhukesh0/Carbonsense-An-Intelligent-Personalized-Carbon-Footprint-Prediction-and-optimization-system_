@@ -1,0 +1,222 @@
+% citations.tex — CarbonSense: Emission Factors, Sources and Access Dates
+% Appendix chapter for the project report.
+%
+% Usage (standalone compile):
+%   pdflatex citations.tex   (then bibtex citations, pdflatex x2)
+% Usage inside a report:
+%   \input{citations}  -- or copy the section; ensure references.bib is
+%   on \bibliography{citations/references} path.
+%
+% Every number is annotated with its source (\cite) and the date the
+% value was taken from that source (accessed date). Status legend:
+%   [F] fetched live from source on 2026-09-03
+%   [A] app-encoded value, attributed to the cited edition
+%   [C] convention / calibrated range, source family named
+%   [P] peer-reviewed value, decimals to verify in paper (publisher
+%       blocks automated access)
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+
+\title{\textbf{CarbonSense}\\ \Large Emission Factors, Sources, and Access Dates\\
+\large Appendix: per-country and per-question evidence register}
+\author{CarbonSense v2.3 dataset --- \texttt{clean\_dataset\_v2.csv}}
+\date{Compiled 3 September 2026}
+
+\begin{document}
+\maketitle
+
+\section*{Evidence register conventions}
+
+Every emission factor below is annotated with its source citation and the
+date on which the value was taken from that source. Status codes:
+\textbf{[F]} fetched live from the source on 2026-09-03;
+\textbf{[A]} value encoded in the deployed application and attributed to
+the cited edition (decimal values carried by the app's factor set);
+\textbf{[C]} modelling convention or calibrated range, source family named;
+\textbf{[P]} peer-reviewed value quoted via public coverage --- verify the
+decimal in the paper before print (publisher blocks automated access).
+
+The machine-readable bibliography is \texttt{citations/references.bib};
+the audit trail (which numbers were verified from source vs.\ hedged) is
+\texttt{citations/sources.md}; per-question worked examples are in
+\texttt{citations/worked-example.md}.
+
+% =====================================================================
+\section{Grid electricity factors --- the country anchor}
+
+All grid intensities are generation-based national averages for data year
+2025 (Saudi Arabia, Indonesia, UAE: 2024 as latest published), fetched
+from the Ember/OWID dataset on 2026-09-03 [F] \cite{ember_grid}. The
+India fiscal-year series is cross-referenced with the Central Electricity
+Authority baseline database [F] \cite{cea_baseline, owid_india_electricity}.
+The \texttt{region} field applies a within-country modifier: national
+average (``mixed'') vs.\ hand-set declared renewable-heavy proxies
+(roughly one-fifth to one-half of the national factor, reflecting each
+country's renewable trajectory) [C].
+
+\begin{longtable}{@{}lrrl@{}}
+\toprule
+Country & Mixed grid (kgCO$_2$e/kWh) & Renewable-heavy proxy & Source \\
+\midrule
+Saudi Arabia   & 0.69195 & 0.16 & \cite{ember_grid} 2024 [F] \\
+Indonesia      & 0.68025 & 0.15 & \cite{ember_grid} 2024 [F] \\
+India          & 0.67013 & 0.15 & \cite{ember_grid} 2025 [F]; CEA FY-series cited for comparison \cite{cea_baseline, wiki_india_electricity} [F] \\
+China          & 0.52534 & 0.12 & \cite{ember_grid} 2025 [F] \\
+Australia      & 0.52518 & 0.12 & \cite{ember_grid} 2025 [F] \\
+Singapore      & 0.49709 & 0.11 & \cite{ember_grid} 2025 [F] \\
+Japan          & 0.47726 & 0.11 & \cite{ember_grid} 2025 [F] \\
+UAE            & 0.46751 & 0.10 & \cite{ember_grid} 2024 [F] \\
+Russia         & 0.44973 & 0.10 & \cite{ember_grid} 2025 [F] \\
+South Korea    & 0.41706 & 0.09 & \cite{ember_grid} 2025 [F] \\
+United States  & 0.38440 & 0.10 & \cite{ember_grid} 2025 [F]; \cite{epa_equivalencies} \\
+Germany        & 0.32965 & 0.08 & \cite{ember_grid} 2025 [F] \\
+Netherlands    & 0.25356 & 0.06 & \cite{ember_grid} 2025 [F] \\
+United Kingdom & 0.21741 & 0.05 & \cite{ember_grid} 2025 [F]; DESNZ reporting basis 0.13096 \cite{desnz2026} [A] \\
+Canada         & 0.19072 & 0.04 & \cite{ember_grid} 2025 [F] \\
+Brazil         & 0.10995 & 0.03 & \cite{ember_grid} 2025 [F] \\
+France         & 0.04144 & 0.02 & \cite{ember_grid} 2025 [F] \\
+\bottomrule
+\end{longtable}
+
+\noindent\textit{Note (UK):} the dataset uses the Ember generation-based
+factor (0.21741) while the deployed baseline uses DESNZ 2026
+(0.13096 \cite{desnz2026} [A]); the difference is reporting convention
+(generation vs.\ consumption basis), not error.
+
+% =====================================================================
+\section{Travel factors}
+
+\begin{longtable}{@{}p{5.2cm}rp{6.2cm}l@{}}
+\toprule
+Factor & Value & Basis & Source, date [status] \\
+\midrule
+Petrol combustion & 2.31 kgCO$_2$e/L & IPCC 2006 Tier-1: motor gasoline $\approx$69{,}300 kg CO$_2$/TJ $\times$ NCV & \cite{ipcc2006_vol2}, recorded 2026-09-03 [C] \\
+Diesel combustion & 2.68 kgCO$_2$e/L & gas/diesel oil $\approx$74{,}100 kg CO$_2$/TJ $\times$ NCV & \cite{ipcc2006_vol2} [C] \\
+Petrol car, per km (app) & 0.16152 kg/km & DESNZ 2026 average car & \cite{desnz2026}, encoded in \texttt{baseline.py} [A] \\
+Diesel car, per km (app) & 0.17265 kg/km & DESNZ 2026 & \cite{desnz2026} [A] \\
+Hybrid / LPG (app) & 0.12961 / 0.19553 kg/km & DESNZ 2026 & \cite{desnz2026} [A] \\
+EV, per km & 18 kWh/100km $\times$ country grid factor & device convention $\times$ \cite{ember_grid} & taken 2026-09-03 [F$\times$C] \\
+US average car (cross-check) & 400 g CO$_2$/mile; 4.6 t/yr & EPA & \cite{epa_vehicle}, fetched 2026-09-03 [F] \\
+OWID petrol-car cross-check & 170 gCO$_2$/pkm & UK Gov data & \cite{owid_travel}, fetched 2026-09-03 [F] \\
+Domestic flight & 246 gCO$_2$e/pkm & UK Gov via OWID & \cite{owid_travel}, fetched 2026-09-03 [F] \\
+Short-haul flight & 154 gCO$_2$e/pkm & same & \cite{owid_travel} [F] \\
+Aviation non-CO$_2$ multiplier & $\approx$2--3$\times$ CO$_2$-only & Lee et al.\ 2021 & \cite{lee2021}, accessed 2026-09-03 [F] \\
+Public transport (bus proxy, app) & 0.10151 kgCO$_2$e/pkm & DESNZ 2026 local bus & \cite{desnz2026} [A] \\
+Rail context & 35 gCO$_2$e/pkm national; Eurostar 4 & OWID & \cite{owid_travel} [F] \\
+Cycling context & 16--50 gCO$_2$e/km (food-dependent) & OWID & \cite{owid_travel} [F] \\
+Real-world fuel gap & +20--40\% vs.\ type approval & ICCT & \cite{icct_realworld}, link verified 2026-09-03 [C] \\
+\bottomrule
+\end{longtable}
+
+\noindent Air-travel frequency bands in the app and dataset
+(0/60/180/420 kgCO$_2$e per month) are declared screening proxies [C].
+Derivation: rarely $\approx$ one 500 km domestic return per 2 months
+(1{,}000 km \times$ 0.246 kg/km $\approx$ 60 kg/month effective); often $\approx$
+2--3 short-haul returns/year amortised ($\approx$180); very frequently $\approx$
+1 short-haul return per month equivalent. These are calibrated screening
+bands, not measured itineraries; the OWID vintage quoted (154/246 g/pkm)
+was as displayed on 2026-09-03.
+
+% =====================================================================
+\section{Home energy factors}
+
+\begin{longtable}{@{}p{5.2cm}rp{6.2cm}l@{}}
+\toprule
+Factor & Value & Basis & Source, date [status] \\
+\midrule
+Grid factors (17 countries) & the grid-factor table in Section 1 & Ember/OWID 2025 & \cite{ember_grid} [F] \\
+India fiscal-year series & 0.715/0.716/0.727/0.710 (FY22--FY25) & CEA & \cite{cea_baseline, owid_india_electricity} [F] \\
+India FY2029-30 projection & 0.477 kg/kWh & CEA & \cite{owid_india_electricity} [F] \\
+Natural gas heating & $\approx$0.20 kgCO$_2$e/kWh (net CV); $\approx$2.0 kg/m$^3$ & DESNZ fuels worksheet & \cite{desnz2025}, landing page fetched 2026-09-03; exact decimal in xlsx [C] \\
+Wood (biomass) heating & DESNZ: 0.011--0.016 kgCO$_2$e/kWh (CH$_4$+N$_2$O only; biogenic CO$_2$ 0.35--0.39 outside scopes); generator uses 0.06--0.09 as all-gases proxy & DESNZ + stated basis & \cite{desnz2025}, corrected 2026-09-04 [C] \\
+TV/PC device draw & 75 W average & manufacturer conventions & recorded 2026-09-03 [C] \\
+Internet equipment draw & 40 W equivalent (router + network/DC share) & conventions + \cite{aslan2018} (0.06 kWh/GB) & recorded 2026-09-03 [C] \\
+Data-centre context & 460 TWh (2022) $\rightarrow$ possibly $>$1{,}000 TWh (2026) & IEA Electricity 2024 & \cite{iea_electricity2024}, fetched 2026-09-03 [F] \\
+\bottomrule
+\end{longtable}
+
+% =====================================================================
+\section{Food factors}
+
+\begin{longtable}{@{}p{5.2cm}rp{6.2cm}l@{}}
+\toprule
+Factor & Value & Basis & Source, date [status] \\
+\midrule
+Beef (beef herd) & 60 kgCO$_2$eq/kg & Poore \& Nemecek via OWID & \cite{owid_food_choice, poore2018}, fetched 2026-09-03 [F] \\
+Lamb / cheese & $>$20 kgCO$_2$eq/kg & same & \cite{owid_food_choice} [F] \\
+Poultry / pork & 6 / 7 kgCO$_2$eq/kg & same & \cite{owid_food_choice} [F] \\
+Legumes (peas) & 1 kgCO$_2$eq/kg & same & \cite{owid_food_choice} [F] \\
+Diet bands (per person) & high-meat 7.19 $\rightarrow$ vegan 2.89 kgCO$_2$eq/day ($\times$30: 216 $\rightarrow$ 87 kg/month) & Scarborough et al. 2014 (EPIC-Oxford, $n\approx$55{,}000) & \cite{scarborough2014}, accessed 2026-09-03 [F] \\
+App diet proxies & vegan 95 / vegetarian 130 / pescatarian 175 / omnivore 240 kg/month & declared screening values & \texttt{baseline.py}, recorded 2026-09-03 [A/C] \\
+\midrule
+\multicolumn{4}{@{}p{16.6cm}@{}}{\small Beef-vintage reconciliation: the app/dataset uses the Poore and Nemecek 2018 value (60 kgCO$_2$eq/kg); OWID\'s current chart reports ~100 kgCO$_2$eq/kg for beef (beef herd) with updated methane accounting --- either is citable with the vintage stated \cite{owid_food_choice, owid_food_methane}. The diet proxies are the v1 app\'s declared screening values, deliberately above the Scarborough monthly equivalents (87--216 kg/month) to include food-waste and processing overhead [C].}\\
+Grocery spend factor (India) & 0.11 kgCO$_2$e per rupee & spend-based method (DESNZ-sanctioned) \cite{desnz2026} & recorded 2026-09-03 [C] \\
+Grocery spend factors (all countries) & per-currency, price-level calibrated (median basket $\approx$120--180 kg/month) & conventions & recorded 2026-09-03 [C] \\
+India vegetarian share & 20--39\% (Pew 2021: 39\%; GoI 28--29\%; EPW critique $\approx$20\%) & survey compendium & \cite{wiki_veg_india}, fetched 2026-09-03 [F] \\
+Food system share & 13.7 Gt CO$_2$e/yr = 26\% of global emissions (data as of the source\'s publication; newer estimates may be higher) & OWID & \cite{owid_opportunity}, fetched 2026-09-03 [F] \\
+\bottomrule
+\end{longtable}
+
+% =====================================================================
+\section{Consumption and waste factors}
+
+\begin{longtable}{@{}p{5.2cm}rp{6.2cm}l@{}}
+\toprule
+Factor & Value & Basis & Source, date [status] \\
+\midrule
+Textiles & $\approx$270 kgCO$_2$e/person (EU, 2020) at $\approx$16 kg $\Rightarrow$ $\approx$17 kg/kg derived & EEA & \cite{eea_textiles}, fetched 2026-09-03 [F] \\
+App clothing proxy & 18 kgCO$_2$e/item & conservative per-item convention (Quantiz/EMF lineage) \cite{emf_textiles} & recorded 2026-09-03 [C] \\
+Landfill waste & $\approx$0.5--0.8 kgCO$_2$e/kg MSW & IPCC 2006 Vol.5 convention & \cite{ipcc2006_vol5}, accessed 2026-09-03 [C] \\
+Landfill gas composition & 40--60\% CH$_4$; CH$_4$ GWP-100 = 28 (AR5, GHG Protocol default; AR6 non-fossil 27.9) & Ullmann's / GHG Protocol & \cite{wiki_landfill, ghgprotocol_gwp}, fetched 2026-09-03 [F] \\
+Recycling energy savings & aluminium 95\%, plastics 70\%, steel 60\%, paper 40\%, glass 5--30\% vs.\ virgin & EPA/EIA-cited table & \cite{wiki_recycling}, fetched 2026-09-03 [F] \\
+App recycling credits & paper $-$4, plastic $-$6, metal $-$12, glass $-$2 kgCO$_2$e/month & avoided-virgin screening values & \texttt{baseline.py}, recorded 2026-09-03 [A/C] \\
+Waste bag mass & 5/10/20/30 kg (S/M/L/XL) & bin-size conventions & recorded 2026-09-03 [C] \\
+LPG combustion & $\approx$3.0 kgCO$_2$e/kg burned (a 14.2 kg cylinder $\rightarrow$ \approx$42.6 kg CO$_2$e); $\approx$1.55 kgCO$_2$e/litre & IPCC stoichiometry; DESNZ per-litre & \cite{ipcc2006_vol2, desnz2025}, corrected 2026-09-04 [C] \\
+Cooking appliance draws & stove 12, oven 9, microwave 5, grill 7, air fryer 8 kWh/month & conventions $\times$ country grid & recorded 2026-09-03 [C] \\
+\bottomrule
+\end{longtable}
+
+% =====================================================================
+\section{Household size and per-person attribution}
+
+\texttt{household\_size} (1--10, geometric distribution) divides shared
+home-energy kWh and household waste across occupants --- a partial-sharing
+model [C]: only those two lines are divided; individual consumption (food,
+travel, goods) is not. Per-person means therefore fall from 666.6
+kgCO$_2$e/month (1-person) to $\approx$520--545 kg (5+ people), not to a full
+1/n division; dataset correlation $-0.206$ (computed from
+clean\_dataset\_v2.csv, v2.3). Country-specific household-size
+distributions are a v3 refinement.
+
+% =====================================================================
+\section{Model and dataset provenance (for the record)}
+
+\begin{itemize}
+  \item Dataset: \texttt{data/v2\_training/clean\_dataset\_v2.csv} ---
+        10{,}000 rows, 15 questionnaire inputs + \texttt{country}
+        (17 countries) + \texttt{household\_size} + target. Generator:
+        \texttt{scripts/generate\_dataset\_v2.py}, seed 42, byte-identical
+        regeneration. Data dictionary:
+        \texttt{DATA\_DICTIONARY\_V2.md}.
+  \item v1 anchor (frozen): Kaggle-derived dataset pair per
+        \texttt{DATASET\_FREEZE.md}; target is formula-derived by the
+        original dataset author --- retained as the reproducibility
+        anchor, not as a measured-emissions source.
+  \item Uncertainty: 90\% split-conformal interval, $\hat{q} = 330.96$
+        kgCO$_2$e/month on v1 (91.7\% empirical coverage); recalibration
+        required for the v2.3 scale. See
+        \texttt{scripts/recalibrate\_conformal.py}.
+  \item All targets are synthetic factor-formula estimates, not measured
+        emissions; the application disclaimer reflects this.
+\end{itemize}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

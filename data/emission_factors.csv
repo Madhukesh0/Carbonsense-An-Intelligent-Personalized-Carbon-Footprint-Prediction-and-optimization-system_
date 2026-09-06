@@ -1,0 +1,20 @@
+category,sub_category,unit,emission_factor_kgco2e_per_unit,source,notes
+Electricity,Grid Average,kWh,0.475,IPCC 2022 / IEA,"Global avg approx; India ~0.7, US ~0.4, varies by region"
+Electricity,Renewable,kWh,0.05,IPCC,"Solar/Wind/Hydro low"
+Natural Gas,Heating,m3,2.0,GHGP,"Approx 2.0 kgCO2e/m3"
+LPG,Cooking,kg,2.94,GHGP
+Petrol,Car Travel,km,0.192,DEFRA / EPA,"Average car ~0.19-0.22"
+Diesel,Car Travel,km,0.171,DEFRA
+Public Transport,Bus,km,0.105,DEFRA
+Public Transport,Train,km,0.041,DEFRA
+Flight,Short Haul,km,0.255,DEFRA,"Economy"
+Flight,Long Haul,km,0.195,DEFRA
+Diet,Red Meat,kg,27.0,Poore & Nemecek 2018,"Beef high"
+Diet,Poultry,kg,6.9,Poore
+Diet,Dairy,kg,3.2,Poore
+Diet,Vegetables,kg,0.4,Poore
+Waste,General Landfill,kg,0.5,US EPA,"Methane from landfill"
+Recycling,Paper,kg,-0.8,US EPA,"Avoided emissions negative"
+Water,Usage,liter,0.0003,Some studies,"Very small but cumulative"
+Clothing,New Item,item,10.0,Approx,"Fast fashion avg per item"
+Internet,Streaming,hour,0.1,Some studies,"Device + data center"

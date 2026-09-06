@@ -1,0 +1,1591 @@
+{
+  "generated_at": "2026-09-03T09:34:07.220288+00:00",
+  "model_version": "final-gradientboosting-v1",
+  "model_metrics": {
+    "model": "GradientBoosting",
+    "r2_train": 0.97627,
+    "r2_test": 0.962909,
+    "mae": 156.9584,
+    "rmse": 196.3777,
+    "mape": 7.858,
+    "cv_r2_mean": 0.959986,
+    "cv_r2_std": 0.000301,
+    "train_time_s": 749.53
+  },
+  "feature_count": 44,
+  "raw_feature_count": 26,
+  "summary": {
+    "total_tests": 91,
+    "passed": 91,
+    "failed": 0
+  },
+  "prediction_stats": {
+    "count": 85,
+    "min": 59.0,
+    "max": 8826.4,
+    "mean": 1133.1,
+    "spread": 8767.4
+  },
+  "results": [
+    {
+      "test": "baseline_default_payload",
+      "status": "PASS",
+      "predictedKg": 956.5,
+      "uncertaintyRange": {
+        "low": 625.5,
+        "high": 1287.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.71,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "minimal_required_fields",
+      "status": "PASS",
+      "predictedKg": 956.5,
+      "uncertaintyRange": {
+        "low": 625.5,
+        "high": 1287.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.71,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_body_type_obese",
+      "status": "PASS",
+      "predictedKg": 1382.0,
+      "uncertaintyRange": {
+        "low": 1051.1,
+        "high": 1713.0
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -543.515,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_body_type_normal",
+      "status": "PASS",
+      "predictedKg": 956.5,
+      "uncertaintyRange": {
+        "low": 625.5,
+        "high": 1287.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.71,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_body_type_overweight",
+      "status": "PASS",
+      "predictedKg": 1218.5,
+      "uncertaintyRange": {
+        "low": 887.5,
+        "high": 1549.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -541.381,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_body_type_underweight",
+      "status": "PASS",
+      "predictedKg": 850.2,
+      "uncertaintyRange": {
+        "low": 519.3,
+        "high": 1181.2
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -517.097,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_sex_male",
+      "status": "PASS",
+      "predictedKg": 1284.6,
+      "uncertaintyRange": {
+        "low": 953.6,
+        "high": 1615.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -557.685,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_sex_female",
+      "status": "PASS",
+      "predictedKg": 956.5,
+      "uncertaintyRange": {
+        "low": 625.5,
+        "high": 1287.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.71,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_diet_vegan",
+      "status": "PASS",
+      "predictedKg": 836.6,
+      "uncertaintyRange": {
+        "low": 505.7,
+        "high": 1167.6
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.58,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_diet_pescatarian",
+      "status": "PASS",
+      "predictedKg": 890.5,
+      "uncertaintyRange": {
+        "low": 559.6,
+        "high": 1221.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -529.935,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_diet_omnivore",
+      "status": "PASS",
+      "predictedKg": 956.5,
+      "uncertaintyRange": {
+        "low": 625.5,
+        "high": 1287.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.71,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_diet_vegetarian",
+      "status": "PASS",
+      "predictedKg": 803.6,
+      "uncertaintyRange": {
+        "low": 472.6,
+        "high": 1134.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.855,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_how_often_shower_twice_a_day",
+      "status": "PASS",
+      "predictedKg": 965.5,
+      "uncertaintyRange": {
+        "low": 634.5,
+        "high": 1296.4
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -532.915,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_how_often_shower_rarely",
+      "status": "PASS",
+      "predictedKg": 949.7,
+      "uncertaintyRange": {
+        "low": 618.8,
+        "high": 1280.7
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.624,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_how_often_shower_daily",
+      "status": "PASS",
+      "predictedKg": 956.5,
+      "uncertaintyRange": {
+        "low": 625.5,
+        "high": 1287.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.71,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_how_often_shower_often",
+      "status": "PASS",
+      "predictedKg": 975.9,
+      "uncertaintyRange": {
+        "low": 645.0,
+        "high": 1306.9
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -535.411,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_heating_energy_source_electricity",
+      "status": "PASS",
+      "predictedKg": 956.5,
+      "uncertaintyRange": {
+        "low": 625.5,
+        "high": 1287.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.71,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_heating_energy_source_wood",
+      "status": "PASS",
+      "predictedKg": 945.4,
+      "uncertaintyRange": {
+        "low": 614.5,
+        "high": 1276.4
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -532.233,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_heating_energy_source_natural_gas",
+      "status": "PASS",
+      "predictedKg": 969.6,
+      "uncertaintyRange": {
+        "low": 638.6,
+        "high": 1300.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -535.897,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_transport_walk_or_bicycle",
+      "status": "PASS",
+      "predictedKg": 949.9,
+      "uncertaintyRange": {
+        "low": 618.9,
+        "high": 1280.8
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -539.952,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_transport_private",
+      "status": "PASS",
+      "predictedKg": 956.5,
+      "uncertaintyRange": {
+        "low": 625.5,
+        "high": 1287.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.71,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_transport_public",
+      "status": "PASS",
+      "predictedKg": 955.7,
+      "uncertaintyRange": {
+        "low": 624.7,
+        "high": 1286.6
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -536.307,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_vehicle_type_diesel",
+      "status": "PASS",
+      "predictedKg": 897.5,
+      "uncertaintyRange": {
+        "low": 566.5,
+        "high": 1228.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -372.655,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_vehicle_type_hybrid",
+      "status": "PASS",
+      "predictedKg": 850.2,
+      "uncertaintyRange": {
+        "low": 519.2,
+        "high": 1181.2
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "air_travel_frequency",
+        "label": "Air travel frequency",
+        "shapValue": -344.396,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_vehicle_type_electric",
+      "status": "PASS",
+      "predictedKg": 851.8,
+      "uncertaintyRange": {
+        "low": 520.9,
+        "high": 1182.8
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "air_travel_frequency",
+        "label": "Air travel frequency",
+        "shapValue": -330.288,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_vehicle_type_none",
+      "status": "PASS",
+      "predictedKg": 903.6,
+      "uncertaintyRange": {
+        "low": 572.6,
+        "high": 1234.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -363.222,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_vehicle_type_petrol",
+      "status": "PASS",
+      "predictedKg": 956.5,
+      "uncertaintyRange": {
+        "low": 625.5,
+        "high": 1287.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.71,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_vehicle_type_lpg",
+      "status": "PASS",
+      "predictedKg": 872.6,
+      "uncertaintyRange": {
+        "low": 541.7,
+        "high": 1203.6
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -428.157,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_social_activity_sometimes",
+      "status": "PASS",
+      "predictedKg": 956.5,
+      "uncertaintyRange": {
+        "low": 625.5,
+        "high": 1287.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.71,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_social_activity_often",
+      "status": "PASS",
+      "predictedKg": 1086.3,
+      "uncertaintyRange": {
+        "low": 755.4,
+        "high": 1417.3
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -533.784,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_social_activity_never",
+      "status": "PASS",
+      "predictedKg": 884.2,
+      "uncertaintyRange": {
+        "low": 553.2,
+        "high": 1215.2
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -533.57,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_frequency_of_traveling_by_air_rarely",
+      "status": "PASS",
+      "predictedKg": 956.5,
+      "uncertaintyRange": {
+        "low": 625.5,
+        "high": 1287.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.71,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_frequency_of_traveling_by_air_very_frequently",
+      "status": "PASS",
+      "predictedKg": 2033.3,
+      "uncertaintyRange": {
+        "low": 1702.3,
+        "high": 2364.2
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "air_travel_frequency",
+        "label": "Air travel frequency",
+        "shapValue": 745.968,
+        "direction": "increases"
+      }
+    },
+    {
+      "test": "categorical_frequency_of_traveling_by_air_often",
+      "status": "PASS",
+      "predictedKg": 1401.6,
+      "uncertaintyRange": {
+        "low": 1070.6,
+        "high": 1732.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -525.18,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_frequency_of_traveling_by_air_never",
+      "status": "PASS",
+      "predictedKg": 794.0,
+      "uncertaintyRange": {
+        "low": 463.0,
+        "high": 1124.9
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -531.727,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_waste_bag_size_small",
+      "status": "PASS",
+      "predictedKg": 976.9,
+      "uncertaintyRange": {
+        "low": 645.9,
+        "high": 1307.8
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.927,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_waste_bag_size_large",
+      "status": "PASS",
+      "predictedKg": 1091.7,
+      "uncertaintyRange": {
+        "low": 760.8,
+        "high": 1422.7
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -528.417,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_waste_bag_size_extra_large",
+      "status": "PASS",
+      "predictedKg": 1167.3,
+      "uncertaintyRange": {
+        "low": 836.3,
+        "high": 1498.2
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -530.949,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_waste_bag_size_medium",
+      "status": "PASS",
+      "predictedKg": 956.5,
+      "uncertaintyRange": {
+        "low": 625.5,
+        "high": 1287.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.71,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_energy_efficiency_Sometimes",
+      "status": "PASS",
+      "predictedKg": 956.5,
+      "uncertaintyRange": {
+        "low": 625.5,
+        "high": 1287.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.71,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_energy_efficiency_No",
+      "status": "PASS",
+      "predictedKg": 991.3,
+      "uncertaintyRange": {
+        "low": 660.3,
+        "high": 1322.3
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -531.892,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "categorical_energy_efficiency_Yes",
+      "status": "PASS",
+      "predictedKg": 917.0,
+      "uncertaintyRange": {
+        "low": 586.0,
+        "high": 1248.0
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -532.283,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "numeric_monthly_grocery_bill_0",
+      "status": "PASS",
+      "predictedKg": 929.6,
+      "uncertaintyRange": {
+        "low": 598.6,
+        "high": 1260.6
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -535.323,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "numeric_monthly_grocery_bill_5000",
+      "status": "PASS",
+      "predictedKg": 1113.6,
+      "uncertaintyRange": {
+        "low": 782.6,
+        "high": 1444.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -527.116,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "numeric_monthly_grocery_bill_2500",
+      "status": "PASS",
+      "predictedKg": 1113.6,
+      "uncertaintyRange": {
+        "low": 782.6,
+        "high": 1444.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -527.116,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "numeric_vehicle_monthly_distance_km_0",
+      "status": "PASS",
+      "predictedKg": 964.8,
+      "uncertaintyRange": {
+        "low": 633.8,
+        "high": 1295.7
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -501.565,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "numeric_vehicle_monthly_distance_km_10000",
+      "status": "PASS",
+      "predictedKg": 4266.9,
+      "uncertaintyRange": {
+        "low": 3935.9,
+        "high": 4597.8
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": 2104.639,
+        "direction": "increases"
+      }
+    },
+    {
+      "test": "numeric_vehicle_monthly_distance_km_5000",
+      "status": "PASS",
+      "predictedKg": 2699.4,
+      "uncertaintyRange": {
+        "low": 2368.4,
+        "high": 3030.3
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": 853.958,
+        "direction": "increases"
+      }
+    },
+    {
+      "test": "numeric_waste_bag_weekly_count_0",
+      "status": "PASS",
+      "predictedKg": 862.6,
+      "uncertaintyRange": {
+        "low": 531.6,
+        "high": 1193.6
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -532.475,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "numeric_waste_bag_weekly_count_20",
+      "status": "PASS",
+      "predictedKg": 1155.5,
+      "uncertaintyRange": {
+        "low": 824.6,
+        "high": 1486.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -532.065,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "numeric_waste_bag_weekly_count_10",
+      "status": "PASS",
+      "predictedKg": 1155.5,
+      "uncertaintyRange": {
+        "low": 824.6,
+        "high": 1486.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -532.065,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "numeric_how_long_tv_pc_daily_hour_0",
+      "status": "PASS",
+      "predictedKg": 910.1,
+      "uncertaintyRange": {
+        "low": 579.1,
+        "high": 1241.1
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -536.622,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "numeric_how_long_tv_pc_daily_hour_24",
+      "status": "PASS",
+      "predictedKg": 984.9,
+      "uncertaintyRange": {
+        "low": 654.0,
+        "high": 1315.9
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -530.968,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "numeric_how_long_tv_pc_daily_hour_12",
+      "status": "PASS",
+      "predictedKg": 969.5,
+      "uncertaintyRange": {
+        "low": 638.6,
+        "high": 1300.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -530.714,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "numeric_how_many_new_clothes_monthly_0",
+      "status": "PASS",
+      "predictedKg": 965.5,
+      "uncertaintyRange": {
+        "low": 634.5,
+        "high": 1296.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -535.897,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "numeric_how_many_new_clothes_monthly_50",
+      "status": "PASS",
+      "predictedKg": 1633.5,
+      "uncertaintyRange": {
+        "low": 1302.5,
+        "high": 1964.4
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -533.86,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "numeric_how_many_new_clothes_monthly_25",
+      "status": "PASS",
+      "predictedKg": 1318.7,
+      "uncertaintyRange": {
+        "low": 987.7,
+        "high": 1649.7
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.837,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "numeric_how_long_internet_daily_hour_0",
+      "status": "PASS",
+      "predictedKg": 941.3,
+      "uncertaintyRange": {
+        "low": 610.3,
+        "high": 1272.3
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.974,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "numeric_how_long_internet_daily_hour_24",
+      "status": "PASS",
+      "predictedKg": 1144.1,
+      "uncertaintyRange": {
+        "low": 813.1,
+        "high": 1475.0
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -531.796,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "numeric_how_long_internet_daily_hour_12",
+      "status": "PASS",
+      "predictedKg": 1022.3,
+      "uncertaintyRange": {
+        "low": 691.4,
+        "high": 1353.3
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.622,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "recycling_none",
+      "status": "PASS",
+      "predictedKg": 1095.0,
+      "uncertaintyRange": {
+        "low": 764.0,
+        "high": 1426.0
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -545.596,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "recycling_paper_only",
+      "status": "PASS",
+      "predictedKg": 968.3,
+      "uncertaintyRange": {
+        "low": 637.3,
+        "high": 1299.2
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -545.356,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "recycling_plastic_only",
+      "status": "PASS",
+      "predictedKg": 1083.2,
+      "uncertaintyRange": {
+        "low": 752.3,
+        "high": 1414.2
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.95,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "recycling_metal_only",
+      "status": "PASS",
+      "predictedKg": 926.6,
+      "uncertaintyRange": {
+        "low": 595.6,
+        "high": 1257.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -547.523,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "recycling_glass_only",
+      "status": "PASS",
+      "predictedKg": 1006.9,
+      "uncertaintyRange": {
+        "low": 676.0,
+        "high": 1337.9
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -545.964,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "recycling_paper_plastic",
+      "status": "PASS",
+      "predictedKg": 956.5,
+      "uncertaintyRange": {
+        "low": 625.5,
+        "high": 1287.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.71,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "recycling_three_items",
+      "status": "PASS",
+      "predictedKg": 791.7,
+      "uncertaintyRange": {
+        "low": 460.8,
+        "high": 1122.7
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -536.637,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "recycling_all_four",
+      "status": "PASS",
+      "predictedKg": 709.4,
+      "uncertaintyRange": {
+        "low": 378.4,
+        "high": 1040.3
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -537.005,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "recycling_none_explicit",
+      "status": "PASS",
+      "predictedKg": 1095.0,
+      "uncertaintyRange": {
+        "low": 764.0,
+        "high": 1426.0
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -545.596,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "cooking_none",
+      "status": "PASS",
+      "predictedKg": 890.6,
+      "uncertaintyRange": {
+        "low": 559.7,
+        "high": 1221.6
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -541.619,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "cooking_stove_only",
+      "status": "PASS",
+      "predictedKg": 926.0,
+      "uncertaintyRange": {
+        "low": 595.0,
+        "high": 1257.0
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -536.026,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "cooking_oven_only",
+      "status": "PASS",
+      "predictedKg": 934.2,
+      "uncertaintyRange": {
+        "low": 603.2,
+        "high": 1265.2
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -538.713,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "cooking_microwave_only",
+      "status": "PASS",
+      "predictedKg": 902.5,
+      "uncertaintyRange": {
+        "low": 571.5,
+        "high": 1233.4
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -541.117,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "cooking_grill_only",
+      "status": "PASS",
+      "predictedKg": 924.4,
+      "uncertaintyRange": {
+        "low": 593.4,
+        "high": 1255.4
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -541.16,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "cooking_airfryer_only",
+      "status": "PASS",
+      "predictedKg": 932.8,
+      "uncertaintyRange": {
+        "low": 601.8,
+        "high": 1263.8
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -541.21,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "cooking_three_items",
+      "status": "PASS",
+      "predictedKg": 976.0,
+      "uncertaintyRange": {
+        "low": 645.1,
+        "high": 1307.0
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -534.511,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "cooking_all_five",
+      "status": "PASS",
+      "predictedKg": 1050.1,
+      "uncertaintyRange": {
+        "low": 719.1,
+        "high": 1381.0
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -533.644,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "cooking_none_explicit",
+      "status": "PASS",
+      "predictedKg": 890.6,
+      "uncertaintyRange": {
+        "low": 559.7,
+        "high": 1221.6
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -541.619,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "extreme_heavy_emitter",
+      "status": "PASS",
+      "predictedKg": 8826.4,
+      "uncertaintyRange": {
+        "low": 8495.5,
+        "high": 9157.4
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": 2298.626,
+        "direction": "increases"
+      }
+    },
+    {
+      "test": "extreme_minimal_emitter",
+      "status": "PASS",
+      "predictedKg": 59.0,
+      "uncertaintyRange": {
+        "low": 0.0,
+        "high": 390.0
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "air_travel_frequency",
+        "label": "Air travel frequency",
+        "shapValue": -508.28,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "profile_ev_advocate",
+      "status": "PASS",
+      "predictedKg": 477.7,
+      "uncertaintyRange": {
+        "low": 146.7,
+        "high": 808.6
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "waste_and_recycling",
+        "label": "Waste and recycling",
+        "shapValue": -378.102,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "profile_public_transport_commuter",
+      "status": "PASS",
+      "predictedKg": 732.6,
+      "uncertaintyRange": {
+        "low": 401.6,
+        "high": 1063.5
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "air_travel_frequency",
+        "label": "Air travel frequency",
+        "shapValue": -512.477,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "invalid_body_type",
+      "status": "PASS (expected failure)",
+      "error": "ValueError: Unsupported body_type='invalid_type'; supported values: ['normal', 'obese', 'overweight', 'underweight']"
+    },
+    {
+      "test": "invalid_diet",
+      "status": "PASS (expected failure)",
+      "error": "ValueError: Unsupported diet='carnivore'; supported values: ['omnivore', 'pescatarian', 'vegan', 'vegetarian']"
+    },
+    {
+      "test": "invalid_negative_grocery",
+      "status": "PASS (expected failure)",
+      "error": "ValueError: monthly_grocery_bill must be a finite non-negative number"
+    },
+    {
+      "test": "invalid_transport",
+      "status": "PASS (expected failure)",
+      "error": "ValueError: Unsupported transport='skateboard'; supported values: ['private', 'public', 'walk/bicycle']"
+    },
+    {
+      "test": "invalid_recycling_string",
+      "status": "PASS (expected failure)",
+      "error": "ValueError: recycling must be a JSON array of values, not a string"
+    },
+    {
+      "test": "boundary_recycling_none_mix",
+      "status": "PASS",
+      "predictedKg": 968.3,
+      "uncertaintyRange": {
+        "low": 637.3,
+        "high": 1299.2
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -545.356,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "boundary_cooking_none_mix",
+      "status": "PASS",
+      "predictedKg": 926.0,
+      "uncertaintyRange": {
+        "low": 595.0,
+        "high": 1257.0
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -536.026,
+        "direction": "decreases"
+      }
+    },
+    {
+      "test": "invalid_negative_waste",
+      "status": "PASS (expected failure)",
+      "error": "ValueError: waste_bag_weekly_count must be a finite non-negative number"
+    },
+    {
+      "test": "boundary_tv_hours_over_24",
+      "status": "PASS",
+      "predictedKg": 984.9,
+      "uncertaintyRange": {
+        "low": 654.0,
+        "high": 1315.9
+      },
+      "modelVersion": "final-gradientboosting-v1",
+      "transformedFeatureCount": 44,
+      "contributionCount": 13,
+      "topContribution": {
+        "feature": "transport_and_distance",
+        "label": "Transport and distance",
+        "shapValue": -530.968,
+        "direction": "decreases"
+      }
+    }
+  ]
+}

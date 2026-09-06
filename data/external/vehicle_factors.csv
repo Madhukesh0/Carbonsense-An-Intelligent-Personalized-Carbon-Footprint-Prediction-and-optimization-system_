@@ -1,0 +1,8 @@
+vehicle_type,kgco2e_per_km,source,notes
+petrol,0.192,DEFRA 2024 / EPA,Matches emission_factors.csv 'Petrol Car Travel'
+diesel,0.171,DEFRA 2024,Matches emission_factors.csv 'Diesel Car Travel'
+hybrid,0.115,DEFRA 2024 (nominal),~40% saving vs petrol typical hybrid
+electric,0.086,Nominal (grid-derived),18 kWh/100km x 0.475 kgCO2e/kWh IEA grid average
+lpg,0.150,Nominal,LPG autogas approx 22% below petrol
+public-bus,0.105,DEFRA 2024,Matches emission_factors.csv 'Public Transport Bus'; applied when transport=public
+walk/bicycle,0.0,By definition,Zero tailpipe

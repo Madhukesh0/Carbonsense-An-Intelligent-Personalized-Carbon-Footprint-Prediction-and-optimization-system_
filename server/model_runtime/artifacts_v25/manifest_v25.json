@@ -1,0 +1,8 @@
+{
+  "model_version": "final-xgboost-v25",
+  "files": {
+    "best_carbon_model_v25.joblib": "dede17e88aa908c235a59939fabac5273cf6bf547912acd5e328d5c47d2979d6",
+    "feature_names_v25.joblib": "af9107ffc6a72d11f524e58823231f47f55b267920ffe93f15f522ad331ae19f",
+    "model_metadata_v25.json": "5b1107adb7acb221da14fe76545be69eae4e3bed8bed8910215ce93cf1fb3ac2"
+  }
+}

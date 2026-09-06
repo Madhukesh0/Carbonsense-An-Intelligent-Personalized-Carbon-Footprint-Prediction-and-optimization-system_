@@ -1,0 +1,68 @@
+country_iso3,country_name,grid_intensity_kgco2e_per_kwh,source,year
+ARG,Argentina,0.364,IEA Emissions Factors,2024
+AUS,Australia,0.508,IEA Emissions Factors,2024
+AUT,Austria,0.144,IEA Emissions Factors,2024
+BEL,Belgium,0.149,IEA Emissions Factors,2024
+BGD,Bangladesh,0.534,IEA Emissions Factors,2024
+BGR,Bulgaria,0.343,IEA Emissions Factors,2024
+BRA,Brazil,0.098,IEA Emissions Factors,2024
+CAN,Canada,0.126,IEA Emissions Factors,2024
+CHE,Switzerland,0.027,IEA Emissions Factors,2024
+CHL,Chile,0.325,IEA Emissions Factors,2024
+CHN,China,0.554,IEA Emissions Factors,2024
+COL,Colombia,0.159,IEA Emissions Factors,2024
+CZE,Czechia,0.412,IEA Emissions Factors,2024
+DEU,Germany,0.353,IEA Emissions Factors,2024
+DNK,Denmark,0.152,IEA Emissions Factors,2024
+EGY,Egypt,0.451,IEA Emissions Factors,2024
+ESP,Spain,0.151,IEA Emissions Factors,2024
+EST,Estonia,0.573,IEA Emissions Factors,2024
+FIN,Finland,0.083,IEA Emissions Factors,2024
+FRA,France,0.056,IEA Emissions Factors,2024
+GBR,United Kingdom,0.212,IEA Emissions Factors,2024
+GRC,Greece,0.283,IEA Emissions Factors,2024
+HRV,Croatia,0.208,IEA Emissions Factors,2024
+HUN,Hungary,0.209,IEA Emissions Factors,2024
+IDN,Indonesia,0.623,IEA Emissions Factors,2024
+IND,India,0.713,IEA Emissions Factors,2024
+IRL,Ireland,0.275,IEA Emissions Factors,2024
+IRN,Iran,0.580,IEA Emissions Factors,2024
+ISL,Iceland,0.029,IEA Emissions Factors,2024
+ISR,Israel,0.539,IEA Emissions Factors,2024
+ITA,Italy,0.305,IEA Emissions Factors,2024
+JPN,Japan,0.457,IEA Emissions Factors,2024
+KOR,South Korea,0.436,IEA Emissions Factors,2024
+KAZ,Kazakhstan,0.806,IEA Emissions Factors,2024
+KEN,Kenya,0.078,IEA Emissions Factors,2024
+LTU,Lithuania,0.143,IEA Emissions Factors,2024
+LUX,Luxembourg,0.195,IEA Emissions Factors,2024
+LVA,Latvia,0.107,IEA Emissions Factors,2024
+MAR,Morocco,0.640,IEA Emissions Factors,2024
+MEX,Mexico,0.421,IEA Emissions Factors,2024
+MMR,Myanmar,0.453,IEA Emissions Factors,2024
+MYS,Malaysia,0.579,IEA Emissions Factors,2024
+NGA,Nigeria,0.376,IEA Emissions Factors,2024
+NLD,Netherlands,0.296,IEA Emissions Factors,2024
+NOR,Norway,0.030,IEA Emissions Factors,2024
+NZL,New Zealand,0.114,IEA Emissions Factors,2024
+PAK,Pakistan,0.419,IEA Emissions Factors,2024
+PER,Peru,0.234,IEA Emissions Factors,2024
+PHL,Philippines,0.622,IEA Emissions Factors,2024
+POL,Poland,0.665,IEA Emissions Factors,2024
+PRT,Portugal,0.154,IEA Emissions Factors,2024
+ROU,Romania,0.257,IEA Emissions Factors,2024
+RUS,Russia,0.476,IEA Emissions Factors,2024
+SAU,Saudi Arabia,0.655,IEA Emissions Factors,2024
+SGP,Singapore,0.417,IEA Emissions Factors,2024
+SRB,Serbia,0.706,IEA Emissions Factors,2024
+SVK,Slovakia,0.244,IEA Emissions Factors,2024
+SVN,Slovenia,0.243,IEA Emissions Factors,2024
+SWE,Sweden,0.023,IEA Emissions Factors,2024
+THA,Thailand,0.502,IEA Emissions Factors,2024
+TUR,Turkey,0.442,IEA Emissions Factors,2024
+TWN,Taiwan,0.554,IEA Emissions Factors,2024
+UKR,Ukraine,0.326,IEA Emissions Factors,2024
+URY,Uruguay,0.105,IEA Emissions Factors,2024
+USA,United States,0.379,IEA Emissions Factors,2024
+VNM,Vietnam,0.486,IEA Emissions Factors,2024
+ZAF,South Africa,0.874,IEA Emissions Factors,2024

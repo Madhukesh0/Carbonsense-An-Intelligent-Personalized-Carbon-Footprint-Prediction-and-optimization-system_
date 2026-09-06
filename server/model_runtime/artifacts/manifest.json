@@ -1,0 +1,9 @@
+{
+  "model_version": "final-gradientboosting-v1",
+  "generated_at": "2026-08-31T08:24:19.263105+00:00",
+  "files": {
+    "best_carbon_model.joblib": "fc68e93526769dfe5365d2f6ff5c80f7c9fbbf2da47445478f6b3161301fd9d7",
+    "preprocessor_10k_final.joblib": "b9cda438d8da97bde9928f0b1b2a23af97cc4328f6de3eeb60689d6cc36161aa",
+    "model_metadata.json": "b95f925a11c7dd36ec96f545e3097255882d6757cb9e46b62f79a096fee72203"
+  }
+}

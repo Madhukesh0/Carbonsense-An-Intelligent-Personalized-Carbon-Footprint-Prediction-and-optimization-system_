@@ -1,0 +1,6 @@
+appliance,electricity_kwh_month,source,notes
+Stove,30,Nominal mapping,Resistance/hob cooking for a household
+Oven,25,Nominal mapping,Oven baking energy
+Microwave,8,Nominal mapping,High efficiency, low duty cycle
+Grill,12,Nominal mapping,Electric grill
+Airfryer,10,Nominal mapping,Compact convection cooker

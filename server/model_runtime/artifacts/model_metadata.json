@@ -1,0 +1,158 @@
+{
+  "model_type": "GradientBoostingRegressor",
+  "model_version": "final-gradientboosting-v1",
+  "training_date": "2026-08-31T08:24:19.263105+00:00",
+  "dataset_source": "Kaggle Individual Carbon Footprint Calculation",
+  "dataset_url": "https://www.kaggle.com/datasets/dumanmesut/individual-carbon-footprint-calculation",
+  "n_samples": 10000,
+  "n_features": 44,
+  "train_test_split": "80/20",
+  "random_seed": 42,
+  "metrics": {
+    "model": "GradientBoosting",
+    "r2_train": 0.97627,
+    "r2_test": 0.962909,
+    "mae": 156.9584,
+    "rmse": 196.3777,
+    "mape": 7.858,
+    "cv_r2_mean": 0.959986,
+    "cv_r2_std": 0.000301,
+    "train_time_s": 749.53
+  },
+  "conformal_prediction": {
+    "alpha": 0.1,
+    "method": "split-conformal, finite-sample corrected; calibration partition never used to fit the model",
+    "quantile_90": 330.9618,
+    "uncertainty_range": "+/- 330.96 kgCO2e/month",
+    "calibrated_at": "2026-09-03T09:27:09.098806+00:00",
+    "empirical": {
+      "calibration_partition": "6000/2000 split of train_X (random_state=42)",
+      "calibration_residual_q90_kg": 330.9618,
+      "test_coverage_at_new_qhat": 0.917,
+      "test_coverage_at_previous_qhat": 0.805,
+      "measured_on": "frozen model, test_y (2000 held-out rows)"
+    }
+  },
+  "feature_names": [
+    "monthly_grocery_bill",
+    "vehicle_monthly_distance_km",
+    "waste_bag_weekly_count",
+    "how_long_tv_pc_daily_hour",
+    "how_many_new_clothes_monthly",
+    "how_long_internet_daily_hour",
+    "body_type_obese",
+    "body_type_overweight",
+    "body_type_underweight",
+    "sex_male",
+    "diet_pescatarian",
+    "diet_vegan",
+    "diet_vegetarian",
+    "how_often_shower_often",
+    "how_often_shower_rarely",
+    "how_often_shower_twice a day",
+    "heating_energy_source_natural gas",
+    "heating_energy_source_wood",
+    "transport_public",
+    "transport_walk/bicycle",
+    "vehicle_type_electric",
+    "vehicle_type_hybrid",
+    "vehicle_type_lpg",
+    "vehicle_type_none",
+    "vehicle_type_petrol",
+    "social_activity_often",
+    "social_activity_sometimes",
+    "frequency_of_traveling_by_air_often",
+    "frequency_of_traveling_by_air_rarely",
+    "frequency_of_traveling_by_air_very frequently",
+    "waste_bag_size_large",
+    "waste_bag_size_medium",
+    "waste_bag_size_small",
+    "energy_efficiency_Sometimes",
+    "energy_efficiency_Yes",
+    "recycle_glass",
+    "recycle_metal",
+    "recycle_paper",
+    "recycle_plastic",
+    "cook_airfryer",
+    "cook_grill",
+    "cook_microwave",
+    "cook_oven",
+    "cook_stove"
+  ],
+  "all_model_results": [
+    {
+      "model": "GradientBoosting",
+      "r2_train": 0.97627,
+      "r2_test": 0.962909,
+      "mae": 156.9584,
+      "rmse": 196.3777,
+      "mape": 7.858,
+      "cv_r2_mean": 0.959986,
+      "cv_r2_std": 0.000301,
+      "train_time_s": 749.53
+    },
+    {
+      "model": "XGBoost",
+      "r2_train": 0.98471,
+      "r2_test": 0.960223,
+      "mae": 163.533,
+      "rmse": 203.3626,
+      "mape": 8.181,
+      "cv_r2_mean": 0.958023,
+      "cv_r2_std": 0.000417,
+      "train_time_s": 56.63
+    },
+    {
+      "model": "RandomForest",
+      "r2_train": 0.98322,
+      "r2_test": 0.906784,
+      "mae": 243.5118,
+      "rmse": 311.3156,
+      "mape": 11.9593,
+      "cv_r2_mean": 0.895711,
+      "cv_r2_std": 0.001184,
+      "train_time_s": 526.84
+    },
+    {
+      "model": "LinearRegression",
+      "r2_train": 0.91078,
+      "r2_test": 0.914118,
+      "mae": 220.1218,
+      "rmse": 298.8185,
+      "mape": 11.0509,
+      "cv_r2_mean": 0.909005,
+      "cv_r2_std": 0.002078,
+      "train_time_s": 0.01
+    },
+    {
+      "model": "SVR",
+      "r2_train": 0.350008,
+      "r2_test": 0.365583,
+      "mae": 630.0266,
+      "rmse": 812.1629,
+      "mape": 32.3382,
+      "cv_r2_mean": 0.346737,
+      "cv_r2_std": 0.011548,
+      "train_time_s": 98.73
+    }
+  ],
+  "data_cleaning": {
+    "vehicle_type_nulls_filled": "6721 nulls -> 'none' (non-private transport)",
+    "shower_mapping": {
+      "less frequently": "rarely",
+      "more frequently": "often"
+    },
+    "heating_mapping": {
+      "coal": "electricity"
+    },
+    "air_travel_mapping": {
+      "frequently": "often"
+    },
+    "regional_noise_removed": true
+  },
+  "dataset_version": "kaggle-carbon-emission-v1",
+  "target_definition": "Formula-derived synthetic monthly kgCO2e estimate",
+  "data_limitations": "Target is synthetic formula-derived data; metrics measure agreement with generated targets, not verified personal emissions.",
+  "best_model": "Gradient Boosting",
+  "interval_method": "split-conformal 90% interval; served as prediction +/- quantile_90"
+}

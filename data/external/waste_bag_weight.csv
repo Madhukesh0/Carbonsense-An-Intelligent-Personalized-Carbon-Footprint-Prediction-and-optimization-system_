@@ -1,0 +1,5 @@
+waste_bag_size,kg_per_bag,source
+small,5,US EPA waste characterization (nominal mapping)
+medium,10,US EPA waste characterization (nominal mapping)
+large,15,US EPA waste characterization (nominal mapping)
+extra large,20,US EPA waste characterization (nominal mapping)

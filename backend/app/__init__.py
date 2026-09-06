@@ -1,0 +1,1 @@
+"""CarbonSense FastAPI backend package."""

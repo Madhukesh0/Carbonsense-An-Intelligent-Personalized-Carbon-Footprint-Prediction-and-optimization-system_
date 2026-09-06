@@ -1,0 +1,2 @@
+# Build-time only dependencies for the single-process deployment.
+# uvicorn is already pinned in requirements.txt (0.34.0) — nothing extra needed here.

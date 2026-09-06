@@ -1,0 +1,5 @@
+shower_frequency,showers_per_day,liters_per_shower,source,notes
+less frequently,0.5,62,Nominal mapping (US EPA WaterSense ~62 L avg shower),Every other day
+daily,1.0,62,Nominal mapping (US EPA WaterSense ~62 L avg shower),
+more frequently,1.5,62,Nominal mapping (US EPA WaterSense ~62 L avg shower),
+twice a day,2.0,62,Nominal mapping (US EPA WaterSense ~62 L avg shower),

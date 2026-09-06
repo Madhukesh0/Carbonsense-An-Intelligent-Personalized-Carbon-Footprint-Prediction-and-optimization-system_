@@ -1,0 +1,6324 @@
+{
+  "auditName": "xgb-final-54f-v2 deterministic 100-scenario QA",
+  "purpose": "Non-user model validation evidence. These engineered cases are not real people, production user records, or a population emissions distribution.",
+  "representativeCases": {
+    "closestToMatrixMean": {
+      "input": {
+        "age": 33,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 8.0,
+        "how_long_tv_pc_daily_hour": 8.0,
+        "how_many_new_clothes_monthly": 9,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 510,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 454,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 2
+      },
+      "predictionKg": 1013.1,
+      "profile": "typical",
+      "reconciliationDelta": 0.042,
+      "scenarioId": "typical_009",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -158.992
+        },
+        {
+          "direction": "increases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": 88.082
+        },
+        {
+          "direction": "increases",
+          "feature": "new_clothing",
+          "label": "New clothing purchases",
+          "shapValue": 64.687
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1038.8,
+        "low": 987.5
+      }
+    },
+    "highestPrediction": {
+      "input": {
+        "age": 57,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 15,
+        "how_long_tv_pc_daily_hour": 15.7,
+        "how_many_new_clothes_monthly": 35,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 3525,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 6700,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 14
+      },
+      "predictionKg": 2102.1,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.004,
+      "scenarioId": "high_016",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 317.193
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 260.19
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 209.441
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2127.7,
+        "low": 2076.5
+      }
+    },
+    "lowestPrediction": {
+      "input": {
+        "age": 18,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegan",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 1.0,
+        "how_long_tv_pc_daily_hour": 0.0,
+        "how_many_new_clothes_monthly": 0,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 40,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 0,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 176.8,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.027,
+      "scenarioId": "low_001",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -228.983
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -162.266
+        },
+        {
+          "direction": "decreases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": -94.453
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 202.5,
+        "low": 151.2
+      }
+    }
+  },
+  "runtime": {
+    "engine": "xgboost",
+    "rawFeatureCount": 34,
+    "transformedFeatureCount": 54
+  },
+  "scenarioCount": 100,
+  "scenarios": [
+    {
+      "input": {
+        "age": 18,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegan",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 1.0,
+        "how_long_tv_pc_daily_hour": 0.0,
+        "how_many_new_clothes_monthly": 0,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 40,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 0,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 176.8,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.027,
+      "scenarioId": "low_001",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -228.983
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -162.266
+        },
+        {
+          "direction": "decreases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": -94.453
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 202.5,
+        "low": 151.2
+      }
+    },
+    {
+      "input": {
+        "age": 19,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 1.5,
+        "how_long_tv_pc_daily_hour": 0.5,
+        "how_many_new_clothes_monthly": 1,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 48,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 2,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 228.3,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.034,
+      "scenarioId": "low_002",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -216.823
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -160.833
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -96.304
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 253.9,
+        "low": 202.6
+      }
+    },
+    {
+      "input": {
+        "age": 20,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 2.0,
+        "how_long_tv_pc_daily_hour": 1.0,
+        "how_many_new_clothes_monthly": 2,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 56,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 4,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 289.2,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.017,
+      "scenarioId": "low_003",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -208.645
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -161.733
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -95.027
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 314.8,
+        "low": 263.6
+      }
+    },
+    {
+      "input": {
+        "age": 21,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegan",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 2.5,
+        "how_long_tv_pc_daily_hour": 1.5,
+        "how_many_new_clothes_monthly": 0,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 64,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 6,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 210.5,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.02,
+      "scenarioId": "low_004",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -191.038
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -162.622
+        },
+        {
+          "direction": "decreases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": -98.057
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 236.1,
+        "low": 184.9
+      }
+    },
+    {
+      "input": {
+        "age": 22,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 3.0,
+        "how_long_tv_pc_daily_hour": 2.0,
+        "how_many_new_clothes_monthly": 1,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 72,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 8,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 280.4,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.007,
+      "scenarioId": "low_005",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -170.106
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -160.877
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -100.408
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 306.0,
+        "low": 254.8
+      }
+    },
+    {
+      "input": {
+        "age": 23,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 3.5,
+        "how_long_tv_pc_daily_hour": 2.5,
+        "how_many_new_clothes_monthly": 2,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 80,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 10,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 342.1,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.01,
+      "scenarioId": "low_006",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -159.625
+        },
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -158.342
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -103.299
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 367.7,
+        "low": 316.5
+      }
+    },
+    {
+      "input": {
+        "age": 24,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegan",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 4.0,
+        "how_long_tv_pc_daily_hour": 3.0,
+        "how_many_new_clothes_monthly": 0,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 88,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 12,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 252.2,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.035,
+      "scenarioId": "low_007",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -164.257
+        },
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -146.104
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -97.433
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 277.8,
+        "low": 226.5
+      }
+    },
+    {
+      "input": {
+        "age": 25,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 4.5,
+        "how_long_tv_pc_daily_hour": 0.0,
+        "how_many_new_clothes_monthly": 1,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 96,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 14,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 225.5,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.048,
+      "scenarioId": "low_008",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -222.132
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -160.368
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -96.242
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 251.2,
+        "low": 199.9
+      }
+    },
+    {
+      "input": {
+        "age": 26,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 1.0,
+        "how_long_tv_pc_daily_hour": 0.5,
+        "how_many_new_clothes_monthly": 2,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 104,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 16,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 279.8,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.04,
+      "scenarioId": "low_009",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -219.849
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -161.497
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -94.853
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 305.4,
+        "low": 254.1
+      }
+    },
+    {
+      "input": {
+        "age": 27,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegan",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 1.5,
+        "how_long_tv_pc_daily_hour": 1.0,
+        "how_many_new_clothes_monthly": 0,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 112,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 18,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 192.2,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.018,
+      "scenarioId": "low_010",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -212.9
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -163.584
+        },
+        {
+          "direction": "decreases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": -94.459
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 217.8,
+        "low": 166.6
+      }
+    },
+    {
+      "input": {
+        "age": 28,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 2.0,
+        "how_long_tv_pc_daily_hour": 1.5,
+        "how_many_new_clothes_monthly": 1,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 120,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 20,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 262.3,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.037,
+      "scenarioId": "low_011",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -187.014
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -160.814
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -100.774
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 288.0,
+        "low": 236.7
+      }
+    },
+    {
+      "input": {
+        "age": 29,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 2.5,
+        "how_long_tv_pc_daily_hour": 2.0,
+        "how_many_new_clothes_monthly": 2,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 128,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 22,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 330.6,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.015,
+      "scenarioId": "low_012",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -173.058
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -161.617
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -100.853
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 356.2,
+        "low": 305.0
+      }
+    },
+    {
+      "input": {
+        "age": 30,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegan",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 3.0,
+        "how_long_tv_pc_daily_hour": 2.5,
+        "how_many_new_clothes_monthly": 0,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 136,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 24,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 244.2,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.039,
+      "scenarioId": "low_013",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -164.807
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -161.015
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -99.163
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 269.8,
+        "low": 218.5
+      }
+    },
+    {
+      "input": {
+        "age": 31,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 3.5,
+        "how_long_tv_pc_daily_hour": 3.0,
+        "how_many_new_clothes_monthly": 1,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 144,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 26,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 311.4,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.02,
+      "scenarioId": "low_014",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -160.515
+        },
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -137.986
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -102.233
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 337.0,
+        "low": 285.8
+      }
+    },
+    {
+      "input": {
+        "age": 32,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 4.0,
+        "how_long_tv_pc_daily_hour": 0.0,
+        "how_many_new_clothes_monthly": 2,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 152,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 28,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 278.4,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.015,
+      "scenarioId": "low_015",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -225.745
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -161.165
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -93.98
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 304.0,
+        "low": 252.8
+      }
+    },
+    {
+      "input": {
+        "age": 33,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegan",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 4.5,
+        "how_long_tv_pc_daily_hour": 0.5,
+        "how_many_new_clothes_monthly": 0,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 160,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 30,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 196.1,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.023,
+      "scenarioId": "low_016",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -213.818
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -163.342
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -93.128
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 221.7,
+        "low": 170.4
+      }
+    },
+    {
+      "input": {
+        "age": 34,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 1.0,
+        "how_long_tv_pc_daily_hour": 1.0,
+        "how_many_new_clothes_monthly": 1,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 168,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 32,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 239.0,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.034,
+      "scenarioId": "low_017",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -210.519
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -161.75
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -96.956
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 264.6,
+        "low": 213.3
+      }
+    },
+    {
+      "input": {
+        "age": 35,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 1.5,
+        "how_long_tv_pc_daily_hour": 1.5,
+        "how_many_new_clothes_monthly": 2,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 176,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 34,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 318.9,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.022,
+      "scenarioId": "low_018",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -187.811
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -163.011
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -99.304
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 344.5,
+        "low": 293.3
+      }
+    },
+    {
+      "input": {
+        "age": 36,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegan",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 2.0,
+        "how_long_tv_pc_daily_hour": 2.0,
+        "how_many_new_clothes_monthly": 0,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 184,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 36,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 232.6,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.05,
+      "scenarioId": "low_019",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -178.506
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -162.271
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -97.342
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 258.2,
+        "low": 206.9
+      }
+    },
+    {
+      "input": {
+        "age": 37,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 2.5,
+        "how_long_tv_pc_daily_hour": 2.5,
+        "how_many_new_clothes_monthly": 1,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 192,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 38,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 301.0,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.05,
+      "scenarioId": "low_020",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -158.669
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -158.005
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -102.847
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 326.7,
+        "low": 275.4
+      }
+    },
+    {
+      "input": {
+        "age": 38,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 3.0,
+        "how_long_tv_pc_daily_hour": 3.0,
+        "how_many_new_clothes_monthly": 2,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 200,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 40,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 358.3,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.045,
+      "scenarioId": "low_021",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -163.327
+        },
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -142.249
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -101.432
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 383.9,
+        "low": 332.6
+      }
+    },
+    {
+      "input": {
+        "age": 39,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegan",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 3.5,
+        "how_long_tv_pc_daily_hour": 0.0,
+        "how_many_new_clothes_monthly": 0,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 208,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 42,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 186.5,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.005,
+      "scenarioId": "low_022",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -227.218
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -162.493
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -92.013
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 212.1,
+        "low": 160.9
+      }
+    },
+    {
+      "input": {
+        "age": 40,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 4.0,
+        "how_long_tv_pc_daily_hour": 0.5,
+        "how_many_new_clothes_monthly": 1,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 216,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 44,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 237.4,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.025,
+      "scenarioId": "low_023",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -214.752
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -161.951
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -97.354
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 263.1,
+        "low": 211.8
+      }
+    },
+    {
+      "input": {
+        "age": 41,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 4.5,
+        "how_long_tv_pc_daily_hour": 1.0,
+        "how_many_new_clothes_monthly": 2,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 224,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 46,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 304.8,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.036,
+      "scenarioId": "low_024",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -204.62
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -164.608
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -96.91
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 330.4,
+        "low": 279.1
+      }
+    },
+    {
+      "input": {
+        "age": 42,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegan",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 1.0,
+        "how_long_tv_pc_daily_hour": 1.5,
+        "how_many_new_clothes_monthly": 0,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 232,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 48,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 214.2,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.036,
+      "scenarioId": "low_025",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -195.421
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -162.265
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -96.943
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 239.9,
+        "low": 188.6
+      }
+    },
+    {
+      "input": {
+        "age": 43,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 1.5,
+        "how_long_tv_pc_daily_hour": 2.0,
+        "how_many_new_clothes_monthly": 1,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 240,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 50,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 284.2,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.015,
+      "scenarioId": "low_026",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -175.088
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -162.097
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -101.554
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 309.8,
+        "low": 258.6
+      }
+    },
+    {
+      "input": {
+        "age": 44,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 2.0,
+        "how_long_tv_pc_daily_hour": 2.5,
+        "how_many_new_clothes_monthly": 2,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 248,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 52,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 351.7,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.021,
+      "scenarioId": "low_027",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -163.628
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -159.719
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -103.109
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 377.3,
+        "low": 326.1
+      }
+    },
+    {
+      "input": {
+        "age": 45,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegan",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 2.5,
+        "how_long_tv_pc_daily_hour": 3.0,
+        "how_many_new_clothes_monthly": 0,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 256,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 54,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 258.8,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.026,
+      "scenarioId": "low_028",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -163.862
+        },
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -148.193
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -98.716
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 284.4,
+        "low": 233.1
+      }
+    },
+    {
+      "input": {
+        "age": 46,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 3.0,
+        "how_long_tv_pc_daily_hour": 0.0,
+        "how_many_new_clothes_monthly": 1,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 264,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 56,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 229.6,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.004,
+      "scenarioId": "low_029",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -227.831
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -161.899
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -96.165
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 255.2,
+        "low": 204.0
+      }
+    },
+    {
+      "input": {
+        "age": 47,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 3.5,
+        "how_long_tv_pc_daily_hour": 0.5,
+        "how_many_new_clothes_monthly": 2,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 272,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 58,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 313.0,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.032,
+      "scenarioId": "low_030",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -213.042
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -162.374
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -95.079
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 338.6,
+        "low": 287.3
+      }
+    },
+    {
+      "input": {
+        "age": 48,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegan",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 4.0,
+        "how_long_tv_pc_daily_hour": 1.0,
+        "how_many_new_clothes_monthly": 0,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 280,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 60,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 206.4,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.044,
+      "scenarioId": "low_031",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -208.26
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -163.957
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -93.468
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 232.0,
+        "low": 180.7
+      }
+    },
+    {
+      "input": {
+        "age": 49,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 4.5,
+        "how_long_tv_pc_daily_hour": 1.5,
+        "how_many_new_clothes_monthly": 1,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 288,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 62,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 271.6,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.003,
+      "scenarioId": "low_032",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -184.898
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -164.301
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -101.506
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 297.2,
+        "low": 246.0
+      }
+    },
+    {
+      "input": {
+        "age": 50,
+        "body_type": "underweight",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 1.0,
+        "how_long_tv_pc_daily_hour": 2.0,
+        "how_many_new_clothes_monthly": 2,
+        "how_often_shower": "rarely",
+        "monthly_grocery_bill": 296,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 64,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 0
+      },
+      "predictionKg": 349.7,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.042,
+      "scenarioId": "low_033",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -176.857
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -158.887
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -101.139
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 375.4,
+        "low": 324.1
+      }
+    },
+    {
+      "input": {
+        "age": 51,
+        "body_type": "normal",
+        "cooking_with": [
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "vegan",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 1.5,
+        "how_long_tv_pc_daily_hour": 2.5,
+        "how_many_new_clothes_monthly": 0,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 304,
+        "recycling": [
+          "paper",
+          "plastic",
+          "metal",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 66,
+        "vehicle_type": "none",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 251.7,
+      "profile": "low_impact",
+      "reconciliationDelta": 0.018,
+      "scenarioId": "low_034",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -167.288
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -161.156
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -98.923
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 277.3,
+        "low": 226.1
+      }
+    },
+    {
+      "input": {
+        "age": 25,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 2.0,
+        "how_long_tv_pc_daily_hour": 2.0,
+        "how_many_new_clothes_monthly": 1,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 150,
+        "recycling": [
+          "paper",
+          "plastic",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 150,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 405.0,
+      "profile": "typical",
+      "reconciliationDelta": 0.01,
+      "scenarioId": "typical_001",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -179.214
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -159.992
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -99.272
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 430.6,
+        "low": 379.4
+      }
+    },
+    {
+      "input": {
+        "age": 26,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "Sometimes",
+        "frequency_of_traveling_by_air": "rarely",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 2.8,
+        "how_long_tv_pc_daily_hour": 2.8,
+        "how_many_new_clothes_monthly": 2,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 195,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 188,
+        "vehicle_type": "hybrid",
+        "waste_bag_size": "medium",
+        "waste_bag_weekly_count": 2
+      },
+      "predictionKg": 513.0,
+      "profile": "typical",
+      "reconciliationDelta": 0.025,
+      "scenarioId": "typical_002",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -147.028
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -94.778
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -66.945
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 538.6,
+        "low": 487.3
+      }
+    },
+    {
+      "input": {
+        "age": 27,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "rarely",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 3.5,
+        "how_long_tv_pc_daily_hour": 3.5,
+        "how_many_new_clothes_monthly": 3,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 240,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 226,
+        "vehicle_type": "electric",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 3
+      },
+      "predictionKg": 642.4,
+      "profile": "typical",
+      "reconciliationDelta": 0.002,
+      "scenarioId": "typical_003",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -125.278
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -100.296
+        },
+        {
+          "direction": "decreases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": -62.367
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 668.0,
+        "low": 616.8
+      }
+    },
+    {
+      "input": {
+        "age": 28,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 4.2,
+        "how_long_tv_pc_daily_hour": 4.2,
+        "how_many_new_clothes_monthly": 4,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 285,
+        "recycling": [
+          "paper",
+          "plastic",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "never",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 264,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 4
+      },
+      "predictionKg": 725.2,
+      "profile": "typical",
+      "reconciliationDelta": 0.015,
+      "scenarioId": "typical_004",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -95.518
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -70.457
+        },
+        {
+          "direction": "decreases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": -61.491
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 750.8,
+        "low": 699.6
+      }
+    },
+    {
+      "input": {
+        "age": 29,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "Sometimes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 5.0,
+        "how_long_tv_pc_daily_hour": 5.0,
+        "how_many_new_clothes_monthly": 5,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 330,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "sometimes",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 302,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "medium",
+        "waste_bag_weekly_count": 5
+      },
+      "predictionKg": 782.7,
+      "profile": "typical",
+      "reconciliationDelta": 0.012,
+      "scenarioId": "typical_005",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -152.399
+        },
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -72.557
+        },
+        {
+          "direction": "increases",
+          "feature": "home_energy_and_region",
+          "label": "Home energy and region",
+          "shapValue": 58.024
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 808.3,
+        "low": 757.1
+      }
+    },
+    {
+      "input": {
+        "age": 30,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "rarely",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 5.8,
+        "how_long_tv_pc_daily_hour": 5.8,
+        "how_many_new_clothes_monthly": 6,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 375,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 340,
+        "vehicle_type": "hybrid",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 6
+      },
+      "predictionKg": 800.5,
+      "profile": "typical",
+      "reconciliationDelta": 0.03,
+      "scenarioId": "typical_006",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -105.924
+        },
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -48.26
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 33.544
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 826.2,
+        "low": 774.9
+      }
+    },
+    {
+      "input": {
+        "age": 31,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "rarely",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 6.5,
+        "how_long_tv_pc_daily_hour": 6.5,
+        "how_many_new_clothes_monthly": 7,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 420,
+        "recycling": [
+          "paper",
+          "plastic",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 378,
+        "vehicle_type": "electric",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 7
+      },
+      "predictionKg": 753.5,
+      "profile": "typical",
+      "reconciliationDelta": 0.041,
+      "scenarioId": "typical_007",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -98.965
+        },
+        {
+          "direction": "decreases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": -49.503
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -42.235
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 779.2,
+        "low": 727.9
+      }
+    },
+    {
+      "input": {
+        "age": 32,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "Sometimes",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 7.2,
+        "how_long_tv_pc_daily_hour": 7.2,
+        "how_many_new_clothes_monthly": 8,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 465,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 416,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "medium",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 1032.6,
+      "profile": "typical",
+      "reconciliationDelta": 0.033,
+      "scenarioId": "typical_008",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": 85.228
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -73.351
+        },
+        {
+          "direction": "increases",
+          "feature": "new_clothing",
+          "label": "New clothing purchases",
+          "shapValue": 49.702
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1058.2,
+        "low": 1006.9
+      }
+    },
+    {
+      "input": {
+        "age": 33,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 8.0,
+        "how_long_tv_pc_daily_hour": 8.0,
+        "how_many_new_clothes_monthly": 9,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 510,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 454,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 2
+      },
+      "predictionKg": 1013.1,
+      "profile": "typical",
+      "reconciliationDelta": 0.042,
+      "scenarioId": "typical_009",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -158.992
+        },
+        {
+          "direction": "increases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": 88.082
+        },
+        {
+          "direction": "increases",
+          "feature": "new_clothing",
+          "label": "New clothing purchases",
+          "shapValue": 64.687
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1038.8,
+        "low": 987.5
+      }
+    },
+    {
+      "input": {
+        "age": 34,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "rarely",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 8.8,
+        "how_long_tv_pc_daily_hour": 8.8,
+        "how_many_new_clothes_monthly": 10,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 555,
+        "recycling": [
+          "paper",
+          "plastic",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "never",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 492,
+        "vehicle_type": "hybrid",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 3
+      },
+      "predictionKg": 838.2,
+      "profile": "typical",
+      "reconciliationDelta": 0.041,
+      "scenarioId": "typical_010",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -99.943
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -77.376
+        },
+        {
+          "direction": "increases",
+          "feature": "new_clothing",
+          "label": "New clothing purchases",
+          "shapValue": 76.361
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 863.9,
+        "low": 812.6
+      }
+    },
+    {
+      "input": {
+        "age": 35,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "Sometimes",
+        "frequency_of_traveling_by_air": "rarely",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 9.5,
+        "how_long_tv_pc_daily_hour": 9.5,
+        "how_many_new_clothes_monthly": 1,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 600,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "sometimes",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 530,
+        "vehicle_type": "electric",
+        "waste_bag_size": "medium",
+        "waste_bag_weekly_count": 4
+      },
+      "predictionKg": 903.3,
+      "profile": "typical",
+      "reconciliationDelta": 0.024,
+      "scenarioId": "typical_011",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -99.343
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 88.091
+        },
+        {
+          "direction": "decreases",
+          "feature": "new_clothing",
+          "label": "New clothing purchases",
+          "shapValue": -77.967
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 929.0,
+        "low": 877.7
+      }
+    },
+    {
+      "input": {
+        "age": 36,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 10.2,
+        "how_long_tv_pc_daily_hour": 10.2,
+        "how_many_new_clothes_monthly": 2,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 645,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 568,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 5
+      },
+      "predictionKg": 1137.3,
+      "profile": "typical",
+      "reconciliationDelta": 0.042,
+      "scenarioId": "typical_012",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 110.239
+        },
+        {
+          "direction": "increases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": 97.016
+        },
+        {
+          "direction": "decreases",
+          "feature": "new_clothing",
+          "label": "New clothing purchases",
+          "shapValue": -65.256
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1163.0,
+        "low": 1111.7
+      }
+    },
+    {
+      "input": {
+        "age": 37,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 2.0,
+        "how_long_tv_pc_daily_hour": 11.0,
+        "how_many_new_clothes_monthly": 3,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 690,
+        "recycling": [
+          "paper",
+          "plastic",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 606,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 6
+      },
+      "predictionKg": 934.3,
+      "profile": "typical",
+      "reconciliationDelta": 0.006,
+      "scenarioId": "typical_013",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -161.511
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 110.967
+        },
+        {
+          "direction": "increases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": 106.321
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 959.9,
+        "low": 908.7
+      }
+    },
+    {
+      "input": {
+        "age": 38,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "Sometimes",
+        "frequency_of_traveling_by_air": "rarely",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 2.8,
+        "how_long_tv_pc_daily_hour": 2.0,
+        "how_many_new_clothes_monthly": 4,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 735,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 644,
+        "vehicle_type": "hybrid",
+        "waste_bag_size": "medium",
+        "waste_bag_weekly_count": 7
+      },
+      "predictionKg": 708.4,
+      "profile": "typical",
+      "reconciliationDelta": 0.032,
+      "scenarioId": "typical_014",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -173.324
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -106.177
+        },
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 32.725
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 734.1,
+        "low": 682.8
+      }
+    },
+    {
+      "input": {
+        "age": 39,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "rarely",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 3.5,
+        "how_long_tv_pc_daily_hour": 2.8,
+        "how_many_new_clothes_monthly": 5,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 780,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 682,
+        "vehicle_type": "electric",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 697.3,
+      "profile": "typical",
+      "reconciliationDelta": 0.005,
+      "scenarioId": "typical_015",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -160.126
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -104.329
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -76.837
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 722.9,
+        "low": 671.7
+      }
+    },
+    {
+      "input": {
+        "age": 40,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 4.2,
+        "how_long_tv_pc_daily_hour": 3.5,
+        "how_many_new_clothes_monthly": 6,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 825,
+        "recycling": [
+          "paper",
+          "plastic",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "never",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 720,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 2
+      },
+      "predictionKg": 870.5,
+      "profile": "typical",
+      "reconciliationDelta": 0.011,
+      "scenarioId": "typical_016",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -129.299
+        },
+        {
+          "direction": "increases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": 106.543
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -86.562
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 896.1,
+        "low": 844.9
+      }
+    },
+    {
+      "input": {
+        "age": 41,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "Sometimes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 5.0,
+        "how_long_tv_pc_daily_hour": 4.2,
+        "how_many_new_clothes_monthly": 7,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 870,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "sometimes",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 758,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "medium",
+        "waste_bag_weekly_count": 3
+      },
+      "predictionKg": 895.3,
+      "profile": "typical",
+      "reconciliationDelta": 0.031,
+      "scenarioId": "typical_017",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -159.695
+        },
+        {
+          "direction": "increases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": 106.647
+        },
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -96.656
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 921.0,
+        "low": 869.7
+      }
+    },
+    {
+      "input": {
+        "age": 42,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "rarely",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 5.8,
+        "how_long_tv_pc_daily_hour": 5.0,
+        "how_many_new_clothes_monthly": 8,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 915,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 796,
+        "vehicle_type": "hybrid",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 4
+      },
+      "predictionKg": 923.6,
+      "profile": "typical",
+      "reconciliationDelta": 0.008,
+      "scenarioId": "typical_018",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -103.023
+        },
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -66.701
+        },
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 50.627
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 949.2,
+        "low": 898.0
+      }
+    },
+    {
+      "input": {
+        "age": 43,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "rarely",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 6.5,
+        "how_long_tv_pc_daily_hour": 5.8,
+        "how_many_new_clothes_monthly": 9,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 960,
+        "recycling": [
+          "paper",
+          "plastic",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 834,
+        "vehicle_type": "electric",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 5
+      },
+      "predictionKg": 903.0,
+      "profile": "typical",
+      "reconciliationDelta": 0.044,
+      "scenarioId": "typical_019",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -103.137
+        },
+        {
+          "direction": "increases",
+          "feature": "new_clothing",
+          "label": "New clothing purchases",
+          "shapValue": 64.681
+        },
+        {
+          "direction": "increases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": 63.089
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 928.6,
+        "low": 877.3
+      }
+    },
+    {
+      "input": {
+        "age": 44,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "Sometimes",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 7.2,
+        "how_long_tv_pc_daily_hour": 6.5,
+        "how_many_new_clothes_monthly": 10,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 1005,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 872,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "medium",
+        "waste_bag_weekly_count": 6
+      },
+      "predictionKg": 1219.8,
+      "profile": "typical",
+      "reconciliationDelta": 0.047,
+      "scenarioId": "typical_020",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": 107.343
+        },
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 100.919
+        },
+        {
+          "direction": "increases",
+          "feature": "new_clothing",
+          "label": "New clothing purchases",
+          "shapValue": 75.941
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1245.5,
+        "low": 1194.2
+      }
+    },
+    {
+      "input": {
+        "age": 45,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 8.0,
+        "how_long_tv_pc_daily_hour": 7.2,
+        "how_many_new_clothes_monthly": 1,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 1050,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 910,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 7
+      },
+      "predictionKg": 1075.8,
+      "profile": "typical",
+      "reconciliationDelta": 0.044,
+      "scenarioId": "typical_021",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -147.581
+        },
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 129.973
+        },
+        {
+          "direction": "increases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": 100.745
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1101.5,
+        "low": 1050.2
+      }
+    },
+    {
+      "input": {
+        "age": 46,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "rarely",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 8.8,
+        "how_long_tv_pc_daily_hour": 8.0,
+        "how_many_new_clothes_monthly": 2,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 1095,
+        "recycling": [
+          "paper",
+          "plastic",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "never",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 948,
+        "vehicle_type": "hybrid",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 829.9,
+      "profile": "typical",
+      "reconciliationDelta": 0.046,
+      "scenarioId": "typical_022",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -100.825
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -97.393
+        },
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 77.424
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 855.5,
+        "low": 804.2
+      }
+    },
+    {
+      "input": {
+        "age": 47,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "Sometimes",
+        "frequency_of_traveling_by_air": "rarely",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 9.5,
+        "how_long_tv_pc_daily_hour": 8.8,
+        "how_many_new_clothes_monthly": 3,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 1140,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "sometimes",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 986,
+        "vehicle_type": "electric",
+        "waste_bag_size": "medium",
+        "waste_bag_weekly_count": 2
+      },
+      "predictionKg": 991.5,
+      "profile": "typical",
+      "reconciliationDelta": 0.013,
+      "scenarioId": "typical_023",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -99.58
+        },
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 81.107
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -66.277
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1017.1,
+        "low": 965.9
+      }
+    },
+    {
+      "input": {
+        "age": 48,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 10.2,
+        "how_long_tv_pc_daily_hour": 9.5,
+        "how_many_new_clothes_monthly": 4,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 1185,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 1024,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 3
+      },
+      "predictionKg": 1204.5,
+      "profile": "typical",
+      "reconciliationDelta": 0.0,
+      "scenarioId": "typical_024",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 120.072
+        },
+        {
+          "direction": "increases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": 103.869
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 89.566
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1230.1,
+        "low": 1178.9
+      }
+    },
+    {
+      "input": {
+        "age": 49,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 2.0,
+        "how_long_tv_pc_daily_hour": 10.2,
+        "how_many_new_clothes_monthly": 5,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 1230,
+        "recycling": [
+          "paper",
+          "plastic",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 1062,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 4
+      },
+      "predictionKg": 1031.3,
+      "profile": "typical",
+      "reconciliationDelta": 0.004,
+      "scenarioId": "typical_025",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -150.486
+        },
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 129.099
+        },
+        {
+          "direction": "increases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": 111.858
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1056.9,
+        "low": 1005.7
+      }
+    },
+    {
+      "input": {
+        "age": 50,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "Sometimes",
+        "frequency_of_traveling_by_air": "rarely",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 2.8,
+        "how_long_tv_pc_daily_hour": 11.0,
+        "how_many_new_clothes_monthly": 6,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 1275,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 1100,
+        "vehicle_type": "hybrid",
+        "waste_bag_size": "medium",
+        "waste_bag_weekly_count": 5
+      },
+      "predictionKg": 1142.1,
+      "profile": "typical",
+      "reconciliationDelta": 0.009,
+      "scenarioId": "typical_026",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 114.485
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 110.441
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -95.703
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1167.7,
+        "low": 1116.5
+      }
+    },
+    {
+      "input": {
+        "age": 51,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "rarely",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 3.5,
+        "how_long_tv_pc_daily_hour": 2.0,
+        "how_many_new_clothes_monthly": 7,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 1320,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 1138,
+        "vehicle_type": "electric",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 6
+      },
+      "predictionKg": 972.0,
+      "profile": "typical",
+      "reconciliationDelta": 0.043,
+      "scenarioId": "typical_027",
+      "topDrivers": [
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -166.258
+        },
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 106.988
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -95.055
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 997.6,
+        "low": 946.3
+      }
+    },
+    {
+      "input": {
+        "age": 52,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 4.2,
+        "how_long_tv_pc_daily_hour": 2.8,
+        "how_many_new_clothes_monthly": 8,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 1365,
+        "recycling": [
+          "paper",
+          "plastic",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "male",
+        "social_activity": "never",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 1176,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 7
+      },
+      "predictionKg": 1084.2,
+      "profile": "typical",
+      "reconciliationDelta": 0.012,
+      "scenarioId": "typical_028",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 147.991
+        },
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -134.58
+        },
+        {
+          "direction": "increases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": 112.716
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1109.8,
+        "low": 1058.6
+      }
+    },
+    {
+      "input": {
+        "age": 53,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "Sometimes",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 5.0,
+        "how_long_tv_pc_daily_hour": 3.5,
+        "how_many_new_clothes_monthly": 9,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 1410,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "sometimes",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 1214,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "medium",
+        "waste_bag_weekly_count": 1
+      },
+      "predictionKg": 985.7,
+      "profile": "typical",
+      "reconciliationDelta": 0.047,
+      "scenarioId": "typical_029",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 176.794
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -148.956
+        },
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -121.095
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1011.4,
+        "low": 960.1
+      }
+    },
+    {
+      "input": {
+        "age": 54,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven"
+        ],
+        "currency": "USD",
+        "diet": "vegetarian",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "rarely",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 5.8,
+        "how_long_tv_pc_daily_hour": 4.2,
+        "how_many_new_clothes_monthly": 10,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 1455,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "public",
+        "vehicle_monthly_distance_km": 1252,
+        "vehicle_type": "hybrid",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 2
+      },
+      "predictionKg": 980.7,
+      "profile": "typical",
+      "reconciliationDelta": 0.011,
+      "scenarioId": "typical_030",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 129.274
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -96.931
+        },
+        {
+          "direction": "decreases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": -96.192
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1006.3,
+        "low": 955.1
+      }
+    },
+    {
+      "input": {
+        "age": 55,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "pescatarian",
+        "energy_efficiency": "Yes",
+        "frequency_of_traveling_by_air": "rarely",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 6.5,
+        "how_long_tv_pc_daily_hour": 5.0,
+        "how_many_new_clothes_monthly": 1,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 1500,
+        "recycling": [
+          "paper",
+          "plastic",
+          "glass"
+        ],
+        "region": "renewable_heavy",
+        "sex": "female",
+        "social_activity": "never",
+        "transport": "walk/bicycle",
+        "vehicle_monthly_distance_km": 1290,
+        "vehicle_type": "electric",
+        "waste_bag_size": "small",
+        "waste_bag_weekly_count": 3
+      },
+      "predictionKg": 784.6,
+      "profile": "typical",
+      "reconciliationDelta": 0.01,
+      "scenarioId": "typical_031",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 121.749
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -96.256
+        },
+        {
+          "direction": "decreases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": -82.904
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 810.2,
+        "low": 759.0
+      }
+    },
+    {
+      "input": {
+        "age": 56,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "Sometimes",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 7.2,
+        "how_long_tv_pc_daily_hour": 5.8,
+        "how_many_new_clothes_monthly": 2,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 1545,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "sometimes",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 1328,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "medium",
+        "waste_bag_weekly_count": 4
+      },
+      "predictionKg": 1044.6,
+      "profile": "typical",
+      "reconciliationDelta": 0.007,
+      "scenarioId": "typical_032",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 157.505
+        },
+        {
+          "direction": "increases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": 101.249
+        },
+        {
+          "direction": "decreases",
+          "feature": "new_clothing",
+          "label": "New clothing purchases",
+          "shapValue": -65.176
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1070.2,
+        "low": 1019.0
+      }
+    },
+    {
+      "input": {
+        "age": 57,
+        "body_type": "normal",
+        "cooking_with": [
+          "stove",
+          "microwave",
+          "airfryer"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "never",
+        "heating_energy_source": "electricity",
+        "how_long_internet_daily_hour": 8.0,
+        "how_long_tv_pc_daily_hour": 6.5,
+        "how_many_new_clothes_monthly": 3,
+        "how_often_shower": "daily",
+        "monthly_grocery_bill": 1590,
+        "recycling": [
+          "paper",
+          "plastic"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 1366,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 5
+      },
+      "predictionKg": 1084.9,
+      "profile": "typical",
+      "reconciliationDelta": 0.016,
+      "scenarioId": "typical_033",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 189.236
+        },
+        {
+          "direction": "decreases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": -155.461
+        },
+        {
+          "direction": "increases",
+          "feature": "diet_and_grocery",
+          "label": "Diet and grocery",
+          "shapValue": 97.268
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1110.5,
+        "low": 1059.3
+      }
+    },
+    {
+      "input": {
+        "age": 42,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 12,
+        "how_long_tv_pc_daily_hour": 13.0,
+        "how_many_new_clothes_monthly": 20,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 2400,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 4000,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 10
+      },
+      "predictionKg": 1723.5,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.027,
+      "scenarioId": "high_001",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 303.803
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 196.679
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 104.156
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1749.1,
+        "low": 1697.8
+      }
+    },
+    {
+      "input": {
+        "age": 43,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 13,
+        "how_long_tv_pc_daily_hour": 13.9,
+        "how_many_new_clothes_monthly": 21,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 2475,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 4180,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 11
+      },
+      "predictionKg": 2100.4,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.041,
+      "scenarioId": "high_002",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 317.099
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 260.501
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 207.418
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2126.0,
+        "low": 2074.7
+      }
+    },
+    {
+      "input": {
+        "age": 44,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 14,
+        "how_long_tv_pc_daily_hour": 14.8,
+        "how_many_new_clothes_monthly": 22,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 2550,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 4360,
+        "vehicle_type": "lpg",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 12
+      },
+      "predictionKg": 1732.6,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.011,
+      "scenarioId": "high_003",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 299.444
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 213.698
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 102.111
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1758.2,
+        "low": 1707.0
+      }
+    },
+    {
+      "input": {
+        "age": 45,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 15,
+        "how_long_tv_pc_daily_hour": 15.7,
+        "how_many_new_clothes_monthly": 23,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 2625,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 4540,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 13
+      },
+      "predictionKg": 2102.1,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.003,
+      "scenarioId": "high_004",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 317.204
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 260.194
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 209.446
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2127.7,
+        "low": 2076.5
+      }
+    },
+    {
+      "input": {
+        "age": 46,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 16,
+        "how_long_tv_pc_daily_hour": 16.6,
+        "how_many_new_clothes_monthly": 24,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 2700,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 4720,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 14
+      },
+      "predictionKg": 1731.4,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.036,
+      "scenarioId": "high_005",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 299.148
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 213.378
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 102.331
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1757.1,
+        "low": 1705.8
+      }
+    },
+    {
+      "input": {
+        "age": 47,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 17,
+        "how_long_tv_pc_daily_hour": 17.5,
+        "how_many_new_clothes_monthly": 25,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 2775,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 4900,
+        "vehicle_type": "lpg",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 15
+      },
+      "predictionKg": 2099.7,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.033,
+      "scenarioId": "high_006",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 316.651
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 259.732
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 207.741
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2125.3,
+        "low": 2074.0
+      }
+    },
+    {
+      "input": {
+        "age": 48,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 18,
+        "how_long_tv_pc_daily_hour": 18.4,
+        "how_many_new_clothes_monthly": 26,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 2850,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 5080,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 16
+      },
+      "predictionKg": 1731.7,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.014,
+      "scenarioId": "high_007",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 299.12
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 213.461
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 102.577
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1757.3,
+        "low": 1706.1
+      }
+    },
+    {
+      "input": {
+        "age": 49,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 19,
+        "how_long_tv_pc_daily_hour": 19.3,
+        "how_many_new_clothes_monthly": 27,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 2925,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 5260,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 17
+      },
+      "predictionKg": 2099.7,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.034,
+      "scenarioId": "high_008",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 316.65
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 259.763
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 207.64
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2125.3,
+        "low": 2074.0
+      }
+    },
+    {
+      "input": {
+        "age": 50,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 20,
+        "how_long_tv_pc_daily_hour": 20.2,
+        "how_many_new_clothes_monthly": 28,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 3000,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 5440,
+        "vehicle_type": "lpg",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 18
+      },
+      "predictionKg": 1732.8,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.033,
+      "scenarioId": "high_009",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 299.922
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 213.069
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 103.04
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1758.5,
+        "low": 1707.2
+      }
+    },
+    {
+      "input": {
+        "age": 51,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 21,
+        "how_long_tv_pc_daily_hour": 21.1,
+        "how_many_new_clothes_monthly": 29,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 3075,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 5620,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 19
+      },
+      "predictionKg": 2099.7,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.034,
+      "scenarioId": "high_010",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 316.613
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 259.766
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 207.652
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2125.3,
+        "low": 2074.0
+      }
+    },
+    {
+      "input": {
+        "age": 52,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 22,
+        "how_long_tv_pc_daily_hour": 22.0,
+        "how_many_new_clothes_monthly": 30,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 3150,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 5800,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 20
+      },
+      "predictionKg": 1732.8,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.034,
+      "scenarioId": "high_011",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 299.834
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 213.389
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 102.991
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1758.5,
+        "low": 1707.2
+      }
+    },
+    {
+      "input": {
+        "age": 53,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 23,
+        "how_long_tv_pc_daily_hour": 22.9,
+        "how_many_new_clothes_monthly": 31,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 3225,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 5980,
+        "vehicle_type": "lpg",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 10
+      },
+      "predictionKg": 2099.7,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.035,
+      "scenarioId": "high_012",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 316.606
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 259.728
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 207.74
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2125.3,
+        "low": 2074.0
+      }
+    },
+    {
+      "input": {
+        "age": 54,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 12,
+        "how_long_tv_pc_daily_hour": 13.0,
+        "how_many_new_clothes_monthly": 32,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 3300,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 6160,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 11
+      },
+      "predictionKg": 1724.9,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.031,
+      "scenarioId": "high_013",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 304.138
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 196.649
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 104.772
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1750.5,
+        "low": 1699.2
+      }
+    },
+    {
+      "input": {
+        "age": 55,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 13,
+        "how_long_tv_pc_daily_hour": 13.9,
+        "how_many_new_clothes_monthly": 33,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 3375,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 6340,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 12
+      },
+      "predictionKg": 2100.4,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.041,
+      "scenarioId": "high_014",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 317.057
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 260.495
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 207.417
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2126.0,
+        "low": 2074.7
+      }
+    },
+    {
+      "input": {
+        "age": 56,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 14,
+        "how_long_tv_pc_daily_hour": 14.8,
+        "how_many_new_clothes_monthly": 34,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 3450,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 6520,
+        "vehicle_type": "lpg",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 13
+      },
+      "predictionKg": 1734.0,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.014,
+      "scenarioId": "high_015",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 299.827
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 213.742
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 102.793
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1759.6,
+        "low": 1708.4
+      }
+    },
+    {
+      "input": {
+        "age": 57,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 15,
+        "how_long_tv_pc_daily_hour": 15.7,
+        "how_many_new_clothes_monthly": 35,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 3525,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 6700,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 14
+      },
+      "predictionKg": 2102.1,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.004,
+      "scenarioId": "high_016",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 317.193
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 260.19
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 209.441
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2127.7,
+        "low": 2076.5
+      }
+    },
+    {
+      "input": {
+        "age": 58,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 16,
+        "how_long_tv_pc_daily_hour": 16.6,
+        "how_many_new_clothes_monthly": 36,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 3600,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 6880,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 15
+      },
+      "predictionKg": 1732.8,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.035,
+      "scenarioId": "high_017",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 299.532
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 213.423
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 103.013
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1758.5,
+        "low": 1707.2
+      }
+    },
+    {
+      "input": {
+        "age": 59,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 17,
+        "how_long_tv_pc_daily_hour": 17.5,
+        "how_many_new_clothes_monthly": 37,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 3675,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 7060,
+        "vehicle_type": "lpg",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 16
+      },
+      "predictionKg": 2099.7,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.034,
+      "scenarioId": "high_018",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 316.714
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 259.725
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 207.736
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2125.3,
+        "low": 2074.0
+      }
+    },
+    {
+      "input": {
+        "age": 60,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 18,
+        "how_long_tv_pc_daily_hour": 18.4,
+        "how_many_new_clothes_monthly": 38,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 3750,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 7240,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 17
+      },
+      "predictionKg": 1733.1,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.012,
+      "scenarioId": "high_019",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 299.541
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 213.496
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 103.247
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1758.7,
+        "low": 1707.5
+      }
+    },
+    {
+      "input": {
+        "age": 61,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 19,
+        "how_long_tv_pc_daily_hour": 19.3,
+        "how_many_new_clothes_monthly": 39,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 3825,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 7420,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 18
+      },
+      "predictionKg": 2099.7,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.034,
+      "scenarioId": "high_020",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 315.915
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 260.206
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 208.002
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2125.3,
+        "low": 2074.0
+      }
+    },
+    {
+      "input": {
+        "age": 62,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 20,
+        "how_long_tv_pc_daily_hour": 20.2,
+        "how_many_new_clothes_monthly": 40,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 3900,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 7600,
+        "vehicle_type": "lpg",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 19
+      },
+      "predictionKg": 1732.8,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.035,
+      "scenarioId": "high_021",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 299.657
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 213.094
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 103.049
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1758.5,
+        "low": 1707.2
+      }
+    },
+    {
+      "input": {
+        "age": 63,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 21,
+        "how_long_tv_pc_daily_hour": 21.1,
+        "how_many_new_clothes_monthly": 41,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 3975,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 7780,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 20
+      },
+      "predictionKg": 2100.0,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.043,
+      "scenarioId": "high_022",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 316.08
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 260.209
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 208.038
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2125.6,
+        "low": 2074.3
+      }
+    },
+    {
+      "input": {
+        "age": 64,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 22,
+        "how_long_tv_pc_daily_hour": 22.0,
+        "how_many_new_clothes_monthly": 42,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 4050,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 7960,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 10
+      },
+      "predictionKg": 1732.8,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.035,
+      "scenarioId": "high_023",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 299.751
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 213.384
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 103.139
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1758.5,
+        "low": 1707.2
+      }
+    },
+    {
+      "input": {
+        "age": 65,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 23,
+        "how_long_tv_pc_daily_hour": 22.9,
+        "how_many_new_clothes_monthly": 43,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 4125,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 8140,
+        "vehicle_type": "lpg",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 11
+      },
+      "predictionKg": 2100.0,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.043,
+      "scenarioId": "high_024",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 316.073
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 260.171
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 208.126
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2125.6,
+        "low": 2074.3
+      }
+    },
+    {
+      "input": {
+        "age": 66,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 12,
+        "how_long_tv_pc_daily_hour": 13.0,
+        "how_many_new_clothes_monthly": 44,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 4200,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 8320,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 12
+      },
+      "predictionKg": 1724.9,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.033,
+      "scenarioId": "high_025",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 304.017
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 196.61
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 104.898
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1750.5,
+        "low": 1699.2
+      }
+    },
+    {
+      "input": {
+        "age": 67,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 13,
+        "how_long_tv_pc_daily_hour": 13.9,
+        "how_many_new_clothes_monthly": 45,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 4275,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 8500,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 13
+      },
+      "predictionKg": 2091.5,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.006,
+      "scenarioId": "high_026",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 310.62
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 258.759
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 207.807
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2117.1,
+        "low": 2065.9
+      }
+    },
+    {
+      "input": {
+        "age": 68,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 14,
+        "how_long_tv_pc_daily_hour": 14.8,
+        "how_many_new_clothes_monthly": 46,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 4350,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 8680,
+        "vehicle_type": "lpg",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 14
+      },
+      "predictionKg": 1734.0,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.014,
+      "scenarioId": "high_027",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 300.046
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 213.703
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 102.919
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1759.6,
+        "low": 1708.4
+      }
+    },
+    {
+      "input": {
+        "age": 69,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 15,
+        "how_long_tv_pc_daily_hour": 15.7,
+        "how_many_new_clothes_monthly": 47,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 4425,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 8860,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 15
+      },
+      "predictionKg": 2093.3,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.047,
+      "scenarioId": "high_028",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 310.826
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 258.455
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 209.799
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2118.9,
+        "low": 2067.6
+      }
+    },
+    {
+      "input": {
+        "age": 70,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 16,
+        "how_long_tv_pc_daily_hour": 16.6,
+        "how_many_new_clothes_monthly": 48,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 4500,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 9040,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 16
+      },
+      "predictionKg": 1732.8,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.035,
+      "scenarioId": "high_029",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 299.751
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 213.384
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 103.139
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1758.5,
+        "low": 1707.2
+      }
+    },
+    {
+      "input": {
+        "age": 71,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 17,
+        "how_long_tv_pc_daily_hour": 17.5,
+        "how_many_new_clothes_monthly": 49,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 4575,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 9220,
+        "vehicle_type": "lpg",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 17
+      },
+      "predictionKg": 2090.8,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.013,
+      "scenarioId": "high_030",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 310.273
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 257.993
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 208.094
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2116.4,
+        "low": 2065.2
+      }
+    },
+    {
+      "input": {
+        "age": 72,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 18,
+        "how_long_tv_pc_daily_hour": 18.4,
+        "how_many_new_clothes_monthly": 50,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 4650,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 9400,
+        "vehicle_type": "petrol",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 18
+      },
+      "predictionKg": 1733.1,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.013,
+      "scenarioId": "high_031",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 299.723
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 213.467
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 103.385
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1758.7,
+        "low": 1707.5
+      }
+    },
+    {
+      "input": {
+        "age": 73,
+        "body_type": "obese",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "very frequently",
+        "heating_energy_source": "natural gas",
+        "how_long_internet_daily_hour": 19,
+        "how_long_tv_pc_daily_hour": 19.3,
+        "how_many_new_clothes_monthly": 20,
+        "how_often_shower": "twice a day",
+        "monthly_grocery_bill": 4725,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "female",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 9580,
+        "vehicle_type": "diesel",
+        "waste_bag_size": "extra large",
+        "waste_bag_weekly_count": 19
+      },
+      "predictionKg": 2090.8,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.013,
+      "scenarioId": "high_032",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 310.307
+        },
+        {
+          "direction": "increases",
+          "feature": "air_travel_frequency",
+          "label": "Air travel frequency",
+          "shapValue": 258.028
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 207.999
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 2116.4,
+        "low": 2065.2
+      }
+    },
+    {
+      "input": {
+        "age": 74,
+        "body_type": "overweight",
+        "cooking_with": [
+          "stove",
+          "oven",
+          "grill"
+        ],
+        "currency": "USD",
+        "diet": "omnivore",
+        "energy_efficiency": "No",
+        "frequency_of_traveling_by_air": "often",
+        "heating_energy_source": "wood",
+        "how_long_internet_daily_hour": 20,
+        "how_long_tv_pc_daily_hour": 20.2,
+        "how_many_new_clothes_monthly": 21,
+        "how_often_shower": "often",
+        "monthly_grocery_bill": 4800,
+        "recycling": [
+          "none"
+        ],
+        "region": "mixed",
+        "sex": "male",
+        "social_activity": "often",
+        "transport": "private",
+        "vehicle_monthly_distance_km": 9760,
+        "vehicle_type": "lpg",
+        "waste_bag_size": "large",
+        "waste_bag_weekly_count": 20
+      },
+      "predictionKg": 1732.8,
+      "profile": "high_impact",
+      "reconciliationDelta": 0.036,
+      "scenarioId": "high_033",
+      "topDrivers": [
+        {
+          "direction": "increases",
+          "feature": "transport_and_distance",
+          "label": "Transport and distance",
+          "shapValue": 299.839
+        },
+        {
+          "direction": "increases",
+          "feature": "digital_use",
+          "label": "Digital use",
+          "shapValue": 213.064
+        },
+        {
+          "direction": "increases",
+          "feature": "waste_and_recycling",
+          "label": "Waste and recycling",
+          "shapValue": 103.188
+        }
+      ],
+      "uncertaintyRange": {
+        "high": 1758.5,
+        "low": 1707.2
+      }
+    }
+  ],
+  "summary": {
+    "byProfile": {
+      "high_impact": {
+        "count": 33,
+        "maximumKg": 2102.1,
+        "meanKg": 1909.164,
+        "minimumKg": 1723.5
+      },
+      "low_impact": {
+        "count": 34,
+        "maximumKg": 358.3,
+        "meanKg": 264.982,
+        "minimumKg": 176.8
+      },
+      "typical": {
+        "count": 33,
+        "maximumKg": 1219.8,
+        "meanKg": 906.388,
+        "minimumKg": 405.0
+      }
+    },
+    "maximumKg": 2102.1,
+    "meanKg": 1019.226,
+    "medianKg": 913.45,
+    "minimumKg": 176.8
+  },
+  "validation": {
+    "allContributionReconciliationsWithinKg": 0.2,
+    "allPredictionsFinite": true,
+    "allScenariosReturnedDrivers": true
+  }
+}

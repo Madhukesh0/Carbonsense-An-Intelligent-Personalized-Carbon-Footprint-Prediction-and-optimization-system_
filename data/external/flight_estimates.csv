@@ -1,0 +1,5 @@
+frequency,flight_short_km_month,flight_long_km_month,source
+never,0,0,DEFRA / UK travel survey averages (nominal mapping)
+rarely,250,0,DEFRA / UK travel survey averages (nominal mapping)
+frequently,500,2000,DEFRA / UK travel survey averages (nominal mapping)
+very frequently,900,5000,DEFRA / UK travel survey averages (nominal mapping)

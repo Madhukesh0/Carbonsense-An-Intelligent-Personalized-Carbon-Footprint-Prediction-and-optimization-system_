@@ -1,0 +1,83 @@
+{
+ "schema": {
+  "rows": 10000,
+  "cols": 20,
+  "nulls": 0,
+  "duplicates": 0,
+  "ranges_ok": {
+   "vehicle_monthly_distance_km<=10000": true,
+   "monthly_grocery_bill<=5000": true,
+   "how_many_new_clothes_monthly<=50": true,
+   "waste_bag_weekly_count<=20": true,
+   "tv_hours<=24": true,
+   "internet_hours<=24": true,
+   "household_size 1..10": true,
+   "target>0": true
+  },
+  "target": {
+   "min": 184.3,
+   "max": 1818.2,
+   "mean": 638.1,
+   "median": 605.0
+  }
+ },
+ "consistency": {
+  "non_private_with_vehicle": 0,
+  "grid_lookup_ok": true,
+  "grocery_lookup_ok": true
+ },
+ "target_recompute": {
+  "ratio_median": 1.018,
+  "ratio_log_std": 0.058
+ },
+ "band_order": {
+  "diet": {
+   "omnivore": 689.0,
+   "pescatarian": 593.5,
+   "vegan": 567.9,
+   "vegetarian": 590.3
+  },
+  "air": {
+   "never": 553.3,
+   "often": 735.1,
+   "rarely": 611.5,
+   "very frequently": 969.9
+  },
+  "monotone": true
+ },
+ "model_fidelity": {
+  "r2_all_rows": 0.6817,
+  "mae_all_rows": 55.3,
+  "coverage_at_qhat": 0.8846
+ },
+ "air_probe": [
+  {
+   "level": "never",
+   "modelKg": 405.8,
+   "bandKgInTarget": 0.0,
+   "deltaVsRare_model": -44.2,
+   "deltaVsRare_target": -60.0
+  },
+  {
+   "level": "rarely",
+   "modelKg": 450.0,
+   "bandKgInTarget": 60.0,
+   "deltaVsRare_model": 0.0,
+   "deltaVsRare_target": 0.0
+  },
+  {
+   "level": "often",
+   "modelKg": 574.0,
+   "bandKgInTarget": 180.0,
+   "deltaVsRare_model": 124.0,
+   "deltaVsRare_target": 120.0
+  },
+  {
+   "level": "very frequently",
+   "modelKg": 405.8,
+   "bandKgInTarget": 420.0,
+   "deltaVsRare_model": -44.2,
+   "deltaVsRare_target": 360.0
+  }
+ ]
+}

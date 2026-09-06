@@ -1,0 +1,456 @@
+% references.bib — CarbonSense evidence base (rev 2, corrected)
+% Corrections applied after external review (2026-09-04):
+%  - scarborough2014: fixed conflation (was cited as "Scarborough 2023, BMJ";
+%    the title/values belong to Scarborough et al. 2014, Climatic Change)
+%  - aslan2018: corrected to the actual paper (J. Industrial Ecology)
+%  - lee2021: corrected author list and full title
+%  - ghgprotocol_gwp: CH4 GWP 28 (AR5) with specific URL; AR6 note added
+%  - wiki_exhaust removed (context-only, uncited)
+% Every source used in citations/*.md. Access dates 2026-09-03 unless noted.
+
+@techreport{desnz2026,
+  author      = {{Department for Energy Security and Net Zero (DESNZ)}},
+  title       = {Greenhouse gas reporting: conversion factors 2026},
+  institution = {HM Government, United Kingdom},
+  year        = {2026},
+  url         = {https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2026},
+  note        = {Accessed 2026-09-03. App-encoded factor set (backend/app/services/baseline.py):
+                 grid electricity 0.13096, petrol car 0.16152, diesel 0.17265,
+                 hybrid 0.12961, LPG 0.19553, EV 0.02686 kg/km, local bus
+                 0.10151 kg/pkm. Re-verify decimals against the 2026 xlsx before
+                 print: 0.13096 implies a steep drop from the 2025 edition (0.177),
+                 consistent with rapid grid decarbonisation but worth confirming}
+}
+
+@techreport{desnz2025,
+  author      = {{Department for Energy Security and Net Zero (DESNZ)}},
+  title       = {Greenhouse gas reporting: conversion factors 2025},
+  institution = {HM Government, United Kingdom},
+  year        = {2025},
+  url         = {https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2025},
+  note        = {Accessed 2026-09-03. Natural gas (net CV) ~0.20 kgCO2e/kWh;
+                 wood logs/pellets ~0.011--0.016 kgCO2e/kWh on a CH4+N2O basis
+                 (biogenic CO2 ~0.35--0.39 kg/kWh reported outside scopes);
+                 LPG ~1.55 kgCO2e/litre. Edition-exact decimals in the xlsx}
+}
+
+@misc{epa_vehicle,
+  author       = {{United States Environmental Protection Agency (EPA)}},
+  title        = {Greenhouse gas emissions from a typical passenger vehicle},
+  howpublished = {\url{https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle}},
+  year         = {2023},
+  note         = {Accessed 2026-09-03. 400 g CO2/mile; 4.6 t CO2/yr at
+                  22.2 mpg and 11,500 mi/yr}
+}
+
+@misc{epa_equivalencies,
+  author       = {{United States Environmental Protection Agency (EPA)}},
+  title        = {Greenhouse Gas Equivalencies Calculator},
+  howpublished = {\url{https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator}},
+  year         = {2024},
+  note         = {Accessed 2026-09-03. Cross-reference link only; no factor
+                  value taken from this page}
+}
+
+@techreport{cea_baseline,
+  author      = {{Central Electricity Authority (CEA), Government of India}},
+  title       = {CO2 Baseline Database for the Indian Power Sector, Version 21.0},
+  institution = {Ministry of Power, India},
+  year        = {2025},
+  url         = {https://cea.nic.in/cdm-co2-baseline-database/?lang=en},
+  note        = {Index accessed 2026-09-03. Official fiscal-year grid factor
+                 (FY 2024-25 ~0.71 kgCO2e/kWh per secondary tabulation). The
+                 dataset target uses the Ember calendar-2025 factor (0.67013);
+                 CEA series is cited as the official comparison anchor}
+}
+
+@misc{ember_grid,
+  author       = {{Ember} and {Energy Institute} and {Our World in Data}},
+  title        = {Carbon intensity of electricity generation (CSV dataset, data through 2025)},
+  howpublished = {\url{https://ourworldindata.org/grapher/carbon-intensity-electricity.csv}},
+  year         = {2026},
+  note         = {Fetched 2026-09-03; dataset anchor for all 17 countries.
+                  Values used (gCO2e/kWh): India 670.13, US 384.40,
+                  UK 217.41, China 525.34, France 41.44, Saudi Arabia 691.95
+                  (2024), Indonesia 680.25 (2024), UAE 467.51 (2024), and 10
+                  further countries. Note: earlier vintages of this dataset
+                  report US 2023 as ~365--370; the fetched series shows
+                  392.89 (2023), 383.78 (2024), 384.40 (2025) --- use the
+                  fetched series consistently and state the vintage}
+}
+
+@misc{wiki_india_electricity,
+  author       = {{Wikipedia contributors, tabulating CEA data}},
+  title        = {Electricity sector in India --- greenhouse gas emissions table},
+  howpublished = {\url{https://en.wikipedia.org/wiki/Electricity_sector_in_India}},
+  year         = {2026},
+  note         = {Accessed 2026-09-03. FY2021-22 to FY2024-25 weighted averages
+                  0.715/0.716/0.727/0.710 kg CO2/kWh; coal share ~73\%. The
+                  FY2029-30 projection (0.477) quoted on the page is secondary
+                  sourcing --- verify against the CEA Optimal Generation Mix
+                  report before print}
+}
+
+@misc{owid_travel,
+  author       = {{Our World in Data}},
+  title        = {Which form of transport has the smallest carbon footprint?},
+  howpublished = {\url{https://ourworldindata.org/travel-carbon-footprint}},
+  year         = {2023},
+  note         = {Accessed 2026-09-03. Domestic flight 246 gCO2/pkm;
+                  short-haul 154 gCO2/pkm as displayed at access date (current
+                  OWID chart vintage may show ~151 --- state which vintage you
+                  quote); national rail 35; Eurostar 4; average petrol car 170;
+                  cycling 16--50 g/km (UK Gov data)}
+}
+
+@misc{owid_food_choice,
+  author       = {{Our World in Data}},
+  title        = {Food choice vs eating local},
+  howpublished = {\url{https://ourworldindata.org/food-choice-vs-eating-local}},
+  year         = {2022},
+  note         = {Accessed 2026-09-03. Beef (beef herd) 60 kgCO2eq/kg (Poore
+                  and Nemecek 2018 vintage --- see reconciliation note in the
+                  text; OWID's current chart reports ~99.5 kgCO2eq/kg with
+                  updated methane accounting); lamb and cheese $>$20; pork 7;
+                  poultry 6; peas 1; avocados ~2.5}
+}
+
+@misc{owid_food_methane,
+  author       = {{Our World in Data}},
+  title        = {The carbon footprint of foods: are differences explained by the impacts of methane?},
+  howpublished = {\url{https://ourworldindata.org/carbon-footprint-food-methane}},
+  year         = {2021},
+  note         = {Accessed 2026-09-03. Beef (beef herd) 100 kgCO2eq/kg total,
+                  36 average excluding methane. Reconciliation: the 60 kg/kg
+                  value (app/dataset) is the Poore and Nemecek 2018 vintage;
+                  the ~100 kg/kg figure uses updated methane GWP accounting.
+                  Either is citable with the vintage stated}
+}
+
+@misc{owid_opportunity,
+  author       = {{Our World in Data}},
+  title        = {Carbon opportunity costs of food},
+  howpublished = {\url{https://ourworldindata.org/carbon-opportunity-costs-food}},
+  year         = {2021},
+  note         = {Accessed 2026-09-03. Food system 13.7 Gt CO2e/yr = 26\% of
+                  global GHG emissions (2015-era data vintage per Crippa et
+                  al.\ methodology; newer estimates may be higher)}
+}
+
+@article{scarborough2014,
+  author  = {Scarborough, Peter and Appleby, Paul N. and Mizdrak, Anja and
+             Briggs, Adam D. M. and Travis, Ruth C. and Bradbury, Kathryn E. and
+             Key, Timothy J.},
+  title   = {Dietary greenhouse gas emissions of meat-eaters, fish-eaters,
+             vegetarians and vegans in the UK},
+  journal = {Climatic Change},
+  volume  = {125},
+  number  = {2},
+  pages   = {179--192},
+  year    = {2014},
+  doi     = {10.1007/s10584-014-1169-1},
+  note    = {EPIC-Oxford, n~55,500. High-meat ($\geq$100 g/day) 7.19, medium
+             5.63, low 4.67, fish-eaters 3.91, vegetarians 3.81, vegans
+             2.89 kgCO2e/day --- the values used by the app proxies. Open
+             access. (An earlier revision of this bibliography wrongly merged
+             this paper with the 2023 Nature Food follow-up)}
+}
+
+@article{scarborough2023,
+  author  = {Scarborough, Peter and Clark, Michael and Wyness, Laura and
+             Key, Timothy J. and Papier, Keren and Knuppel, Anika and
+             Harwatt, Helen},
+  title   = {Vegans, vegetarians, fish-eaters and meat-eaters in the UK show
+             discordant environmental impacts},
+  journal = {Nature Food},
+  volume  = {4},
+  pages   = {565--574},
+  year    = {2023},
+  doi     = {10.1038/s43016-023-00795-w},
+  note    = {Cited 2026-09-03. The 2023 follow-up (different metrics, incl.
+             land use and water); NOT the source of the 7.19/2.89 kg/day bands}
+}
+
+@article{poore2018,
+  author  = {Poore, Joseph and Nemecek, Thomas},
+  title   = {Reducing food's environmental impacts through producers and consumers},
+  journal = {Science},
+  volume  = {360},
+  number  = {6392},
+  pages   = {987--992},
+  year    = {2018},
+  doi     = {10.1126/science.aaq0216},
+  note    = {Underlying per-kg food dataset (beef 60, poultry 6, peas 1
+             kgCO2eq/kg)}
+}
+
+@article{lee2021,
+  author  = {Lee, David S. and Fahey, David W. and Skowron, Agnieszka and
+             Allen, Myles R. and Burkhardt, Ulrike and Chen, Qi and
+             Doherty, Sarah J. and Freeman, Simon and Forster, Patrick M. and
+             others},
+  title   = {The contribution of global aviation to anthropogenic climate
+             forcing for 2000 to 2018},
+  journal = {Atmospheric Environment},
+  volume  = {244},
+  pages   = {117834},
+  year    = {2021},
+  doi     = {10.1016/j.atmosenv.2020.117834},
+  url     = {https://doi.org/10.1016/j.atmosenv.2020.117834},
+  note    = {Accessed 2026-09-03. Aviation effective radiative forcing
+             ~3x CO2-only (2--3x range cited in the text); basis for the
+             non-CO2 multiplier}
+}
+
+@misc{iea_electricity2024,
+  author       = {{International Energy Agency (IEA)}},
+  title        = {Electricity 2024 -- Analysis and forecast to 2026, Executive Summary},
+  howpublished = {\url{https://www.iea.org/reports/electricity-2024/executive-summary}},
+  year         = {2024},
+  note         = {Accessed 2026-09-03. Data centres 460 TWh (2022), possibly
+                  $>$1,000 TWh by 2026; AI + crypto + data centres ~= Japan's
+                  consumption; India AC growth named as demand driver}
+}
+
+@techreport{ipcc2006_vol2,
+  author      = {{IPCC}},
+  title       = {2006 IPCC Guidelines for National Greenhouse Gas Inventories, Volume 2: Energy, Chapter 3 -- Mobile Combustion},
+  institution = {IGES},
+  year        = {2006},
+  url         = {https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_3_Ch3_Mobile_Combustion.pdf},
+  note        = {Tier-1 fuel chemistry: motor gasoline ~69,300 kg CO2/TJ,
+                 gas/diesel oil ~74,100 kg CO2/TJ; with NCV gives
+                 2.31 / 2.68 kg CO2 per litre}
+}
+
+@techreport{ipcc2006_vol5,
+  author      = {{IPCC}},
+  title       = {2006 IPCC Guidelines for National Greenhouse Gas Inventories, Volume 5: Waste},
+  institution = {IGES},
+  year        = {2006},
+  url         = {https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol5.html},
+  note        = {Accessed 2026-09-03. Landfilled MSW ~0.5--0.8 kgCO2e/kg
+                 convention (composition- and capture-dependent)}
+}
+
+@misc{eea_textiles,
+  author       = {{European Environment Agency (EEA)}},
+  title        = {Textiles (topic page)},
+  howpublished = {\url{https://www.eea.europa.eu/en/topics/in-depth/textiles}},
+  year         = {2024},
+  note         = {Accessed 2026-09-03. EU textile consumption ~15-16 kg per person (briefings differ)
+                  (2020) with ~270 kg CO2e footprint -> ~17 kgCO2e/kg derived;
+                  rising to 19 kg (2022). Note: other EEA materials cite
+                  ~14.8--15 kg/person for 2020 --- figures vary by briefing;
+                  ~$<$1\% recycled into new products (Ellen MacArthur
+                  Foundation, 2017)}
+}
+
+@misc{emf_textiles,
+  author       = {{Ellen MacArthur Foundation}},
+  title        = {A New Textiles Economy: Redesigning fashion's future},
+  howpublished = {\url{https://www.ellenmacarthurfoundation.org/a-new-textiles-economy}},
+  year         = {2017},
+  note         = {Cited 2026-09-03. $<$1\% of textiles recycled into new
+                  products; per-garment convention lineage}
+}
+
+@misc{icct_realworld,
+  author       = {{International Council on Clean Transportation (ICCT)}},
+  title        = {Real-world fuel consumption program},
+  howpublished = {\url{https://theicct.org/real-world-fuel-consumption/}},
+  year         = {2023},
+  note         = {Link verified 2026-09-03. On-road fuel use ~20--40\% above
+                  type-approval figures}
+}
+
+@misc{wiki_recycling,
+  author       = {{Wikipedia contributors}},
+  title        = {Recycling},
+  howpublished = {\url{https://en.wikipedia.org/wiki/Recycling}},
+  year         = {2026},
+  note         = {Accessed 2026-09-03. Energy saved vs virgin production:
+                  aluminium 95\%, plastics 70\%, steel 60\%, paper 40\%,
+                  cardboard 24\%, glass 5--30\% (EPA/EIA-cited table)}
+}
+
+@misc{wiki_landfill,
+  author       = {{Wikipedia contributors}},
+  title        = {Landfill gas},
+  howpublished = {\url{https://en.wikipedia.org/wiki/Landfill_gas}},
+  year         = {2026},
+  note         = {Accessed 2026-09-03. Landfill gas 40--60\% methane (Ullmann's
+                  2011, per the cited page); timing per that source: generation
+                  starts ~6 months, peaks ~20 years (note: EPA LMOP materials
+                  give ~1--2 years onset / 5--7 years peak --- cite the source
+                  you use). CH4 GWP-100 = 28 (AR5, GHG Protocol default) or
+                  27.9 AR6 non-fossil}
+}
+
+@misc{wiki_veg_india,
+  author       = {{Wikipedia contributors}},
+  title        = {Vegetarianism in India},
+  howpublished = {\url{https://en.wikipedia.org/wiki/Vegetarianism_in_India}},
+  year         = {2026},
+  note         = {Accessed 2026-09-03. India vegetarian share 20--39\%
+                  (Pew 2021: 39\%; GoI survey 28--29\%; CNN-IBN 2006: 31\%;
+                  EPW 2018 critique: ~20\%)}
+}
+
+@article{aslan2018,
+  author  = {Aslan, Joshua and Mayers, Kieren and Koomey, Jonathan G. and
+             France, Chris},
+  title   = {Electricity intensity of Internet data transmission:
+             untangling the estimates},
+  journal = {Journal of Industrial Ecology},
+  volume  = {22},
+  number  = {4},
+  pages   = {785--798},
+  year    = {2018},
+  doi     = {10.1111/jiec.12630},
+  note    = {Cited 2026-09-03. Internet data-transmission electricity
+             intensity ~0.06 kWh/GB (2015 estimate). (An earlier revision of
+             this bibliography wrongly attributed the figure to a streaming
+             case-study title)}
+}
+
+@misc{ghgprotocol_gwp,
+  author       = {{Greenhouse Gas Protocol}},
+  title        = {Global Warming Potential values},
+  howpublished = {\url{https://ghgprotocol.org/sites/default/files/ghgp/Global-Warming-Potential-Values\%20\%28Feb\%2016\%202016\%29.pdf}},
+  year         = {2016},
+  note         = {Cited 2026-09-03. CH4 GWP-100 = 28 (AR5 basis, GHG Protocol
+                  default); AR6 non-fossil methane is 27.9 --- state which
+                  assessment you use}
+}
+
+@book{ghgprotocol2004,
+  author    = {{World Resources Institute and World Business Council for Sustainable Development}},
+  title     = {The Greenhouse Gas Protocol: A Corporate Accounting and Reporting Standard},
+  edition   = {revised},
+  publisher = {WRI/WBCSD},
+  year      = {2004},
+  url       = {https://ghgprotocol.org/corporate-standard},
+  note      = {Accessed 2026-09-03. Activity-data x emission-factor method and
+               scope definitions --- the computational basis of the baseline and
+               the v2 dataset target}
+}
+
+@incollection{wiedmann2008,
+  author    = {Wiedmann, Thomas and Minx, Jan},
+  title     = {A definition of 'carbon footprint'},
+  booktitle = {Ecological Economics Research Trends},
+  editor    = {Pertsova, Carolina C.},
+  publisher = {Nova Science Publishers},
+  pages     = {1--11},
+  year      = {2008},
+  note      = {ISA UK Research Report 07-01. The canonical carbon-footprint
+               definition (all GHGs as CO2e, direct + embodied) adopted by
+               CarbonSense}
+}
+
+@article{ivanova2016,
+  author  = {Ivanova, Diana and Stadler, Konrad and Steen-Olsen, Kjartan and
+             Wood, Richard and Vita, Gibran and Tukker, Arnold and
+             Hertwich, Edgar G.},
+  title   = {Environmental impact assessment of household consumption},
+  journal = {Journal of Industrial Ecology},
+  volume  = {20},
+  number  = {3},
+  pages   = {526--536},
+  year    = {2016},
+  doi     = {10.1111/jiec.12371},
+  note    = {Household consumption drives ~60% of global GHG emissions;
+             its domain structure (travel, housing, food, goods) mirrors
+             the questionnaire}
+}
+
+@article{jones2011,
+  author  = {Jones, Christopher M. and Kammen, Daniel M.},
+  title   = {Quantifying carbon footprint reduction opportunities for U.S. households and communities},
+  journal = {Environmental Science and Technology},
+  volume  = {45},
+  number  = {9},
+  pages   = {4088--4095},
+  year    = {2011},
+  doi     = {10.1021/es102221h},
+  note    = {Basis of the CoolClimate household calculator; per-capita
+             attribution within households}
+}
+
+@article{wynes2017,
+  author  = {Wynes, Seth and Nicholas, Kimberly A.},
+  title   = {The climate mitigation gap: education and government recommendations miss the most effective individual actions},
+  journal = {Environmental Research Letters},
+  volume  = {12},
+  number  = {7},
+  pages   = {074024},
+  year    = {2017},
+  doi     = {10.1088/1748-9326/aa7541},
+  note    = {Ranking of high-impact individual actions --- the ordering
+             principle behind the app's recommendation layer}
+}
+
+@article{lei2018,
+  author  = {Lei, Jing and G'Sell, Maxime and Rinaldo, Alessandro and
+             Tibshirani, Ryan J. and Wasserman, Larry},
+  title   = {Distribution-free predictive inference for regression},
+  journal = {Journal of the American Statistical Association},
+  volume  = {113},
+  number  = {523},
+  pages   = {1094--1111},
+  year    = {2018},
+  doi     = {10.1080/01621459.2017.1307116},
+  note    = {Split conformal prediction --- the method behind the app's
+             90% prediction interval}
+}
+
+@misc{angelopoulos2021,
+  author       = {Angelopoulos, Anastasios N. and Bates, Stephen},
+  title        = {A gentle introduction to conformal prediction and distribution-free uncertainty quantification},
+  howpublished = {arXiv:2107.07511},
+  year         = {2021},
+  url          = {https://arxiv.org/abs/2107.07511},
+  note         = {Accessed 2026-09-03. Tutorial reference for the conformal
+                  implementation}
+}
+
+@techreport{defra2011,
+  author      = {{Department for Environment, Food and Rural Affairs (Defra) / DECC}},
+  title       = {Guidelines to Defra/DECC's GHG Conversion Factors for Company Reporting, Annex 13: Indirect emissions from the supply chain},
+  institution = {HM Government, United Kingdom},
+  year        = {2011},
+  note        = {Method lineage for the spend-based grocery factors (values
+                 re-based to local price level)}
+}
+
+@misc{tietge2017,
+  author       = {Tietge, Uwe and D{'i}az, Sonia and Mock, Peter and
+                  Bandivadekar, Anup and Dornoff, Jan and Ligterink, Norbert},
+  title        = {From Laboratory to Road: A 2017 update of official and `real-world' fuel consumption and CO2 values for passenger cars in Europe},
+  howpublished = {ICCT White Paper},
+  year         = {2017},
+  url          = {https://theicct.org/publication/from-laboratory-to-road-a-2017-update/},
+  note         = {Accessed 2026-09-03. NEDC-era real-world gap ~39% (2017);
+                  ~14-20% under WLTP}
+}
+
+@incollection{ipcc_ar6_ch7,
+  author    = {Forster, Piers and Storelvmo, Trude and Armour, Kyle and others},
+  title     = {The Earth's energy budget, climate feedbacks, and climate sensitivity (Chapter 7)},
+  booktitle = {Climate Change 2021: The Physical Science Basis. Contribution of Working Group I to the Sixth Assessment Report of the IPCC},
+  publisher = {Cambridge University Press},
+  year      = {2021},
+  doi       = {10.1017/9781009157896.009},
+  note      = {Table 7.15: CH4 GWP-100 non-fossil 27.0, fossil 29.8 (AR5: 28)}
+}
+
+@misc{ipcc2006_vol2b,
+  author = {{IPCC}},
+  title  = {2006 IPCC Guidelines, Volume 2: Energy, Chapter 1 (Introduction -- default NCVs)},
+  year   = {2006},
+  url    = {https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol2.html},
+  note   = {Default net calorific values: gasoline 44.3, diesel 43.0,
+            LPG 47.3 TJ/Gg --- used with the Chapter 3 factors for the
+            per-litre derivations}
+}

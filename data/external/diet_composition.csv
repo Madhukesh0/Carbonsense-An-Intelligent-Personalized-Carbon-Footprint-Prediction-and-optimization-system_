@@ -1,0 +1,5 @@
+diet,red_meat_kg_month,poultry_kg_month,dairy_kg_month,vegetables_kg_month,source
+omnivore,2.2,2.5,6.5,11.0,Poore & Nemecek (2018) Science 360(6392) dietary averages
+pescatarian,0.0,1.8,6.0,12.5,Poore & Nemecek (2018) Science 360(6392) dietary averages
+vegetarian,0.0,0.0,7.0,13.0,Poore & Nemecek (2018) Science 360(6392) dietary averages
+vegan,0.0,0.0,0.0,14.5,Poore & Nemecek (2018) Science 360(6392) dietary averages
