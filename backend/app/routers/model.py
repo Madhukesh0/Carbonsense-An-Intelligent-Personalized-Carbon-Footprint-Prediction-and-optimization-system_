@@ -10,6 +10,7 @@ from motor.motor_asyncio import AsyncIOMotorDatabase
 from ..core.security import get_current_user, require_roles
 from ..db.mongo import get_database, utc_now
 from ..schemas.model import SurveyPayload
+from ..services.activity_bootstrap import ensure_ledger_history
 from ..services.baseline import calculate_baseline
 from ..services.prediction import model_info, run_prediction, run_prediction_v25
 
@@ -68,6 +69,7 @@ async def predict(
             detail=f"The v2.5 prediction runtime is unavailable: {error}",
         ) from error
     await save_run(db, user, run_type="prediction", input_payload=raw, predicted_kg=result["predictedKg"], baseline_kg=None, model_version=result["modelVersion"], explanation=result.get("explanation"))
+    await ensure_ledger_history(db, str(user["_id"]), raw)
     return result
 
 
