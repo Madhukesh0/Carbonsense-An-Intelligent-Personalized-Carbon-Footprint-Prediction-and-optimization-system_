@@ -1,0 +1,419 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{url}
+\usepackage{float}
+\usepackage{hyperref}   % clickable citations
+\usepackage{microtype}  % improves line breaking and typographic quality
+\usepackage{placeins}   % provides \FloatBarrier
+\hypersetup{
+    colorlinks=true,
+    citecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% ---------- table/figure polish ----------
+\renewcommand{\arraystretch}{1.25}         % breathing room in tables
+\setlength{\tabcolsep}{3pt}
+\usepackage{caption}
+\captionsetup{font=footnotesize,labelfont=bf}
+
+\begin{document}
+
+\title{CarbonSense: An Intelligent Personalized Carbon Footprint Prediction and Optimization System}
+
+% Author block: 3x2 grid with balanced column widths
+\author{
+\begin{tabular}{@{}p{0.30\textwidth}@{\hskip 0.02\textwidth}p{0.30\textwidth}@{\hskip 0.02\textwidth}p{0.30\textwidth}@{}}
+\textbf{G Ramanjinamma}
+& \textbf{Sangeetha Arali}
+& \textbf{Madhukesh S} \\[2pt]
+\textit{Dept. of CSE}
+& \textit{Professor of Practice}
+& \textit{Dept. of CSE} \\[-1pt]
+\textit{Sai Vidya Institute of Technology}
+& \textit{Sai Vidya Institute of Technology}
+& \textit{Sai Vidya Institute of Technology} \\[-1pt]
+\textit{Bengaluru, India}
+& \textit{Bengaluru, India}
+& \textit{Bengaluru, India} \\[-1pt]
+\small ramanjinamma.g@saividya.ac.in
+&
+& \small madhukeshs.23cs@saividya.ac.in \\[6pt]
+\textbf{N Naveen Uttarkar}
+& \textbf{K Chethan Kumar}
+& \textbf{Rohan B H} \\[2pt]
+\textit{Dept. of CSE}
+& \textit{Dept. of CSE}
+& \textit{Dept. of CSE} \\[-1pt]
+\textit{Sai Vidya Institute of Technology}
+& \textit{Sai Vidya Institute of Technology}
+& \textit{Sai Vidya Institute of Technology} \\[-1pt]
+\textit{Bengaluru, India}
+& \textit{Bengaluru, India}
+& \textit{Bengaluru, India} \\[-1pt]
+\small nnaveenuttarkar.23cs@saividya.ac.in
+& \small kchethankumar.23cs@saividya.ac.in
+& \small rohanbh.23cs@saividya.ac.in
+\end{tabular}
+}
+\maketitle
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\begin{abstract}
+
+The steady rise in greenhouse-gas emissions has made it clear that practical tools are needed so that individuals can understand, estimate, and reduce the emissions arising from their everyday routines. Most existing carbon calculators rely either on fixed emission factors or on a single opaque prediction model: they do not show why a given number was produced, they do not keep every calculator component consistent with one set of cited emission factors, and they rarely translate a result into realistic, prioritized actions. This work presents CarbonSense, an integrated full-stack platform that unifies (i)~a dual-estimation engine---a gradient-boosted XGBoost predictor over a country-aware synthetic dataset whose target is derived from cited emission factors, alongside a deterministic, fully auditable baseline built from the same factor set---(ii)~TreeSHAP explainability with per-prediction feature attribution, (iii)~dynamic, impact-ranked recommendations with a goal-based reduction planner that are re-scored after every submission, (iv)~a tiered personal forecasting system (Prophet, ETS, and a labelled directional fallback) driven by a private activity ledger, (v)~a What-if scenario simulator, (vi)~organization workspaces with two-way membership invitations, consent-filtered analytics, and audit-logged governance, and (vii)~a grounded conversational assistant built on the Gemini API with a rule-based fallback. The deployed XGBoost model achieves a held-out R\textsuperscript{2} of 0.9514 (MAE = 32.2~kgCO\textsubscript{2}e/month, RMSE = 44.6~kgCO\textsubscript{2}e) on a 10,000-sample lifestyle dataset, and a 90\% split-conformal interval (71.3~kg; 91.4\% empirical coverage) quantifies per-estimate uncertainty. Because both estimation paths share one factor set, the gap between them isolates model behaviour rather than factor drift. The platform is deployed on free-tier cloud services (Render, MongoDB Atlas) at zero cost. CarbonSense aims to close the gap between climate awareness and action by making the underlying numbers visible, the recommendations personalized, and the entire experience engaging.
+
+\end{abstract}
+
+\begin{IEEEkeywords}
+Carbon footprint, machine learning, XGBoost, SHAP explainability, conformal prediction, emission factors, goal-based planning, time-series forecasting, organizations, conversational AI, sustainability
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+Anthropogenic greenhouse-gas emissions are a major driver of climate change, and individual consumption decisions contribute emissions across transport, energy, food, and product-use activities \cite{swathi2025}. The Intergovernmental Panel on Climate Change (IPCC) has emphasized that meeting the 1.5°C goal requires not only systemic industrial decarbonization but also deep shifts in personal consumption patterns \cite{ipcc2022}. A persistent gap remains between climate awareness and behavioral change, largely because of the lack of personalized, interpretable, and engaging tools that convert abstract emission numbers into concrete reduction strategies \cite{mulrow2019}.
+
+Traditional carbon footprint calculators have evolved from spreadsheet estimators to web and mobile applications. Early systems surveyed by Bekaroo et al. \cite{bekaroo2020} established the role of information and communication technology (ICT) in supporting environmental sustainability. Subsequent work improved prediction accuracy with machine learning: Swathi et al. \cite{swathi2025} reported ensemble regression with R\textsuperscript{2} = 0.991, Tayade and Bhirud \cite{tayade2025} proposed a hybrid Random Forest + LSTM setup for static and temporal forecasting, and Dash et al. \cite{dash2025} integrated Gemini-powered conversational AI into a mobile carbon-tracking application. Three problems recur across existing platforms: (1)~they rely exclusively on either rule-based or ML-based computation, sacrificing transparency or accuracy respectively; (2)~the estimation components are not constrained to a single consistent emission-factor set, so a user cannot tell whether a discrepancy between methods reflects the model or the factors; and (3)~the output is rarely translated into a prioritized, quantified action plan.
+
+To address these gaps, we built CarbonSense, a platform that unifies prediction, explanation, planning, forecasting, and engagement. Our contributions are:
+
+\begin{itemize}
+    \item A \textbf{dual-estimation engine} combining a gradient-boosted XGBoost predictor (R\textsuperscript{2} = 0.9514 held-out) with a deterministic, white-box baseline built from the same cited factor set (Ember 2025 grid factors, IPCC 2006 fuel chemistry, Scarborough 2023 diet bands, OWID air-travel bands, EEA clothing, IPCC waste convention). Because both paths share one factor set, the AI-versus-baseline gap isolates model behaviour from factor drift, and each baseline line prints its own arithmetic.
+    \item \textbf{TreeSHAP explainability} with per-prediction, group-level feature attribution (pushed-up vs.\ pushed-down contributors), a 90\% split-conformal uncertainty interval (71.3~kg; 91.4\% empirical coverage), and SHA-256 integrity verification of the frozen model artifacts at load time.
+    \item \textbf{Dynamic impact-ranked recommendations}: every approved action is re-scored against the submitted answers after each prediction using the shared factor set, ranked by estimated planning impact, and enriched with its arithmetic basis, share-of-baseline, and modeled contribution. A \textbf{goal slider} converts the ranking into a concrete plan (``accept these three actions $\approx$ $-$180~kg of your 647~kg baseline'').
+    \item A \textbf{What-if simulator} that recomputes both estimation methods for a user-selected lifestyle scenario, and a \textbf{tiered personal forecasting system} (Prophet at 12 consecutive completed months and 90+ recorded activity days; ETS from 6 months; a labelled directional fallback before that) with a history-plus-forecast bar-graph visualization.
+    \item \textbf{Organization workspaces} with three role types (individual, org\_admin, super\_admin), two-way membership invitations (administrators invite unaffiliated individuals; individuals request to join and are approved), consent-filtered aggregate analytics, reminders, and audit-logged governance decisions.
+    \item A \textbf{grounded conversational assistant} built on the Gemini API that answers only from the user's own computed workspace context under strict no-invented-factors rules, with an automatic rule-based fallback (quota, timeout, or missing key) so the assistant never breaks.
+    \item \textbf{Zero-cost lifetime deployment}: a single-process architecture in which FastAPI serves both the REST API and the compiled React single-page application, deployed on Render's free tier with MongoDB Atlas (M0) and the Gemini free tier.
+\end{itemize}
+
+The remainder of this paper is organized as follows: Section~II reviews related work. Section~III presents the methodology, including dataset construction, the dual-estimation engine, SHAP analysis, recommendation planning, and forecasting. Section~IV describes the system architecture and implementation. Section~V reports evaluation results. Section~VI discusses limitations and future directions, and Section~VII concludes.
+
+\FloatBarrier
+
+\section{Literature Review}
+
+\subsection{Carbon Footprint Calculators and Web Applications}
+
+Early carbon footprint calculators were spreadsheet-based estimators; the review by Bekaroo et al. \cite{bekaroo2020} established how ICT tools can support environmental sustainability, while Mulrow et al. \cite{mulrow2019} evaluated online calculators and found that most expose little or none of their underlying methodology. Michla et al. \cite{michla2023} added sustainability suggestions but retained single-path estimation. Across these tools, the emission factors and the computation are typically hidden from the user.
+
+\subsection{Machine Learning for Carbon Prediction}
+
+Recent systems apply machine learning to lifestyle survey data. Swathi et al. \cite{swathi2025} achieved R\textsuperscript{2} = 0.991 with ensemble regression on a multi-dimensional lifestyle dataset and identified transportation and household energy as dominant contributors. Tayade and Bhirud \cite{tayade2025} combined Random Forest with LSTM for static and temporal prediction, and Ariima et al. \cite{ariima2024} applied ARIMA-style models to atmospheric CO\textsubscript{2} trends. These works demonstrate strong accuracy but none exposes per-prediction attribution to the end user, and none guarantees that the model's training factors match the factors a companion rule-based calculator would use.
+
+\subsection{Explainability, Optimization, and Conversational AI}
+
+Lundberg and Lee's SHAP framework \cite{lundberg2017} provides game-theoretic feature attribution; TreeExplainer makes exact TreeSHAP tractable for tree ensembles, yet consumer carbon tools rarely integrate it. Chatterjee et al. \cite{chatterjee2022} explored household footprint optimization with machine learning, and Mitchell \cite{mitchell2023pulp} documents PuLP, a widely used linear-programming toolkit. Dash et al. \cite{dash2025} integrated conversational AI into mobile carbon tracking. A systematic comparison (Table~\ref{tab:comparison}) shows that no existing platform simultaneously provides: (a)~dual ML + rule-based estimation whose factors are shared between both paths; (b)~per-prediction SHAP explainability surfaced in the user interface; (c)~dynamic, impact-ranked recommendation planning with goal support; (d)~organization workspaces with two-way invitations and audit-logged governance; (e)~a grounded conversational assistant with an automatic fallback; and (f)~data-gated time-series forecasting with visual history.
+
+% ---------- COMPARISON TABLE ----------
+\begin{table}[!t]
+\caption{Comparison of CarbonSense with Existing Platforms}
+\label{tab:comparison}
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Feature} & \textbf{\cite{swathi2025}} & \textbf{\cite{tayade2025}} & \textbf{\cite{dash2025}} & \textbf{\cite{vidhya2025}} & \textbf{CarbonSense} \\
+\midrule
+ML prediction & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+Rule-based baseline & \checkmark & \checkmark & -- & -- & \checkmark \\
+Shared factor set (both paths) & -- & -- & -- & -- & \checkmark \\
+SHAP explainability (per user) & -- & -- & -- & -- & \checkmark \\
+Conformal uncertainty interval & -- & -- & -- & -- & \checkmark \\
+Goal-based action planning & -- & -- & -- & -- & \checkmark \\
+What-if scenarios & Partial & -- & Partial & -- & \checkmark \\
+Activity forecast (gated tiers) & -- & Partial & -- & -- & \checkmark \\
+Organizations + invitations & -- & -- & -- & -- & \checkmark \\
+Audit-logged governance & -- & -- & -- & -- & \checkmark \\
+Conversational AI (with fallback) & -- & -- & \checkmark & -- & \checkmark \\
+PDF reports & -- & -- & -- & -- & \checkmark \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\FloatBarrier
+
+\section{Methodology}
+
+\subsection{Dataset Construction and Preprocessing}
+
+The deployed model is trained on \texttt{carbonsense-synthetic-v2.5}, a 10,000-row dataset generated deterministically (seed~42) by a documented pipeline. Each row samples 15 questionnaire fields (travel mode, vehicle fuel and monthly distance, flight frequency, household size, heating fuel, TV/PC and internet hours, diet, monthly grocery spend, new-clothing count, waste-bag size and weekly count, recycling, and cooking appliances) from declared distributions across three countries (India 40\%, United States 30\%, United Kingdom 30\%).
+
+Two derived numeric features carry the country signal: \texttt{grid\_factor} (kgCO\textsubscript{2}e/kWh from the Ember 2025 dataset \cite{ember2025}, fetched 2026-09-03: India 0.67013, US 0.38440, UK 0.21741; a renewable-supply override applies 0.147/0.085/0.048) and \texttt{grocery\_factor} (kgCO\textsubscript{2}e per unit of local currency: 0.11/0.36/0.44, price-level calibrated). This design was verified superior to country one-hot encoding (R\textsuperscript{2} 0.9462 vs.\ 0.9450 with fewer features) and extends to new countries by adding a lookup entry.
+
+The target variable, \texttt{carbon\_emission\_kgco2e\_month}, is computed row-by-row from cited factors---IPCC 2006 \cite{ipcc2006} fuel chemistry for vehicles (petrol 2.31, diesel 2.68 kgCO\textsubscript{2}e/L at sampled fleet economy), device-watt home-energy accounting scaled by the grid factor and divided per household member, Scarborough 2023 \cite{scarborough2023} diet bands (90/115/120/215 kg/month), bag-mass $\times$ 4.3 weeks $\times$ 0.65~kg/kg waste minus recycling credits, EEA clothing (18~kg/item), appliance-specific cooking kWh, and OWID air-travel bands (0/60/180/420~kg)---followed by multiplicative lognormal noise ($\sigma = 0.05$) so that the model learns the relationship rather than a lookup table. Five fields with no defensible emission mechanism (sex, body type, shower frequency, social activity, energy-efficiency attitude) are excluded from the dataset entirely. The dataset is frozen under version governance through 31~May 2027.
+
+\subsection{Dual-Estimation Engine}
+
+\subsubsection{Machine Learning Predictor}
+The serving contract expands each submission into a 36-feature vector: nine numeric/derived features (including the country grid and grocery factors and household size) and 27 drop-first one-hot indicators. Five regressors were compared with seeded randomized search; XGBoost (400 trees, depth~5) achieved the best held-out performance and was deployed as frozen joblib artifacts whose SHA-256 hashes are verified at every load.
+
+\subsubsection{Rule-Based Baseline}
+The transparent baseline is the deterministic form of the same target construction, using the mid-range value of every sampled quantity (e.g., 20~km/L petrol economy, 65~kWh base load, 100~kWh electric-heating boost). Every output line (transport, home energy, food, waste, clothing, cooking, air travel) prints its own arithmetic, e.g., ``450~km $\times$ 0.1155~kg/km (2.31~kg/L at 20~km/L)''. Because both paths share one factor set, the AI-versus-baseline difference measures learned model behaviour---such as the model's saturation of vehicle-distance effects above 3{,}000~km---rather than factor drift. The two estimates are displayed side by side and are never averaged.
+
+\subsection{SHAP Explainability and Uncertainty}
+
+At prediction time, TreeSHAP \cite{lundberg2017} attributes the estimate across feature groups (air travel, transport and distance, home energy, diet and grocery, waste, clothing, vehicle type, cooking, recycling, digital use), ranked and rendered as pushed-up/pushed-down contributors relative to the model base value. A split-conformal calibrator (finite-sample corrected, held-out calibration rows) provides the displayed 90\% interval: $\hat{q} = 71.26$~kg with 91.35\% empirical test coverage.
+
+\subsection{Dynamic Impact-Ranked Recommendations}
+
+Recommendations are not a static list. After every persisted estimate, the result-led engine re-scores each approved action against the submitted profile using the shared factor set: flight-band deltas (60/120/240~kg), diet-band deltas, vehicle-distance shifts at the per-fuel factor, renewable-grid headroom scaled by household size, clothing halving, and waste-bag reductions including recycling credits. Actions are ranked by estimated planning impact; each card carries its arithmetic basis, its share of the user's baseline, its live SHAP group contribution, and a provenance label. A goal slider selects a percentage of the baseline, and the top-ranked actions are greedily included until the goal is met, with an honest shortfall message when the action set cannot reach it. Actions whose gating fails (e.g., no vehicle, vegan diet, zero flights) are never shown.
+
+\subsection{Tiered Activity Forecasting}
+
+Users record daily activities in a private ledger (transport kilometres, electricity kWh, diet, fuel). The forecast service aggregates completed calendar months and applies three tiers: (1)~Prophet when at least 12 consecutive completed months and 90 distinct activity days exist; (2)~ETS (Holt-Winters damped trend) from 6 months; (3)~a labelled directional fallback otherwise. New or low-history accounts with a submitted estimate receive a one-time, clearly labelled 13-month ledger bootstrap derived from their own estimate breakdown, so the statistical tiers engage without fabricating unlabelled data. The forecast response includes both the history and forecast series for visualization.
+
+\FloatBarrier
+
+\section{System Architecture and Implementation}
+
+\subsection{Overall Architecture}
+
+Fig.~\ref{fig:architecture} presents the system architecture. CarbonSense follows a single-process service architecture: a FastAPI application serves the REST API under \texttt{/api/v1} and, in production, the compiled React single-page application through an SPA fallback (API routes always take precedence). The ML runtime (XGBoost inference, TreeSHAP, conformal calibration), the baseline service, the recommendation scorer, the forecasting tiers, and the assistant are embedded in the same process and invoked through dedicated routers. MongoDB Atlas provides the data layer.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{architecture.png}
+\caption{CarbonSense system architecture. The React~19 SPA communicates with the FastAPI backend over same-origin cookie-authenticated endpoints. The ML runtime (XGBoost, TreeSHAP, conformal calibration), the aligned baseline service, the recommendation scorer, and the forecasting tiers run in one process. MongoDB Atlas stores users, runs, the activity ledger, organizations, and governance audit logs.}
+\label{fig:architecture}
+\end{figure}
+
+The React~19 frontend uses Vite for building, Tailwind CSS~4 with Radix UI primitives for styling and components, TanStack Query for server-state management, Wouter for client-side routing, and Recharts for the forecast visualization. The backend uses Pydantic schemas for validation at every boundary and Motor (async MongoDB) for data access. Authentication uses JWT access/refresh cookies (15~minutes~/ 30~days) with CSRF double-submit tokens; passwords are hashed with argon2.
+
+\subsection{Data Flow}
+
+Fig.~\ref{fig:dataflow} illustrates the end-to-end flow. A submitted survey is validated, expanded into the 36-feature contract, and predicted by the frozen XGBoost artifact; the transparent baseline is computed from the same answers; TreeSHAP contributions are grouped and stored alongside the run (with the top-6 dominant factors persisted for the recommendation engine). The result page renders both estimates, the contribution breakdown, and the recommendation plan. Activity ledger entries feed the forecasting tiers. All governance-relevant actions write to an audit collection.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\linewidth]{dataflow.png}
+\caption{CarbonSense end-to-end data flow: submission $\rightarrow$ dual estimation + SHAP $\rightarrow$ persisted run $\rightarrow$ impact-ranked recommendations and goal plans; ledger activity $\rightarrow$ tiered forecasting.}
+\label{fig:dataflow}
+\end{figure}
+
+\FloatBarrier
+
+\subsection{Backend Module Details}
+
+The FastAPI backend is organized into role-scoped routers, each encapsulating distinct business logic:
+
+\textbf{1. Security Module}: JWT access/refresh cookies (15-minute and 30-day lifetimes) signed with the application secret, argon2 password hashing, CSRF double-submit protection on state-changing routes, and three role values (\texttt{individual}, \texttt{org\_admin}, \texttt{super\_admin}) re-read from the database on every request. Model artifacts are integrity-verified (SHA-256 manifest) before loading.
+
+\textbf{2. Prediction Module}: \texttt{POST /model/predict} expands the survey into the 36-feature contract, runs the frozen XGBoost artifact, computes TreeSHAP group contributions, attaches the conformal interval, persists the run with its dominant factors, and bootstraps ledger history for new accounts.
+
+\textbf{3. Baseline Module}: \texttt{POST /model/baseline} and \texttt{/model/baseline-compute} produce the deterministic aligned-factor estimate with per-line arithmetic and return the AI-versus-baseline comparison without averaging the two.
+
+\textbf{4. Insights Module}: \texttt{GET /insights/forecast} aggregates the private activity ledger into completed monthly totals and runs the tiered forecast (Prophet $\rightarrow$ ETS $\rightarrow$ directional fallback), returning the history series for the bar-graph visualization. \texttt{GET /insights/history} lists saved runs.
+
+\textbf{5. Recommendations Module}: \texttt{GET /recommendations/result-led} anchors on the newest submitted run, re-scores every approved action with the shared factor set, ranks by planning impact, and attaches SHAP annotations. \texttt{POST /recommendations/accept}, \texttt{/mine}, and completion/verification endpoints track acceptance and admin-verified outcomes.
+
+\textbf{6. Planning Module}: \texttt{POST /planning/what-if} recomputes both methods for a modified profile; \texttt{GET /planning/latest-completed} returns the paired result.
+
+\textbf{7. Organization Module}: organization creation with invite codes, two-way membership (join requests from individuals, invitations from administrators), member reminders, aggregate summaries and contributor analytics restricted to consenting members.
+
+\textbf{8. Activity Module}: private ledger CRUD, summaries, quest scoring (points from recorded estimates and administrator-verified actions only), and progress against active goals.
+
+\textbf{9. Assistant Module}: \texttt{POST /assistant/chat} grounds the Gemini model on the user's computed workspace context (estimate counts, dominant SHAP contributor, active goal) under strict no-invented-factor rules, with an automatic rule-based fallback and per-response engine labelling.
+
+\textbf{10. Admin Module}: \texttt{GET /admin/users} management, aggregate dashboards, and governance audit-log retrieval for super admins.
+
+\subsection{API Endpoint Summary}
+
+Table~\ref{tab:api} lists core REST endpoints. Authenticated endpoints use HttpOnly cookie sessions with a CSRF token header (same-origin deployment), so no bearer-token handling is required in the browser.
+
+% ---------- API TABLE (two-column span so it never collides with figures) ----------
+\FloatBarrier
+\begin{table*}[!t]
+\caption{CarbonSense Core API Endpoints}
+\label{tab:api}
+\centering
+\footnotesize
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Method} & \textbf{Endpoint} & \textbf{Description} & \textbf{Auth} \\
+\midrule
+GET  & /api/v1/health & Health + DB status & Public \\
+POST & /api/v1/auth/register, /login & Create account, sign-in & Public \\
+POST & /api/v1/auth/refresh & Session refresh & Cookie \\
+POST & /api/v1/model/predict & ML prediction + SHAP & Cookie \\
+POST & /api/v1/model/baseline & Persisted dual estimate & Cookie \\
+POST & /api/v1/model/baseline-compute & On-demand baseline & Cookie \\
+GET  & /api/v1/recommendations/result-led & Impact-ranked actions & Cookie \\
+POST & /api/v1/recommendations/accept & Accept action & Cookie \\
+POST & /api/v1/planning/what-if & Scenario compare & Cookie \\
+GET  & /api/v1/insights/forecast & Tiered activity forecast & Cookie \\
+GET  & /api/v1/insights/history & Saved run history & Cookie \\
+GET/POST & /api/v1/activity & Activity ledger CRUD & Cookie \\
+GET  & /api/v1/activity/quest-summary & CarbonQuest scoring & Cookie \\
+POST & /api/v1/assistant/chat & Grounded AI assistant & Cookie+CSRF \\
+GET  & /api/v1/organization/me, /invitations & Organization state & Cookie \\
+POST & /api/v1/organization/invite & Admin invitation & Org admin \\
+POST & /api/v1/organization/join & Individual join request & Cookie \\
+GET  & /api/v1/admin/users & User management & Super admin \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\FloatBarrier
+
+\subsection{Database Schema}
+
+MongoDB holds the primary collections shown in Fig.~\ref{fig:database}: \texttt{users} (profiles, argon2 credential hashes, roles, organization affiliation, share-aggregate consent); \texttt{footprint\_runs} (every persisted estimate with its input payload, both estimates, model version, and dominant SHAP factors); \texttt{activity\_ledger} (timestamped daily activity entries that power forecasting readiness); \texttt{user\_recommendations} (accepted/completed/verified state per action); \texttt{organizations}, \texttt{organization\_join\_requests}, and \texttt{organization\_invitations} (the two-way membership workflow); \texttt{carbon\_goals} and \texttt{reminders}; and \texttt{governance\_audit\_logs} (actor, entity, action, and timestamp for every administrative decision).
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\linewidth]{database.png}
+\caption{MongoDB schema. Primary collections: users, footprint\_runs (persisted dual estimates with SHAP factors), activity\_ledger (forecasting input), organizations with join requests and invitations, and governance audit logs.}
+\label{fig:database}
+\end{figure}
+
+\subsection{Security Architecture}
+
+CarbonSense implements a layered security model. All transport is HTTPS/TLS (Render edge). Passwords are hashed with argon2 and never stored in reversible form. Sessions use HttpOnly JWT cookies with refresh rotation, and every state-changing request is CSRF double-submit validated. Role gates (\texttt{require\_roles}) decorate every protected router, and role values are re-read from the database per request so privilege changes apply immediately. Analytics endpoints return only consent-filtered aggregates. The frozen model artifacts are SHA-256-verified at load time, and a \texttt{.gitattributes} rule keeps artifact bytes exact across platforms so the integrity check holds on any deployment. Secrets (database URI, JWT secret, API keys) are supplied exclusively through environment variables.
+
+\subsection{Privacy and Ethics}
+
+Following the privacy-by-design approach of Dash et al. \cite{dash2025}, CarbonSense implements: (1)~HTTPS/TLS for all communication; (2)~argon2-hashed credentials; (3)~aggregate-only analytics in which individual names and private histories are never exposed, gated on per-user share consent; (4)~a private, per-user activity ledger scoped by authenticated user id on every query; (5)~assistant context limited to anonymous counts and computed values (no names, emails, or message history) with an automatic non-LLM fallback; and (6)~user-facing deletion of prediction history. The implementation follows selected GDPR principles, including purpose limitation, data minimization, and the right to erasure; a formal legal-compliance assessment is outside the scope of this paper. The assistant additionally labels each response with its engine (LLM-grounded or rule-based) so users always know which system answered.
+
+\FloatBarrier
+
+\section{Results and Evaluation}
+
+\subsection{Model Performance}
+
+Table~\ref{tab:model_results} reports all five evaluated regressors on the 2,000-row held-out test set of the frozen v2.5 dataset. XGBoost achieved the highest R\textsuperscript{2} (0.9514) with MAE = 32.2~kgCO\textsubscript{2}e/month and RMSE = 44.6~kgCO\textsubscript{2}e, a train/test gap of +3.1\%, and 5-fold CV R\textsuperscript{2} of 0.9506 $\pm$ 0.0051; Gradient Boosting followed at R\textsuperscript{2} = 0.9475. Tree-based ensembles clearly outperform the linear baseline (R\textsuperscript{2} = 0.7982), consistent with \cite{swathi2025}. Because the target is factor-derived, an all-rows fidelity check of the deployed serving path against the dataset reproduces R\textsuperscript{2} = 0.9762 (MAE 23.9~kg), confirming that the deployed feature encoder matches the training contract exactly. A full-dataset audit further validated the dataset itself: zero missing values or duplicates, exact factor lookups on every row, monotone diet and air-travel bands, and target re-derivation within the documented noise model.
+
+% ---------- MODEL TABLE ----------
+\begin{table}[!t]
+\caption{Model Performance Comparison (2,000-Sample Held-Out Test Set, v2.5 Dataset)}
+\label{tab:model_results}
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Model} & \textbf{R\textsuperscript{2}} & \textbf{RMSE} & \textbf{MAE} & \textbf{CV R\textsuperscript{2} ($\pm\sigma$)} \\
+\midrule
+Linear Regression & 0.7982 & 90.8 & 64.6 & -- \\
+Random Forest & 0.8124 & 87.6 & 62.5 & -- \\
+Gradient Boosting & 0.9475 & 46.3 & 32.9 & -- \\
+XGBoost & \textbf{0.9514} & \textbf{44.6} & \textbf{32.2} & 0.9506 $\pm$ 0.0051 \\
+SVR (RBF) & 0.2277 & 177.7 & 131.1 & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.85\linewidth]{fig6_model_comparison.png}
+\caption{Model performance comparison on the held-out test set (n = 2,000). XGBoost (R\textsuperscript{2} = 0.9514) is selected as the production model and deployed as a frozen, hash-verified artifact.}
+\label{fig:modelcomp}
+\end{figure}
+
+\subsection{Dual-Estimation Agreement}
+
+After aligning both paths to the shared factor set, the absolute gap between the AI estimate and the transparent baseline was evaluated on 300 uniformly sampled profiles: mean 7.8\%, median 5.2\% of the baseline (90th percentile 18.5\%). On a representative worked example (India, household of three, petrol car, natural-gas heating), the factor formula yields 639.3~kg while the model predicts 647.1~kg---a 1.2\% difference inside the model's conformal interval. Because the factors are shared, residual disagreement is attributable to learned tree behaviour (e.g., the model's saturation of vehicle-distance effects), which the interface surfaces as information rather than noise.
+
+\subsection{Recommendation and Planning Efficacy}
+
+The recommendation engine was validated for personalization and safety properties: per-profile re-scoring changes the ranking as inputs change (a very-frequent flyer sees a 240~kg air-travel action ranked first; renewable-supply users have the cleaner-energy action suppressed entirely, since no grid headroom exists); gating prevents impossible suggestions (no vehicle, zero flights); and every action carries its arithmetic basis. The goal planner greedily includes ranked actions until the target and reports an explicit shortfall when the action set is insufficient, avoiding unattainable plans.
+
+\subsection{Explainability Validation}
+
+SHAP reconciliation was verified to sum to the prediction (base value + contributions = estimate) on every response. In the deployed interface, contributions are grouped into user-comprehensible families and rendered as pushed-up/pushed-down lists with the modeled kg values. A serving-path audit additionally caught and fixed a silent encoding defect in which multi-word categorical values (``very frequently'', ``natural gas'') were dropped from the feature vector---an error that understated very-frequent-flyer predictions by approximately 422~kg on average---demonstrating the value of the all-rows fidelity check now included in the test suite.
+
+\subsection{System Performance and Deployment Cost}
+
+The platform is deployed on Render's free tier with MongoDB Atlas (M0). Mean API response times on the free instance are: health (<50~ms), predict (140--200~ms including SHAP), baseline (<60~ms), and forecast (300--800~ms depending on tier, Prophet being the slowest). The frontend build is a static bundle served by the same process. Total monthly infrastructure cost is zero: the web service (750 free hours/month), the Atlas M0 cluster, and the Gemini free tier (with automatic rule-based fallback on quota exhaustion) are all permanently free, with an optional uptime monitor preventing cold-start sleep.
+
+\subsection{Comparative Positioning}
+
+Table~\ref{tab:comparison} positions CarbonSense against the four strongest related works. CarbonSense is the only platform that simultaneously provides factor-aligned dual estimation, per-user SHAP explainability with conformal uncertainty, dynamic goal-based action planning, data-gated personal forecasting, and organization workspaces with audit-logged governance.
+
+\FloatBarrier
+
+\section{Limitations}
+
+Several limitations should be acknowledged. First, the training dataset is synthetic and factor-derived: the emission factors are cited and real, but the population is generated, so the model reflects the target construction (for example, grocery spend and clothing counts dominate the learned response, while vehicle distance saturates above 3,000~km) rather than measured real-world behaviour. Second, several inputs remain declared screening proxies (diet bands, air-travel bands, waste-bag masses, clothing) rather than measured activities, and the mid-range fleet-economy assumption makes transport estimates optimistic for markets with less efficient vehicles. Third, forecast readiness requires a year of recorded history; synthesized bootstrap ledgers are labelled but are not genuine longitudinal records. Fourth, the assistant depends on an external Gemini API with free-tier daily quotas, mitigated by the rule-based fallback. Fifth, engagement metrics are recorded participation rather than outcomes of a longitudinal behavioral study. Finally, the system is currently web-only; a native mobile application would expand accessibility.
+
+\section{Conclusion}
+
+CarbonSense demonstrates that a unified platform combining machine-learning prediction, a fully cited and deterministic baseline, explainable AI, dynamic impact-ranked planning, data-gated personal forecasting, and organization-grade governance can narrow the gap between climate awareness and sustained action. By building both estimation paths on one shared, published factor set, the system turns the AI-versus-formula difference into interpretable signal; by labelling every estimate, action, and forecast as planning guidance, it keeps the boundary between estimation and verification explicit. The deployed system runs entirely on free-tier cloud services, making it reproducible and sustainable for further evaluation by students, universities, and organizations seeking measurable emission reduction.
+
+\section{Future Scope}
+
+Future work will extend CarbonSense in four directions. First, real-activity grounding: replacing the synthetic population with measured longitudinal ledgers as users accumulate genuine history, enabling per-user model fine-tuning and validating the conformal intervals on real data. Second, regional factor resolution: state-level grid factors and route-specific aviation factors would replace national averages, tightening the baseline's absolute accuracy. Third, adaptive planning: learning which recommendations each user actually accepts and completes, so the impact ranking incorporates behavioral likelihood alongside factor arithmetic. Fourth, a mobile application with camera- and receipt-based activity capture would reduce manual input, following the transaction-categorization approach of financial carbon trackers \cite{joro2024}.
+
+\section*{Acknowledgment}
+
+The authors sincerely thank their faculty guide and the Department of Computer Science for continuous guidance and for providing the resources necessary to complete this research. We also extend our gratitude to the open-source communities behind XGBoost, SHAP, Prophet, FastAPI, React, and MongoDB Atlas for their foundational tools.
+
+\begin{thebibliography}{00}
+
+\bibitem{swathi2025} B. Swathi, R. M. Rohan, and K. Nagaraj, ``Analysis and Prediction of Individual Carbon Footprints: An Integrated Machine Learning and Web Application Approach for Sustainable Behavioural Change,'' in \textit{Proc. 5th Int. Conf. Pervasive Comput. Social Networking (ICPCSN)}, 2025, pp. 1--5.
+
+\bibitem{tayade2025} A. Tayade and S. Bhirud, ``Improving Carbon Emission Calculators with LSTM and Random Forest Techniques,'' in \textit{Proc. IEEE Int. Conf. Emerging Technol.}, 2025.
+
+\bibitem{dash2025} S. Dash et al., ``EcoTrack: A Mobile Application for Real-Time Carbon Footprint Tracking and Sustainable Living,'' in \textit{Proc. IEEE Conf. Sustainable Comput.}, 2025.
+
+\bibitem{vidhya2025} K. Vidhya et al., ``AI-based Carbon Footprint Tracking and Reduction,'' in \textit{Proc. IEEE Int. Conf. AI Sustain.}, 2025.
+
+\bibitem{jin2024} X. Jin and Y. Liang, ``Carbon Footprint Clustering and Thrifty Food Plan Optimization,'' in \textit{Proc. IEEE Int. Conf. Big Data Comput.}, 2024, pp. 112--118.
+
+\bibitem{mitchell2023pulp} J. Mitchell, ``PuLP: A Linear Programming Toolkit for Python,'' 2023. [Online]. Available: https://coin-or.github.io/pulp
+
+\bibitem{carbontrackai2024} ``CarbonTrackAI: Real-Time Carbon Footprint Estimation from Daily Activities,'' in \textit{Proc. IEEE Int. Conf. Smart Cities}, 2024.
+
+\bibitem{platforms2024} ``Platforms to Calculate Carbon Footprints: A Step Towards Environment Sustainability,'' in \textit{Proc. IEEE World Forum IoT}, 2024.
+
+\bibitem{chatterjee2022} R. Chatterjee et al., ``Household Carbon Footprint Optimization Using Machine Learning,'' in \textit{Proc. IEEE Region 10 Symp.}, 2022.
+
+\bibitem{pawade2023} A. Pawade et al., ``Digital Carbon Footprint Monitoring System,'' in \textit{Proc. IEEE Int. Conf. Comput. Commun. Autom.}, 2023.
+
+\bibitem{raja2023} S. Raja et al., ``IoT-enabled Carbon Footprint Tracker for Smart Homes,'' in \textit{Proc. IEEE Int. Conf. IoT Social Mobile Anal. Cloud}, 2023.
+
+\bibitem{mulrow2019} J. Mulrow et al., ``Evaluating the Carbon Footprint of Online Calculator Tools,'' in \textit{J. Cleaner Prod.}, vol. 234, pp. 101--110, 2019.
+
+\bibitem{bekaroo2020} G. Bekaroo et al., ``ICT for Environmental Sustainability: A Review of Carbon Footprint Tools,'' in \textit{Proc. IEEE Int. Conf. Comput. Commun. Eng.}, 2020.
+
+\bibitem{michla2023} J. Michla et al., ``Carbon Footprint Calculator with Sustainability Suggestions,'' in \textit{Int. J. Environ. Sci. Technol.}, vol. 20, no. 4, pp. 3451--3460, 2023.
+
+\bibitem{ipcc2006} IPCC, ``2006 IPCC Guidelines for National Greenhouse Gas Inventories,'' IGES, Japan, 2006.
+
+\bibitem{ipcc2022} IPCC, ``Climate Change 2022: Mitigation of Climate Change,'' Working Group III Contribution to AR6, Cambridge Univ. Press, 2022.
+
+\bibitem{defra2023} UK DEFRA, ``Greenhouse Gas Reporting: Conversion Factors 2023,'' Department for Environment, Food \& Rural Affairs, 2023.
+
+\bibitem{poore2018} J. Poore and T. Nemecek, ``Reducing Food's Environmental Impacts Through Producers and Consumers,'' \textit{Science}, vol. 360, no. 6392, pp. 987--992, 2018.
+
+\bibitem{lundberg2017} S. M. Lundberg and S.-I. Lee, ``A Unified Approach to Interpreting Model Predictions,'' in \textit{Adv. Neural Inf. Process. Syst.}, vol. 30, 2017.
+
+\bibitem{schmidt2021} V. Schmidt et al., ``CodeCarbon: Estimate and Track Carbon Emissions from Machine Learning Computing,'' \textit{arXiv preprint arXiv:2007.03051}, 2021.
+
+\bibitem{joro2024} Joro, ``Automated Carbon Tracking via Financial Data,'' \textit{Joro.eco}, 2024. [Online]. Available: https://joro.eco
+
+\bibitem{ariima2024} ``Forecasting Atmospheric CO\textsubscript{2} Levels and Carbon Footprint Implications: An ARIMA-Based Approach for Enhancing Climate Policy and Emission Reduction Strategies,'' in \textit{Proc. IEEE Int. Conf. Data Anal. Climate Policy}, 2024.
+
+\bibitem{mlenv2024} ``Machine Learning in Environmental Sustainability for Accurate Carbon Emission Analysis,'' in \textit{Proc. IEEE World Congr. Comput. Intell.}, 2024.
+
+\bibitem{ember2025} Ember, ``Yearly Electricity Data (2025),'' carbon-intensity dataset, fetched via Our World in Data, 2026. [Online]. Available: https://ourworldindata.org/grapher/carbon-intensity-electricity
+
+\bibitem{scarborough2023} P. Scarborough et al., ``Dietary Greenhouse Gas Emissions of Meat-eaters, Fish-eaters, Vegetarians and Vegans,'' \textit{BMJ}, 2023.
+
+\bibitem{desnz2026} UK DESNZ, ``Greenhouse Gas Reporting: Conversion Factors 2026,'' Department for Energy Security and Net Zero, 2026.
+
+\end{thebibliography}
+
+\end{document}
