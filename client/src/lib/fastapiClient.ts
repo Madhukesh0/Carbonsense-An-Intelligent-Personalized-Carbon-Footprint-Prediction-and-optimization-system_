@@ -38,6 +38,37 @@ function csrfToken() {
     : undefined;
 }
 
+export // FastAPI returns `detail` as a string, a validation-error array, or an
+// object. Normalize all three to a human-readable message instead of
+// "[object Object]".
+function extractDetail(payload: unknown): string {
+  const fallback = "The request could not be completed.";
+  if (typeof payload !== "object" || payload === null || !("detail" in payload)) {
+    return fallback;
+  }
+  const detail = (payload as { detail?: unknown }).detail;
+  if (typeof detail === "string") return detail || fallback;
+  if (Array.isArray(detail)) {
+    const messages = detail
+      .map((item) => {
+        if (typeof item === "string") return item;
+        if (typeof item === "object" && item !== null && "msg" in item) {
+          const msg = String((item as { msg?: unknown }).msg);
+          const loc = (item as { loc?: unknown[] }).loc;
+          const field = Array.isArray(loc) ? loc.filter((part) => part !== "body").join(".") : "";
+          return field ? `${field}: ${msg}` : msg;
+        }
+        return "";
+      })
+      .filter(Boolean);
+    return messages.length ? messages.join("; ") : fallback;
+  }
+  if (typeof detail === "object" && detail !== null && "msg" in detail) {
+    return String((detail as { msg?: unknown }).msg) || fallback;
+  }
+  return fallback;
+}
+
 export async function fastApiRequest<T>(
   path: string,
   options: RequestOptions = {}
@@ -75,13 +106,7 @@ export async function fastApiRequest<T>(
       "The service returned an invalid JSON response. Check the FastAPI service logs."
     );
   }
-  const detail =
-    typeof payload === "object" && payload !== null && "detail" in payload
-      ? String(
-          (payload as { detail?: unknown }).detail ||
-            "The request could not be completed."
-        )
-      : "The request could not be completed.";
+  const detail = extractDetail(payload);
   if (!response.ok) throw new FastApiError(response.status, detail);
   return payload as T;
 }

@@ -205,6 +205,10 @@ export default function RepoAuthPage({ mode }: { mode: AuthMode }) {
   const handleRegister = async (event: FormEvent) => {
     event.preventDefault();
     setNotice("");
+    if (!/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
+      setNotice("Your password needs 12+ characters with at least one uppercase letter, one lowercase letter, and one number.");
+      return;
+    }
     try {
       const payload: Record<string, string | undefined> = {
         name,
