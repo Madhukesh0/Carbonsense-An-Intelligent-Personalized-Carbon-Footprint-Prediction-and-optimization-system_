@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class ProfileUpdateRequest(BaseModel):
@@ -18,3 +18,14 @@ class RoleUpdateRequest(BaseModel):
 
 class ActiveUpdateRequest(BaseModel):
     is_active: bool
+
+
+class PasswordResetRequest(BaseModel):
+    password: str = Field(min_length=12, max_length=128)
+
+    @field_validator("password")
+    @classmethod
+    def require_strong_password(cls, value: str) -> str:
+        if not (any(character.islower() for character in value) and any(character.isupper() for character in value) and any(character.isdigit() for character in value)):
+            raise ValueError("Use at least 12 characters with uppercase, lowercase, and a number")
+        return value

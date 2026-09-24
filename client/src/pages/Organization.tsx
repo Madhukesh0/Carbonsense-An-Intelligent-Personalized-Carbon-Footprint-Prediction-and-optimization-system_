@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { fastApi } from "@/lib/fastapiClient";
 import { useFastApiQuery } from "@/hooks/useFastApi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Building2, CheckCircle2, Copy, Globe, Hourglass, KeyRound, LogOut, Plus, UserMinus, UserPlus, Users, XCircle } from "lucide-react";
+import { Building2, CheckCircle2, Copy, Eye, Globe, Hourglass, KeyRound, LogOut, Plus, UserMinus, UserPlus, Users, X, XCircle } from "lucide-react";
 import { useState } from "react";
 
 type OrgData = {
@@ -305,9 +305,69 @@ function formatLastSignedIn(value: string | null): string {
   return `Last signed in ${date.toLocaleDateString()} ${date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`;
 }
 
+type MemberDetail = {
+  id: string;
+  name: string | null;
+  email: string | null;
+  role: string;
+  country: string | null;
+  lastSignedIn: string | null;
+  createdAt: string | null;
+  runs: { id: string; predictedKg: number | null; region: string | null; createdAt: string | null }[];
+  activeGoal: { baselineKg: number; targetKg: number; deadline: string | null; createdAt: string | null } | null;
+  activities: { id: string; activityDate: string | null; category: string | null; quantity: number | null; unit: string | null; co2Kg: number | null; notes: string | null }[];
+  recommendations: { assigned: number; accepted: number; completed: number; verified: number };
+};
+
+function fmtDate(value: string | null): string {
+  if (!value) return "—";
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? "—" : date.toLocaleDateString();
+}
+
+function MemberDetailModal({ memberId, memberName, onClose }: { memberId: string; memberName: string | null; onClose: () => void }) {
+  const detail = useFastApiQuery<MemberDetail | null>(["fastapi", "admin", "member-detail", memberId], `/admin/users/${memberId}/detail`, true);
+  return (
+    <div className="fixed inset-0 z-50 grid place-items-center bg-black/50 p-4" onClick={onClose}>
+      <div className="cs-card max-h-[85vh] w-full max-w-lg overflow-y-auto p-6" onClick={(event) => event.stopPropagation()}>
+        <div className="flex items-center justify-between">
+          <h3 className="font-bold text-foreground">Member record — {memberName || memberId}</h3>
+          <button onClick={onClose} className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted" aria-label="Close"><X size={16} /></button>
+        </div>
+        <p className="mt-1 text-xs text-muted-foreground">This view is recorded in the governance audit log.</p>
+        {detail.isLoading ? <p className="mt-6 text-sm text-muted-foreground">Loading member records...</p> : detail.error ? <p className="mt-6 text-sm text-destructive">{detail.error.message}</p> : detail.data && (
+          <div className="mt-5 space-y-5 text-sm">
+            <div className="rounded-xl bg-muted/40 px-4 py-3 dark:bg-white/5">
+              <p className="font-semibold text-foreground">{detail.data.email || "No email"}</p>
+              <p className="mt-1 text-xs text-muted-foreground">{detail.data.country || "No country"} · {detail.data.role} · {formatLastSignedIn(detail.data.lastSignedIn)}</p>
+            </div>
+            <div>
+              <p className="cs-data-label">Footprint runs ({detail.data.runs.length})</p>
+              {detail.data.runs.length ? <ul className="mt-2 space-y-1">{detail.data.runs.map((run) => <li key={run.id} className="flex justify-between rounded-lg bg-muted/40 px-3 py-1.5 text-xs dark:bg-white/5"><span>{fmtDate(run.createdAt)} · {run.region || "region n/a"}</span><b className="text-foreground">{run.predictedKg?.toLocaleString()} kg</b></li>)}</ul> : <p className="mt-1 text-xs text-muted-foreground">No saved predictions.</p>}
+            </div>
+            <div>
+              <p className="cs-data-label">Active goal</p>
+              {detail.data.activeGoal ? <p className="mt-1 text-xs text-muted-foreground">Reduce from {detail.data.activeGoal.baselineKg.toLocaleString()} kg to {detail.data.activeGoal.targetKg.toLocaleString()} kg by {fmtDate(detail.data.activeGoal.deadline)}.</p> : <p className="mt-1 text-xs text-muted-foreground">No active goal.</p>}
+            </div>
+            <div>
+              <p className="cs-data-label">Recent activity ({detail.data.activities.length})</p>
+              {detail.data.activities.length ? <ul className="mt-2 space-y-1">{detail.data.activities.map((a) => <li key={a.id} className="flex justify-between rounded-lg bg-muted/40 px-3 py-1.5 text-xs dark:bg-white/5"><span>{fmtDate(a.activityDate)} · {a.category} · {a.quantity} {a.unit}</span><b className="text-foreground">{a.co2Kg} kg</b></li>)}</ul> : <p className="mt-1 text-xs text-muted-foreground">No ledger entries.</p>}
+            </div>
+            <div>
+              <p className="cs-data-label">Recommendations</p>
+              <p className="mt-1 text-xs text-muted-foreground">{detail.data.recommendations.assigned} assigned · {detail.data.recommendations.accepted} accepted · {detail.data.recommendations.completed} self-reported · {detail.data.recommendations.verified} verified</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function OrgDashboard({ org, currentUserId, isAdmin, isSuperAdmin, onLeave }: { org: OrgData; currentUserId: string; isAdmin: boolean; isSuperAdmin: boolean; onLeave: () => void }) {
   const [copied, setCopied] = useState(false);
   const [removeError, setRemoveError] = useState("");
+  const [detailFor, setDetailFor] = useState<OrgData["members"][number] | null>(null);
   const leaveOrg = useMutation({
     mutationFn: fastApi.organization.leave,
     onSuccess: onLeave,
@@ -363,20 +423,33 @@ function OrgDashboard({ org, currentUserId, isAdmin, isSuperAdmin, onLeave }: { 
                   <p className="text-xs text-muted-foreground">{m.country || "No country"} · {m.role === "org_admin" ? "Admin" : "Member"} · {formatLastSignedIn(m.lastSignedIn)}</p>
                 </div>
               </div>
-              {canRemove(m) && (
-                <button
-                  onClick={() => { if (window.confirm(`Remove ${m.name || "this member"} from the organization?`)) removeMember.mutate(m.id); }}
-                  disabled={removeMember.isPending}
-                  className="flex items-center gap-1.5 rounded-lg border border-destructive/30 bg-destructive/10 px-2.5 py-1.5 text-xs font-bold text-destructive transition hover:bg-destructive/15 disabled:opacity-60 dark:border-destructive/30 dark:bg-destructive/15 dark:text-destructive dark:hover:bg-destructive/15"
-                  title="Remove from organization"
-                >
-                  <UserMinus size={13} />{removeMember.isPending ? "Removing..." : "Remove"}
-                </button>
+              {isAdmin && (
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setDetailFor(m)}
+                    className="flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 text-xs font-bold text-secondary-foreground transition hover:bg-muted dark:text-muted-foreground"
+                    title="View individual record (audit logged)"
+                  >
+                    <Eye size={13} />Details
+                  </button>
+                  {canRemove(m) && (
+                    <button
+                      onClick={() => { if (window.confirm(`Remove ${m.name || "this member"} from the organization?`)) removeMember.mutate(m.id); }}
+                      disabled={removeMember.isPending}
+                      className="flex items-center gap-1.5 rounded-lg border border-destructive/30 bg-destructive/10 px-2.5 py-1.5 text-xs font-bold text-destructive transition hover:bg-destructive/15 disabled:opacity-60 dark:border-destructive/30 dark:bg-destructive/15 dark:text-destructive dark:hover:bg-destructive/15"
+                      title="Remove from organization"
+                    >
+                      <UserMinus size={13} />{removeMember.isPending ? "Removing..." : "Remove"}
+                    </button>
+                  )}
+                </div>
               )}
             </div>
           ))}
         </div>
       </div>
+
+      {detailFor && <MemberDetailModal memberId={detailFor.id} memberName={detailFor.name} onClose={() => setDetailFor(null)} />}
 
       <button onClick={() => leaveOrg.mutate()} disabled={leaveOrg.isPending} className="flex items-center gap-2 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-2.5 text-sm font-bold text-destructive transition hover:bg-destructive/15 dark:border-destructive/30 dark:bg-destructive/15 dark:text-destructive dark:hover:bg-destructive/15">
         <LogOut size={16} />{leaveOrg.isPending ? "Leaving…" : "Leave organization"}

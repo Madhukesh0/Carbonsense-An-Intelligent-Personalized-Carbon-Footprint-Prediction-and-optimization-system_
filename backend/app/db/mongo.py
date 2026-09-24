@@ -54,6 +54,7 @@ async def ensure_indexes(database: AsyncIOMotorDatabase) -> None:
     await database.user_recommendations.create_index([("user_id", 1), ("status", 1)])
     await database.report_requests.create_index([("organization_id", 1), ("status", 1)])
     await database.governance_audit_logs.create_index([("organization_id", 1), ("created_at", -1)])
+    await database.login_events.create_index([("user_id", 1), ("created_at", -1)])
 
 
 def utc_now() -> datetime:

@@ -116,12 +116,20 @@ async def register(payload: RegisterRequest, response: Response, db: Annotated[A
 
 
 @router.post("/login", response_model=AuthResponse, response_model_by_alias=True)
-async def login(payload: LoginRequest, response: Response, db: Annotated[AsyncIOMotorDatabase, Depends(get_database)]) -> AuthResponse:
+async def login(payload: LoginRequest, request: Request, response: Response, db: Annotated[AsyncIOMotorDatabase, Depends(get_database)]) -> AuthResponse:
     user = await db.users.find_one({"email": payload.email})
     if not user or not user.get("is_active", True) or not verify_password(payload.password, user.get("password_hash", "")):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid email or password")
-    await db.users.update_one({"_id": user["_id"]}, {"$set": {"last_signed_in": utc_now(), "updated_at": utc_now()}})
-    user["last_signed_in"] = utc_now()
+    now = utc_now()
+    await db.users.update_one({"_id": user["_id"]}, {"$set": {"last_signed_in": now, "updated_at": now}})
+    user["last_signed_in"] = now
+    await db.login_events.insert_one({
+        "_id": str(uuid4()),
+        "user_id": str(user["_id"]),
+        "email": user.get("email"),
+        "created_at": now,
+        "ip": request.client.host if request.client else None,
+    })
     session_id, csrf_token = await create_session(db, user)
     set_session_cookies(response, user=user, session_id=session_id, csrf_token=csrf_token)
     return AuthResponse(user=as_user_response(user), csrf_token=csrf_token)

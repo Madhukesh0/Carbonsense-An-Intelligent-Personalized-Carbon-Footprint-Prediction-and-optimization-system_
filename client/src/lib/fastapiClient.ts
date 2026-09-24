@@ -230,6 +230,13 @@ export const fastApi = {
         method: "PATCH",
         body: input,
       }),
+    userDetail: (id: string) => fastApiRequest(`/admin/users/${id}/detail`),
+    logins: (id: string) => fastApiRequest(`/admin/users/${id}/logins`),
+    resetPassword: (id: string, input: unknown) =>
+      fastApiRequest(`/admin/users/${id}/password`, {
+        method: "POST",
+        body: input,
+      }),
   },
   organization: {
     summary: () => fastApiRequest("/organization/summary"),
