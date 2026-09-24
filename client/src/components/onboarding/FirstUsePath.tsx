@@ -70,23 +70,23 @@ export default function RepoFirstUsePath() {
       <div className="cs-first-use-heading">
         <div>
           <p className="cs-data-label">A three-minute first use</p>
-          <h2 id="first-use-title" className="mt-2 text-2xl font-bold tracking-[-0.05em] text-slate-900 dark:text-white">Start with one signal. Build from real records.</h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">This guide follows existing CarbonSense workflows. Completion reflects saved estimate history only; planning and recognition never imply verified emissions reductions.</p>
+          <h2 id="first-use-title" className="mt-2 text-2xl font-bold tracking-[-0.05em] text-foreground">Start with one signal. Build from real records.</h2>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">This guide follows existing CarbonSense workflows. Completion reflects saved estimate history only; planning and recognition never imply verified emissions reductions.</p>
         </div>
         <div className="cs-first-use-count" aria-label={`${completedCount} of 4 onboarding steps have supporting account evidence`}>
           <b>{completedCount}/4</b><span>evidence-backed</span>
         </div>
       </div>
-      {history.isLoading ? <div className="mt-6 h-32 animate-pulse rounded-2xl bg-emerald-50 dark:bg-emerald-950/40" /> : <ol className="cs-first-use-steps mt-7">{steps.map(step => {
+      {history.isLoading ? <div className="mt-6 h-32 animate-pulse rounded-2xl bg-primary/8 dark:bg-primary/20/40" /> : <ol className="cs-first-use-steps mt-7">{steps.map(step => {
         const Icon = step.icon;
         return <li key={step.id} className={`cs-first-use-step ${step.complete ? "is-complete" : ""}`}>
           <div className="cs-first-use-step-top"><span className="cs-first-use-number">{step.complete ? <Check size={15} aria-label="Completed from account record" /> : step.number}</span><Icon size={18} aria-hidden="true" /></div>
-          <h3 className="mt-5 font-bold tracking-[-0.03em] text-slate-900 dark:text-white">{step.title}</h3>
-          <p className="mt-2 flex-1 text-sm leading-6 text-slate-600 dark:text-slate-300">{step.body}</p>
-          <Link href={step.href} className="cs-action mt-5 inline-flex items-center text-sm font-bold text-emerald-700 hover:underline dark:text-emerald-300">{step.action} <ArrowRight size={15} className="ml-1" /></Link>
+          <h3 className="mt-5 font-bold tracking-[-0.03em] text-foreground">{step.title}</h3>
+          <p className="mt-2 flex-1 text-sm leading-6 text-muted-foreground">{step.body}</p>
+          <Link href={step.href} className="cs-action mt-5 inline-flex items-center text-sm font-bold text-primary hover:underline">{step.action} <ArrowRight size={15} className="ml-1" /></Link>
         </li>;
       })}</ol>}
-      {history.isError ? <p className="mt-5 text-xs leading-5 text-slate-500 dark:text-slate-400">Your progress will appear when private history storage is available. You can still start an estimate now.</p> : null}
+      {history.isError ? <p className="mt-5 text-xs leading-5 text-muted-foreground">Your progress will appear when private history storage is available. You can still start an estimate now.</p> : null}
     </section>
   );
 }

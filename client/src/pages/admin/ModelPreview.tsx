@@ -27,12 +27,12 @@ export default function ModelPreview() {
           <p className="text-sm font-semibold uppercase tracking-[.16em] text-[#157f54]">
             Gradient Boosting quality assurance
           </p>
-          <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl dark:text-white">Preparing non-persistent model preview</h1>
-          <p className="mt-3 text-base text-slate-500">
+          <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">Preparing non-persistent model preview</h1>
+          <p className="mt-3 text-base text-muted-foreground">
             The v2.5 artifact and feature contract are loading. No user run is being
             recorded.
           </p>
-          {preview.error && <p className="mt-4 text-sm text-red-600">{preview.error.message}</p>}
+          {preview.error && <p className="mt-4 text-sm text-destructive">{preview.error.message}</p>}
         </Card>
       </main>
     </RepoShell>

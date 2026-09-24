@@ -100,27 +100,27 @@ export default function Predict() {
         <div className="cs-card p-7 sm:p-9">
           <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <div>
-              <span className="cs-kicker text-emerald-700 dark:text-emerald-400">
+              <span className="cs-kicker text-primary">
                 {isBaselineRoute ? "Transparent baseline" : "AI prediction"}
               </span>
-              <h1 className="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl text-slate-900 dark:text-white">
+              <h1 className="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl text-foreground">
                 {isBaselineRoute ? "Calculate with clear assumptions." : "Build your climate snapshot."}
               </h1>
-              <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300">
+              <p className="mt-3 max-w-2xl text-base leading-7 text-muted-foreground">
                 Answer {TOTAL_INTERACTIVE_QUESTIONS} questions - your country sets the carbon
                 intensity of every electrical line, your household size divides shared energy, and
                 every other answer maps to a real emission mechanism: fuel burned in vehicles,
                 grid electricity, food production, manufacturing, or waste decomposition.
               </p>
-              <p className="mt-2 max-w-2xl text-xs leading-5 text-slate-400 dark:text-slate-500">
+              <p className="mt-2 max-w-2xl text-xs leading-5 text-muted-foreground">
                 Contract-only fields the source dataset required but that lack an emission mechanism
                 (age, gender, body type, social activity) are not asked; the model receives their
                 neutral reference values.
               </p>
             </div>
             <div className="flex flex-col gap-3">
-              <div className="rounded-2xl border border-[#dce8e3] bg-white px-4 py-3 text-sm dark:border-emerald-300/15 dark:bg-emerald-950/40">
-                <p className="cs-data-label text-slate-500 dark:text-slate-400">Electricity grid</p>
+              <div className="rounded-2xl border border-[#dce8e3] bg-white px-4 py-3 text-sm dark:border-primary/25 dark:bg-primary/20">
+                <p className="cs-data-label text-muted-foreground">Electricity grid</p>
                 <div className="mt-2 flex gap-1.5">
                   {(Object.keys(gridCountries) as GridCountry[]).map(key => (
                     <button
@@ -130,7 +130,7 @@ export default function Predict() {
                       className={
                         gridCountry === key
                           ? "rounded-lg bg-[#157f54] px-3 py-1.5 text-xs font-semibold text-white"
-                          : "rounded-lg bg-[#f0f5f2] px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-[#e2ede7] dark:bg-emerald-950/60 dark:text-slate-300"
+                          : "rounded-lg bg-[#f0f5f2] px-3 py-1.5 text-xs font-semibold text-muted-foreground hover:bg-[#e2ede7] dark:bg-primary/20"
                       }
                       title={`Grid factor ${GRID_FACTORS[key].mixed.toFixed(3)} kgCO2e/kWh`}
                     >
@@ -138,7 +138,7 @@ export default function Predict() {
                     </button>
                   ))}
                 </div>
-                <label className="mt-2.5 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                <label className="mt-2.5 flex items-center gap-2 text-xs text-muted-foreground">
                   <input
                     type="checkbox"
                     checked={renewableHeavy}
@@ -147,14 +147,14 @@ export default function Predict() {
                   />
                   Renewable-heavy supply (green tariff / rooftop solar)
                 </label>
-                <p className="mt-1.5 font-mono text-[0.68rem] text-slate-400 dark:text-slate-500">
+                <p className="mt-1.5 font-mono text-[0.68rem] text-muted-foreground">
                   grid factor {activeGridFactor.toFixed(3)} kgCO2e/kWh
                 </p>
               </div>
-              <div className="rounded-2xl bg-emerald-50 px-4 py-3 text-sm dark:bg-emerald-950">
-                <span className="font-semibold text-emerald-700 dark:text-emerald-300">{step + 1}</span>
-              <span className="text-slate-400"> / {sections.length}</span>
-                <span className="ml-3 text-slate-600 dark:text-slate-300">{sections[step].nav}</span>
+              <div className="rounded-2xl bg-primary/8 px-4 py-3 text-sm dark:bg-primary/20">
+                <span className="font-semibold text-primary">{step + 1}</span>
+              <span className="text-muted-foreground"> / {sections.length}</span>
+                <span className="ml-3 text-muted-foreground">{sections[step].nav}</span>
               </div>
             </div>
           </div>
@@ -170,7 +170,7 @@ export default function Predict() {
                   key={column}
                   className="flex items-center justify-between rounded-lg bg-[#f6f8f7] px-3 py-2 text-xs"
                 >
-                  <span className="truncate text-slate-600">
+                  <span className="truncate text-muted-foreground">
                     {index + 1}. {column}
                   </span>
                   <span className="ml-2 shrink-0 font-medium text-[#157f54]">
@@ -179,7 +179,7 @@ export default function Predict() {
                 </div>
               ))}
             </div>
-            <p className="mt-4 text-xs leading-5 text-slate-500">
+            <p className="mt-4 text-xs leading-5 text-muted-foreground">
               The 16 calculated columns are intentionally read-only. Editing them would break the
               frozen feature-engineering contract; they update only from your interactive source
               answers.
@@ -187,18 +187,18 @@ export default function Predict() {
           </details>
 
           <Card className="mt-8 border-0 bg-white/90 p-5 shadow-[0_10px_35px_rgba(20,67,50,.06)] dark:bg-[#173126]/90 sm:p-8">
-            <div className="mb-7 flex flex-col justify-between gap-3 border-b border-emerald-950/10 pb-5 sm:flex-row sm:items-end dark:border-white/10">
+            <div className="mb-7 flex flex-col justify-between gap-3 border-b border-border pb-5 sm:flex-row sm:items-end dark:border-white/10">
               <div>
                 <p className="cs-data-label">Interactive source answers</p>
-                <h2 className="mt-2 text-xl font-bold tracking-[-.04em] text-slate-900 dark:text-white">
+                <h2 className="mt-2 text-xl font-bold tracking-[-.04em] text-foreground">
                   {sections[step].title}
                 </h2>
-                <p className="mt-2 max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-300">
+                <p className="mt-2 max-w-2xl text-base leading-relaxed text-muted-foreground">
                   {sections[step].summary} Every selection is editable before calculation;
                   compound choices generate several contract columns.
                 </p>
               </div>
-              <span className="font-mono text-xs tracking-[0.12em] text-emerald-700 dark:text-emerald-300">
+              <span className="font-mono text-xs tracking-[0.12em] text-primary">
                 {fieldGroups[step].length} QUESTIONS IN THIS STEP
               </span>
             </div>
@@ -215,13 +215,13 @@ export default function Predict() {
                       <div>
                         <Label
                           htmlFor={`survey-${field.key}`}
-                          className="text-base font-bold tracking-[-0.025em] text-[#102a2d] dark:text-white"
+                          className="text-base font-bold tracking-[-0.025em] text-[#102a2d] dark:text-foreground"
                         >
                           {field.label}
                         </Label>
                         <p
                           id={`survey-${field.key}-help`}
-                          className="mt-1 max-w-2xl text-base leading-relaxed text-slate-500 dark:text-slate-400"
+                          className="mt-1 max-w-2xl text-base leading-relaxed text-muted-foreground"
                         >
                           {field.description}
                         </p>
@@ -285,7 +285,7 @@ export default function Predict() {
                                   onChange={(event) =>
                                     setGroceryCurrency(event.target.value as GroceryDisplayCurrency)
                                   }
-                                  className="cs-select h-8 rounded-lg px-2 text-xs font-semibold text-emerald-800 dark:text-emerald-200"
+                                  className="cs-select h-8 rounded-lg px-2 text-xs font-semibold text-primary"
                                 >
                                   <option value="INR">INR</option>
                                   <option value="USD">USD</option>
@@ -307,12 +307,12 @@ export default function Predict() {
                           onChange={(event) => set(field.key, Number(event.target.value))}
                           className="cs-range mt-4 w-full"
                         />
-                        <div className="mt-2 flex justify-between text-xs text-slate-400">
+                        <div className="mt-2 flex justify-between text-xs text-muted-foreground">
                           <span>{formatSurveyValue(field.min ?? 0, field, groceryCurrency)}</span>
                           <span>{formatSurveyValue(field.max ?? 0, field, groceryCurrency)}</span>
                         </div>
                         <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2">
-                          <div className="flex max-w-[14rem] items-center rounded-xl border border-emerald-950/10 bg-white/80 focus-within:border-emerald-600 focus-within:ring-2 focus-within:ring-emerald-600/15 dark:border-white/10 dark:bg-white/5">
+                          <div className="flex max-w-[14rem] items-center rounded-xl border border-border bg-white/80 focus-within:border-emerald-600 focus-within:ring-2 focus-within:ring-emerald-600/15 dark:border-white/10 dark:bg-white/5">
                             <Input
                               id={`survey-${field.key}-exact`}
                               type="number"
@@ -326,12 +326,12 @@ export default function Predict() {
                               }
                               className="h-10 border-0 bg-transparent shadow-none focus-visible:ring-0"
                             />
-                            <span className="mr-3 shrink-0 font-mono text-xs text-slate-500">
+                            <span className="mr-3 shrink-0 font-mono text-xs text-muted-foreground">
                               {field.currency ? groceryCurrency : field.unit}
                             </span>
                           </div>
                           {field.currency && (
-                            <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">
+                            <p className="text-xs leading-5 text-muted-foreground">
                               Display only — changing currency does not convert or alter the numeric
                               model input.
                             </p>
@@ -375,7 +375,7 @@ export default function Predict() {
               <p
                 role="alert"
                 aria-live="polite"
-                className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-base text-red-700"
+                className="mt-4 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-base text-destructive"
               >
                 {clientError || prediction.error?.message}
               </p>

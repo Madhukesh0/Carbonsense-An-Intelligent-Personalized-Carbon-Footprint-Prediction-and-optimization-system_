@@ -30,13 +30,13 @@ function ReminderBanner() {
           <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300"><Bell size={18} /></div>
           <div className="flex-1 min-w-0">
             <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-300">{r.reminderType} reminder from {r.senderName}</p>
-            <h3 className="mt-1 font-bold text-slate-900 dark:text-white">{r.title}</h3>
-            <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">{r.message}</p>
-            <p className="mt-2 text-xs text-slate-400">{new Date(r.createdAt).toLocaleString()}</p>
+            <h3 className="mt-1 font-bold text-foreground">{r.title}</h3>
+            <p className="mt-1 text-sm leading-6 text-muted-foreground">{r.message}</p>
+            <p className="mt-2 text-xs text-muted-foreground">{new Date(r.createdAt).toLocaleString()}</p>
           </div>
           <div className="flex gap-2 shrink-0">
-            <button onClick={() => acknowledge.mutate(r.id)} disabled={acknowledge.isPending} className="flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3 py-2 text-xs font-bold text-white hover:bg-emerald-600"><CheckCircle2 size={13} /> Acknowledge</button>
-            <button onClick={() => dismiss.mutate(r.id)} disabled={dismiss.isPending} className="flex items-center gap-1.5 rounded-xl bg-slate-100 px-3 py-2 text-xs font-bold text-slate-600 hover:bg-slate-200 dark:bg-white/10 dark:text-slate-300"><X size={13} /> Dismiss</button>
+            <button onClick={() => acknowledge.mutate(r.id)} disabled={acknowledge.isPending} className="flex items-center gap-1.5 rounded-xl bg-primary px-3 py-2 text-xs font-bold text-primary-foreground hover:bg-primary/90"><CheckCircle2 size={13} /> Acknowledge</button>
+            <button onClick={() => dismiss.mutate(r.id)} disabled={dismiss.isPending} className="flex items-center gap-1.5 rounded-xl bg-muted px-3 py-2 text-xs font-bold text-muted-foreground hover:bg-muted dark:bg-white/10"><X size={13} /> Dismiss</button>
           </div>
         </div>
       ))}
@@ -51,8 +51,8 @@ function StatCard({ label, value, sub, icon: Icon, color }: { label: string; val
         <dt className="cs-data-label">{label}</dt>
         <div className={`grid h-8 w-8 place-items-center rounded-lg ${color}`}><Icon size={16} /></div>
       </div>
-      <dd className="mt-3 font-mono text-3xl font-medium tracking-[-0.04em] text-slate-900 dark:text-white">{value}</dd>
-      {sub && <p className="mt-1 text-xs text-slate-500">{sub}</p>}
+      <dd className="mt-3 font-mono text-3xl font-medium tracking-[-0.04em] text-foreground">{value}</dd>
+      {sub && <p className="mt-1 text-xs text-muted-foreground">{sub}</p>}
     </div>
   );
 }
@@ -60,7 +60,7 @@ function StatCard({ label, value, sub, icon: Icon, color }: { label: string; val
 function QuickActions({ hasOrg, hasHistory }: { hasOrg: boolean; hasHistory: boolean }) {
   const actions = [
     { href: "/predict", label: "AI Prediction", desc: "15-question survey (country, household, travel, home, food, consumption) for your monthly footprint estimate", icon: Sparkles, color: "bg-violet-100 text-violet-700 dark:bg-violet-950 dark:text-violet-300" },
-    { href: "/baseline", label: "Transparent Baseline", desc: "Auditable formula-based calculation with documented sources", icon: Compass, color: "bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300" },
+    { href: "/baseline", label: "Transparent Baseline", desc: "Auditable formula-based calculation with documented sources", icon: Compass, color: "bg-primary/10 text-primary dark:bg-primary/20" },
     ...(hasHistory ? [{ href: "/recommendations", label: "Recommendations", desc: "Profile-matched actions to reduce your footprint", icon: Target, color: "bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300" }] : []),
     { href: "/forecast", label: "Forecast", desc: "Predict your future emissions from activity history", icon: LineChart, color: "bg-sky-100 text-sky-700 dark:bg-sky-950 dark:text-sky-300" },
     { href: "/quests", label: "CarbonQuest", desc: "Track streaks, badges, and your climate engagement score", icon: Trophy, color: "bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300" },
@@ -71,9 +71,9 @@ function QuickActions({ hasOrg, hasHistory }: { hasOrg: boolean; hasHistory: boo
       {actions.map((a) => (
         <Link key={a.href} href={a.href} className="cs-card group flex flex-col p-5 sm:p-6">
           <div className={`grid h-10 w-10 place-items-center rounded-xl ${a.color}`}><a.icon size={18} /></div>
-          <h3 className="mt-4 font-bold text-slate-900 group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">{a.label}</h3>
-          <p className="mt-2 flex-1 text-sm leading-5 text-slate-500">{a.desc}</p>
-          <span className="mt-4 inline-flex items-center text-sm font-bold text-emerald-700 dark:text-emerald-400">Open <ArrowRight size={14} className="ml-1 transition group-hover:translate-x-0.5" /></span>
+          <h3 className="mt-4 font-bold text-foreground group-hover:text-primary dark:group-hover:text-primary">{a.label}</h3>
+          <p className="mt-2 flex-1 text-sm leading-5 text-muted-foreground">{a.desc}</p>
+          <span className="mt-4 inline-flex items-center text-sm font-bold text-primary">Open <ArrowRight size={14} className="ml-1 transition group-hover:translate-x-0.5" /></span>
         </Link>
       ))}
     </div>
@@ -83,13 +83,13 @@ function QuickActions({ hasOrg, hasHistory }: { hasOrg: boolean; hasHistory: boo
 function OrgQuickLink({ org }: { org: OrgData }) {
   return (
         <Link href="/organization" className="cs-card group flex items-center gap-4 p-5 sm:p-6">
-      <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-emerald-100 text-emerald-700 group-hover:scale-110 transition-transform dark:bg-emerald-950 dark:text-emerald-300"><Building2 size={22} /></div>
+      <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary/10 text-primary group-hover:scale-110 transition-transform dark:bg-primary/20"><Building2 size={22} /></div>
       <div className="flex-1 min-w-0">
-        <p className="text-xs font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-300">Your organization</p>
-        <p className="mt-1 font-bold text-slate-900 dark:text-white">{org.name}</p>
-        <p className="text-xs text-slate-500">{org.memberCount} member{org.memberCount !== 1 ? "s" : ""} · {org.yourRole === "org_admin" ? "Admin" : "Member"}</p>
+        <p className="text-xs font-semibold uppercase tracking-wider text-primary">Your organization</p>
+        <p className="mt-1 font-bold text-foreground">{org.name}</p>
+        <p className="text-xs text-muted-foreground">{org.memberCount} member{org.memberCount !== 1 ? "s" : ""} · {org.yourRole === "org_admin" ? "Admin" : "Member"}</p>
       </div>
-      <ArrowRight size={18} className="text-emerald-600 dark:text-emerald-400" />
+      <ArrowRight size={18} className="text-primary" />
     </Link>
   );
 }
@@ -98,8 +98,8 @@ function JoinRequestBanner({ request }: { request: JoinRequestInfo }) {
   const refresh = useQueryClient();
   const states = {
     pending: { label: "Join request pending", body: `Your request to join ${request.organizationName} is waiting for the organization administrator's approval. You'll become a member once they accept.`, classes: "border-amber-100 bg-amber-50/60 text-amber-900 dark:border-amber-950 dark:bg-amber-950/20 dark:text-amber-100", icon: Hourglass },
-    approved: { label: `You joined ${request.organizationName}`, body: "Your membership request was approved. Open your organization page to see the workspace.", classes: "border-emerald-100 bg-emerald-50/60 text-emerald-900 dark:border-emerald-950 dark:bg-emerald-950/20 dark:text-emerald-100", icon: CheckCircle2 },
-    rejected: { label: "Join request declined", body: `Your request to join ${request.organizationName} was declined. You can request again from the organization page.`, classes: "border-red-100 bg-red-50/60 text-red-900 dark:border-red-950 dark:bg-red-950/20 dark:text-red-100", icon: XCircle },
+    approved: { label: `You joined ${request.organizationName}`, body: "Your membership request was approved. Open your organization page to see the workspace.", classes: "border-border bg-primary/8 text-primary dark:border-primary/25 dark:bg-primary/20", icon: CheckCircle2 },
+    rejected: { label: "Join request declined", body: `Your request to join ${request.organizationName} was declined. You can request again from the organization page.`, classes: "border-destructive/30 bg-destructive/10 text-destructive dark:border-destructive/30 dark:bg-destructive/15 dark:text-destructive", icon: XCircle },
   } as const;
   const state = states[request.status];
   const Icon = state.icon;
@@ -123,8 +123,8 @@ function AdminJoinRequestsBanner({ requests }: { requests: PendingJoinRequest[] 
     <div className="mt-6 flex flex-wrap items-center gap-4 rounded-2xl border border-sky-100 bg-sky-50/60 p-5 dark:border-sky-950 dark:bg-sky-950/20">
       <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white/70 text-sky-700 dark:bg-white/10 dark:text-sky-300"><UserPlus size={18} /></div>
       <div className="min-w-0 flex-1">
-        <p className="font-bold text-slate-900 dark:text-white">{requests.length} join request{requests.length !== 1 ? "s" : ""} waiting for approval</p>
-        <p className="mt-0.5 text-sm text-slate-600 dark:text-slate-300">{requests.map((r) => r.userName || "Unknown user").join(", ")} asked to join your organization.</p>
+        <p className="font-bold text-foreground">{requests.length} join request{requests.length !== 1 ? "s" : ""} waiting for approval</p>
+        <p className="mt-0.5 text-sm text-muted-foreground">{requests.map((r) => r.userName || "Unknown user").join(", ")} asked to join your organization.</p>
       </div>
       <Link href="/organization" className="flex items-center gap-1.5 rounded-xl bg-sky-700 px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-sky-800/20 transition hover:bg-sky-600">Review requests <ArrowRight size={14} /></Link>
     </div>
@@ -169,14 +169,14 @@ function LoggedInDashboard() {
         {hasOrg && org.data && <div className="mt-6"><OrgQuickLink org={org.data} /></div>}
 
         {!hasOrg && (
-          <div className="mt-8 rounded-2xl border border-dashed border-emerald-300 bg-emerald-50/30 p-5 sm:p-6 dark:border-emerald-950 dark:bg-emerald-950/10">
+          <div className="mt-8 rounded-2xl border border-dashed border-border bg-primary/8 p-5 sm:p-6 dark:border-primary/25 dark:bg-primary/20">
             <div className="flex flex-wrap items-center gap-4">
-              <div className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"><Building2 size={18} /></div>
+              <div className="grid h-10 w-10 place-items-center rounded-xl bg-primary/10 text-primary dark:bg-primary/20"><Building2 size={18} /></div>
               <div className="flex-1">
-                <p className="font-bold text-slate-900 dark:text-white">Join your organization</p>
-                <p className="text-sm text-slate-500">Create or join an organization to receive team recommendations and track aggregate progress.</p>
+                <p className="font-bold text-foreground">Join your organization</p>
+                <p className="text-sm text-muted-foreground">Create or join an organization to receive team recommendations and track aggregate progress.</p>
               </div>
-              <Link href="/organization" className="flex items-center gap-1.5 rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-bold text-white hover:bg-emerald-600">Get started <ArrowRight size={14} /></Link>
+              <Link href="/organization" className="flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90">Get started <ArrowRight size={14} /></Link>
             </div>
           </div>
         )}
@@ -206,12 +206,12 @@ function LoggedInDashboard() {
             ].map((s) => (
               <Link key={s.step} href={s.href} className="cs-card group flex flex-col p-6">
                 <div className="flex items-start justify-between">
-                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"><s.icon size={20} /></span>
-                  <span className="font-mono text-xs font-medium tracking-[0.2em] text-emerald-600">{s.step}</span>
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/8 text-primary dark:bg-primary/20"><s.icon size={20} /></span>
+                  <span className="font-mono text-xs font-medium tracking-[0.2em] text-primary">{s.step}</span>
                 </div>
-                <h3 className="mt-5 text-xl font-bold tracking-[-0.05em] text-slate-900 group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">{s.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-6 text-slate-500">{s.desc}</p>
-                <span className="mt-5 inline-flex items-center text-sm font-bold text-emerald-700 dark:text-emerald-400">Start now <ArrowRight size={14} className="ml-1" aria-hidden="true" /></span>
+                <h3 className="mt-5 text-xl font-bold tracking-[-0.05em] text-foreground group-hover:text-primary dark:group-hover:text-primary">{s.title}</h3>
+                <p className="mt-2 flex-1 text-sm leading-6 text-muted-foreground">{s.desc}</p>
+                <span className="mt-5 inline-flex items-center text-sm font-bold text-primary">Start now <ArrowRight size={14} className="ml-1" aria-hidden="true" /></span>
               </Link>
             ))}
           </div>
@@ -241,7 +241,7 @@ function LandingStats() {
         {landingStats.map((s) => (
           <div key={s.label} className="cs-card flex flex-col gap-2 p-6">
             <dt className="cs-data-label">{s.label}</dt>
-            <dd className="font-mono text-2xl font-medium tracking-[-0.04em] text-slate-900 sm:text-3xl dark:text-white">{s.value}</dd>
+            <dd className="font-mono text-2xl font-medium tracking-[-0.04em] text-foreground sm:text-3xl">{s.value}</dd>
           </div>
         ))}
       </dl>
@@ -262,12 +262,12 @@ function LandingHubs() {
           <article key={number} className="h-full">
             <Link href={href} className="cs-card group flex h-full flex-col p-6 sm:p-8">
               <div className="flex items-start justify-between">
-                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-50 text-emerald-700 transition-transform duration-200 group-hover:scale-110 dark:bg-emerald-950 dark:text-emerald-300"><Icon size={24} /></span>
-                <p className="font-mono text-xs font-medium tracking-[0.2em] text-emerald-600">{number}</p>
+                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-primary/8 text-primary transition-transform duration-200 group-hover:scale-110 dark:bg-primary/20"><Icon size={24} /></span>
+                <p className="font-mono text-xs font-medium tracking-[0.2em] text-primary">{number}</p>
               </div>
-              <h3 className="mt-8 text-2xl font-bold tracking-[-0.05em] text-slate-900 dark:text-white">{title}</h3>
-              <p className="mt-3 flex-1 text-base leading-relaxed text-slate-600 dark:text-slate-300">{description}</p>
-              <span className="mt-8 inline-flex items-center text-sm font-bold text-emerald-700 transition-all group-hover:gap-2 dark:text-emerald-400">Open {title} <ArrowRight size={15} className="ml-1" aria-hidden="true" /></span>
+              <h3 className="mt-8 text-2xl font-bold tracking-[-0.05em] text-foreground">{title}</h3>
+              <p className="mt-3 flex-1 text-base leading-relaxed text-muted-foreground">{description}</p>
+              <span className="mt-8 inline-flex items-center text-sm font-bold text-primary transition-all group-hover:gap-2">Open {title} <ArrowRight size={15} className="ml-1" aria-hidden="true" /></span>
             </Link>
           </article>
         ))}
@@ -284,29 +284,29 @@ function LandingFooter() {
     { heading: "Account", links: [{ href: "/register", label: "Create account" }, { href: "/login", label: "Sign in" }, { href: "/docs", label: "Methodology & limits" }] },
   ];
   return (
-    <footer className="mt-16 border-t border-emerald-950/10 pb-10 pt-12 sm:mt-20 dark:border-white/10">
+    <footer className="mt-16 border-t border-border pb-10 pt-12 sm:mt-20 dark:border-white/10">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:gap-10 sm:px-6 lg:grid-cols-[1.4fr_repeat(4,1fr)] lg:px-8">
         <div>
           <p className="flex items-center gap-3">
             <span className="cs-brand-mark" aria-hidden="true"><span /><span /><span /></span>
-            <span className="leading-tight"><span className="block font-bold tracking-[-0.065em] text-slate-900 dark:text-white">CarbonSense</span><span className="block font-mono text-[0.625rem] font-medium tracking-[0.17em] text-emerald-700 dark:text-emerald-400">CLIMATE INTELLIGENCE</span></span>
+            <span className="leading-tight"><span className="block font-bold tracking-[-0.065em] text-foreground">CarbonSense</span><span className="block font-mono text-[0.625rem] font-medium tracking-[0.17em] text-primary">CLIMATE INTELLIGENCE</span></span>
           </p>
-          <p className="mt-4 max-w-xs text-sm leading-6 text-slate-500 dark:text-slate-400">Indicative personal carbon estimation with a transparent, documented baseline — built for clarity, not guesswork.</p>
+          <p className="mt-4 max-w-xs text-sm leading-6 text-muted-foreground">Indicative personal carbon estimation with a transparent, documented baseline — built for clarity, not guesswork.</p>
         </div>
         {columns.map((col) => (
           <nav key={col.heading} aria-label={`${col.heading} links`}>
             <h3 className="cs-data-label">{col.heading}</h3>
             <ul className="mt-4 space-y-2.5">
               {col.links.map((l) => (
-                <li key={l.href + l.label}><Link href={l.href} className="text-sm font-medium text-slate-600 transition-colors hover:text-emerald-700 dark:text-slate-400 dark:hover:text-emerald-300">{l.label}</Link></li>
+                <li key={l.href + l.label}><Link href={l.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary dark:hover:text-primary">{l.label}</Link></li>
               ))}
             </ul>
           </nav>
         ))}
       </div>
-      <div className="mx-auto mt-12 flex max-w-7xl flex-col gap-2 border-t border-emerald-950/10 px-4 pt-6 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8 dark:border-white/10">
-        <p className="font-mono text-xs tracking-wide text-slate-400 dark:text-slate-500">© 2026 CarbonSense · Estimates are indicative, not verified measurements.</p>
-        <Link href="/docs" className="text-xs font-semibold text-emerald-700 hover:underline dark:text-emerald-400">How the numbers are produced</Link>
+      <div className="mx-auto mt-12 flex max-w-7xl flex-col gap-2 border-t border-border px-4 pt-6 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8 dark:border-white/10">
+        <p className="font-mono text-xs tracking-wide text-muted-foreground">© 2026 CarbonSense · Estimates are indicative, not verified measurements.</p>
+        <Link href="/docs" className="text-xs font-semibold text-primary hover:underline">How the numbers are produced</Link>
       </div>
     </footer>
   );
@@ -325,7 +325,7 @@ function GuestDashboard() {
             <h1 id="cs-hero-title" className="cs-hero-title mt-4 text-[clamp(2.75rem,1.1rem_+_4.5vw,4.6rem)] leading-[0.98]">See your carbon footprint clearly.</h1>
             <p className="cs-hero-lede mt-6">Estimate your monthly emissions with an AI model and a fully documented formula baseline — then turn the result into a plan you can actually measure.</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link href="/baseline" className="cs-action inline-flex items-center justify-center rounded-2xl bg-emerald-400 px-7 py-4 text-base font-extrabold text-[#08241b] shadow-lg shadow-emerald-950/30 hover:bg-emerald-300">Calculate your baseline <ArrowRight size={18} className="ml-2" aria-hidden="true" /></Link>
+              <Link href="/baseline" className="cs-action inline-flex items-center justify-center rounded-2xl bg-primary/50 px-7 py-4 text-base font-extrabold text-[#08241b] shadow-lg shadow-primary/20 hover:bg-primary/30">Calculate your baseline <ArrowRight size={18} className="ml-2" aria-hidden="true" /></Link>
               <Link href="/predict" className="cs-action-secondary inline-flex items-center justify-center rounded-2xl border border-white/35 bg-white/10 px-7 py-4 text-base font-bold text-white hover:bg-white/18">Explore AI prediction</Link>
             </div>
             <ul className="cs-hero-proof mt-10" aria-label="CarbonSense workflow">
@@ -353,12 +353,12 @@ function GuestDashboard() {
               <article key={number} className="h-full">
                 <Link href={href} className="cs-card group flex h-full flex-col p-6 sm:p-8">
                   <div className="flex items-start justify-between">
-                    <span className="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-50 text-emerald-700 transition-transform duration-200 group-hover:scale-110 dark:bg-emerald-950 dark:text-emerald-300"><Icon size={24} /></span>
-                    <p className="font-mono text-xs font-medium tracking-[0.2em] text-emerald-600">{number}</p>
+                    <span className="grid h-12 w-12 place-items-center rounded-2xl bg-primary/8 text-primary transition-transform duration-200 group-hover:scale-110 dark:bg-primary/20"><Icon size={24} /></span>
+                    <p className="font-mono text-xs font-medium tracking-[0.2em] text-primary">{number}</p>
                   </div>
-                  <h3 className="mt-8 text-2xl font-bold tracking-[-0.05em] text-slate-900 dark:text-white">{title}</h3>
-                  <p className="mt-3 flex-1 text-base leading-relaxed text-slate-600 dark:text-slate-300">{description}</p>
-                  <span className="mt-8 inline-flex items-center text-sm font-bold text-emerald-700 transition-all group-hover:gap-2 dark:text-emerald-400">Start now <ArrowRight size={15} className="ml-1" /></span>
+                  <h3 className="mt-8 text-2xl font-bold tracking-[-0.05em] text-foreground">{title}</h3>
+                  <p className="mt-3 flex-1 text-base leading-relaxed text-muted-foreground">{description}</p>
+                  <span className="mt-8 inline-flex items-center text-sm font-bold text-primary transition-all group-hover:gap-2">Start now <ArrowRight size={15} className="ml-1" /></span>
                 </Link>
               </article>
             ))}
@@ -391,8 +391,8 @@ export default function Dashboard() {
         <main className="cs-page">
           <div className="flex items-center justify-center min-h-[400px]">
             <div className="text-center">
-              <div className="h-12 w-12 animate-spin rounded-full border-4 border-emerald-200 border-t-emerald-700 mx-auto" />
-              <p className="mt-4 text-slate-600 dark:text-slate-300">Loading...</p>
+              <div className="h-12 w-12 animate-spin rounded-full border-4 border-border border-t-emerald-700 mx-auto" />
+              <p className="mt-4 text-muted-foreground">Loading...</p>
             </div>
           </div>
         </main>

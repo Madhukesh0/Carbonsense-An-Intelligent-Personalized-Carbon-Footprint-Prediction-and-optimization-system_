@@ -29,18 +29,18 @@ export default function Privacy() {
     <RepoShell title="Privacy">
       <main className="cs-page">
         <Card className="cs-card mx-auto max-w-3xl p-6 sm:p-8">
-          <p className="cs-kicker text-emerald-700 dark:text-emerald-300">Privacy controls</p>
-          <h1 className="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl text-slate-900 dark:text-white">
+          <p className="cs-kicker text-primary">Privacy controls</p>
+          <h1 className="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl text-foreground">
             Privacy and aggregate sharing
           </h1>
-          <p className="mt-3 text-base leading-relaxed text-slate-500 dark:text-slate-300">
+          <p className="mt-3 text-base leading-relaxed text-muted-foreground">
             Your individual activity, goals, recommendations, and reports remain private.
             Organization analytics include you only when you explicitly opt into aggregate sharing.
           </p>
           <div className="mt-7 flex flex-col justify-between gap-5 rounded-2xl bg-[#f6f8f7] p-5 sm:flex-row sm:items-center">
             <div>
-              <p className="font-semibold text-slate-900">Share anonymized aggregates</p>
-              <p className="mt-1 max-w-xl text-base leading-relaxed text-slate-500">
+              <p className="font-semibold text-foreground">Share anonymized aggregates</p>
+              <p className="mt-1 max-w-xl text-base leading-relaxed text-muted-foreground">
                 Only regional averages and counts are shared; individual records, names, and member
                 identities are never exposed through aggregate views.
               </p>
@@ -55,7 +55,7 @@ export default function Privacy() {
             </Button>
           </div>
           {(privacy.error || updatePrivacy.error) && (
-            <p role="alert" className="mt-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            <p role="alert" className="mt-5 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
               {(privacy.error || updatePrivacy.error)?.message}
             </p>
           )}

@@ -34,7 +34,7 @@ type ResultLed = {
 function RecCard({ item, accent, planBadge }: { item: Recommendation; accent: string; planBadge?: string }) {
   const isTopRank = item.impactRank === 1;
   return (
-    <div className={`rounded-2xl p-5 ${isTopRank ? "bg-emerald-50 ring-1 ring-emerald-200 dark:bg-emerald-950/40 dark:ring-emerald-800" : "bg-[#f6f8f7] dark:bg-emerald-950/30"}`}>
+    <div className={`rounded-2xl p-5 ${isTopRank ? "bg-primary/8 ring-1 ring-primary/40 dark:bg-primary/20 dark:ring-emerald-800" : "bg-[#f6f8f7] dark:bg-primary/20"}`}>
       <div className="flex items-start justify-between gap-3">
         <h2 className="font-semibold">
           {planBadge && (
@@ -53,17 +53,17 @@ function RecCard({ item, accent, planBadge }: { item: Recommendation; accent: st
           {item.estimatedReductionKg > 0 ? `−${item.estimatedReductionKg} kg` : "—"}
         </span>
       </div>
-      <p className="mt-2 text-base leading-relaxed text-slate-500">{item.description}</p>
+      <p className="mt-2 text-base leading-relaxed text-muted-foreground">{item.description}</p>
       <p className="mt-3 text-xs font-medium text-[#157f54]">{item.provenance}</p>
-      <p className="mt-1 text-xs leading-5 text-slate-500">Why shown: {item.trigger}</p>
+      <p className="mt-1 text-xs leading-5 text-muted-foreground">Why shown: {item.trigger}</p>
       {item.impactBasis && (
-        <p className="mt-2 rounded-lg bg-white/70 px-3 py-2 font-mono text-[11px] leading-4 text-slate-500 dark:bg-black/20">
+        <p className="mt-2 rounded-lg bg-white/70 px-3 py-2 font-mono text-[11px] leading-4 text-muted-foreground dark:bg-black/20">
           Estimate basis: {item.impactBasis}
         </p>
       )}
       {typeof item.impactShareOfBaselinePct === "number" && item.impactShareOfBaselinePct > 0 && (
         <div className="mt-3">
-          <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+          <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted dark:bg-white/15">
             <div
               className="h-full rounded-full"
               style={{
@@ -72,7 +72,7 @@ function RecCard({ item, accent, planBadge }: { item: Recommendation; accent: st
               }}
             />
           </div>
-          <p className="mt-1 text-[11px] text-slate-500">
+          <p className="mt-1 text-[11px] text-muted-foreground">
             ≈{item.impactShareOfBaselinePct}% of your baseline result
           </p>
         </div>
@@ -83,7 +83,7 @@ function RecCard({ item, accent, planBadge }: { item: Recommendation; accent: st
         </p>
       ) : (
         typeof item.shapContributionKg === "number" && (
-          <p className="mt-2 inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300">
+          <p className="mt-2 inline-flex items-center gap-1 rounded-full bg-primary/8 px-2.5 py-1 text-xs font-semibold text-primary dark:bg-primary/20">
             <Sparkles size={12} /> Your model contribution: {item.shapContributionKg > 0 ? "+" : ""}
             {item.shapContributionKg} kg
           </p>
@@ -124,11 +124,11 @@ export default function ResultRecommendations() {
     <RepoShell title="Your recommendations">
       <main className="cs-page mx-auto max-w-4xl">
         <Card className="cs-card border-0 p-7 sm:p-9">
-          <p className="cs-kicker text-emerald-700">After your prediction</p>
-          <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl dark:text-white">
+          <p className="cs-kicker text-primary">After your prediction</p>
+          <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
             Your personalized recommendations.
           </h1>
-          <p className="mt-3 text-base leading-relaxed text-slate-500">
+          <p className="mt-3 text-base leading-relaxed text-muted-foreground">
             Recalculated from your latest submitted result: every approved action is
             re-scored against the answers you just gave, and the highest-impact levers
             come first. Organization assignments appear separately below. These are
@@ -136,13 +136,13 @@ export default function ResultRecommendations() {
           </p>
           {d?.available && (
             <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-xl bg-[#f6f8f7] p-4 dark:bg-emerald-950/30">
-                <p className="text-xs font-semibold uppercase tracking-[.12em] text-slate-500">Your AI result</p>
+              <div className="rounded-xl bg-[#f6f8f7] p-4 dark:bg-primary/20">
+                <p className="text-xs font-semibold uppercase tracking-[.12em] text-muted-foreground">Your AI result</p>
                 <p className="mt-2 font-mono text-2xl">{d.predictionKg} kg</p>
               </div>
-              <div className="rounded-xl bg-emerald-50 p-4 dark:bg-emerald-950/40">
-                <p className="text-xs font-semibold uppercase tracking-[.12em] text-emerald-700">Transparent baseline</p>
-                <p className="mt-2 font-mono text-2xl text-emerald-800">{d.baselineKg} kg</p>
+              <div className="rounded-xl bg-primary/8 p-4 dark:bg-primary/20">
+                <p className="text-xs font-semibold uppercase tracking-[.12em] text-primary">Transparent baseline</p>
+                <p className="mt-2 font-mono text-2xl text-primary">{d.baselineKg} kg</p>
               </div>
             </div>
           )}
@@ -159,16 +159,16 @@ export default function ResultRecommendations() {
           ) : (
             <>
               <h2 className="mt-8 text-xl font-semibold">Plan to my goal</h2>
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-muted-foreground">
                 Pick a reduction goal and the highest-impact actions are selected for you,
                 top-down from the ranked list, until the goal is met.
               </p>
-              <div className="mt-4 rounded-2xl bg-[#f6f8f7] p-5 dark:bg-emerald-950/30">
+              <div className="mt-4 rounded-2xl bg-[#f6f8f7] p-5 dark:bg-primary/20">
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <label htmlFor="goal-slider" className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+                  <label htmlFor="goal-slider" className="text-sm font-semibold text-secondary-foreground">
                     {goalPercent === 0 ? "Set a reduction goal (of your baseline)" : `Goal: reduce ${goalPercent}% of your baseline`}
                   </label>
-                  <span className="rounded-full bg-emerald-100 px-3 py-1 font-mono text-xs font-bold text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                  <span className="rounded-full bg-primary/10 px-3 py-1 font-mono text-xs font-bold text-primary dark:bg-primary/20">
                     {goalPercent === 0 ? "No goal set" : `${goalTargetKg} kg target`}
                   </span>
                 </div>
@@ -183,12 +183,12 @@ export default function ResultRecommendations() {
                   value={goalPercent}
                   onChange={event => setGoalPercent(Number(event.target.value))}
                 />
-                <div className="mt-2 flex justify-between text-xs text-slate-400">
+                <div className="mt-2 flex justify-between text-xs text-muted-foreground">
                   <span>None</span><span>50%</span>
                 </div>
                 {goalPercent > 0 && (
                   plan.met ? (
-                    <p className="mt-4 rounded-xl bg-emerald-50 p-4 text-sm leading-6 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-100">
+                    <p className="mt-4 rounded-xl bg-primary/8 p-4 text-sm leading-6 text-primary dark:bg-primary/20">
                       <Target size={15} className="mr-1 inline" />
                       Accepting the <strong>{plan.inPlanKeys.size} highlighted action{plan.inPlanKeys.size === 1 ? "" : "s"}</strong> targets
                       about <strong>−{plan.plannedTotal} kg</strong> against your {goalTargetKg} kg goal
@@ -207,7 +207,7 @@ export default function ResultRecommendations() {
 
               <h2 className="mt-8 text-xl font-semibold">Model-ranked actions</h2>
               {d.basedOn?.rankingBasis && (
-                <p className="mt-1 text-sm text-slate-500">{d.basedOn.rankingBasis}.</p>
+                <p className="mt-1 text-sm text-muted-foreground">{d.basedOn.rankingBasis}.</p>
               )}
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 {modelRecs.map(item => (
@@ -229,19 +229,19 @@ export default function ResultRecommendations() {
               )}
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link href="/recommendations">
-                  <Button variant="outline" className="border-emerald-700 text-emerald-800 hover:bg-emerald-50">
+                  <Button variant="outline" className="border-primary text-primary hover:bg-primary/8">
                     Accept & track in My Recommendations
                   </Button>
                 </Link>
                 <Link href="/whatif">
-                  <Button variant="outline" className="border-emerald-700 text-emerald-800 hover:bg-emerald-50">
+                  <Button variant="outline" className="border-primary text-primary hover:bg-primary/8">
                     Test a What-if scenario <ArrowRight size={14} className="ml-1" />
                   </Button>
                 </Link>
               </div>
             </>
           )}
-          {data.error && <p role="alert" className="mt-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-base text-red-700">{data.error?.message}</p>}
+          {data.error && <p role="alert" className="mt-5 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-base text-destructive">{data.error?.message}</p>}
         </Card>
       </main>
     </RepoShell>

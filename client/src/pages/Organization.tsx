@@ -73,7 +73,7 @@ type Reminder = {
   acknowledgedAt: string | null;
 };
 
-const inputClass = "h-11 w-full rounded-xl border border-emerald-950/15 bg-white px-3.5 text-sm text-slate-900 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-200/70 dark:border-white/15 dark:bg-white/10 dark:text-white dark:focus:border-emerald-400 dark:focus:ring-emerald-950";
+const inputClass = "h-11 w-full rounded-xl border border-border bg-white px-3.5 text-sm text-foreground outline-none transition focus:border-primary focus:ring-4 focus:ring-ring/30 dark:border-white/15 dark:bg-white/10 dark:focus:border-primary dark:focus:ring-ring/30";
 
 function CreateOrgSection({ onSuccess }: { onSuccess: () => void }) {
   const [name, setName] = useState("");
@@ -85,19 +85,19 @@ function CreateOrgSection({ onSuccess }: { onSuccess: () => void }) {
     onError: (err: any) => setNotice(err.message || "Failed to create organization."),
   });
   return (
-    <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 p-6 dark:border-emerald-950 dark:bg-emerald-950/20">
+    <div className="rounded-2xl border border-border bg-primary/8 p-6 dark:border-primary/25 dark:bg-primary/20">
       <div className="flex items-center gap-3">
-        <div className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"><Plus size={20} /></div>
+        <div className="grid h-10 w-10 place-items-center rounded-xl bg-primary/10 text-primary dark:bg-primary/20"><Plus size={20} /></div>
         <div>
-          <h2 className="font-bold text-slate-900 dark:text-white">Create an organization</h2>
-          <p className="text-sm text-slate-500">Start a new organization and invite members via invite code.</p>
+          <h2 className="font-bold text-foreground">Create an organization</h2>
+          <p className="text-sm text-muted-foreground">Start a new organization and invite members via invite code.</p>
         </div>
       </div>
       <div className="mt-5 space-y-4">
-        <label className="block"><span className="mb-1.5 block text-sm font-semibold text-slate-700 dark:text-slate-200">Organization name</span><input className={inputClass} required minLength={2} value={name} onChange={(e) => setName(e.target.value)} placeholder="Green Earth NGO" /></label>
-        <label className="block"><span className="mb-1.5 block text-sm font-semibold text-slate-700 dark:text-slate-200">Description (optional)</span><input className={inputClass} value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Our mission is to reduce emissions" /></label>
+        <label className="block"><span className="mb-1.5 block text-sm font-semibold text-secondary-foreground">Organization name</span><input className={inputClass} required minLength={2} value={name} onChange={(e) => setName(e.target.value)} placeholder="Green Earth NGO" /></label>
+        <label className="block"><span className="mb-1.5 block text-sm font-semibold text-secondary-foreground">Description (optional)</span><input className={inputClass} value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Our mission is to reduce emissions" /></label>
         {notice && <p className="rounded-xl bg-amber-50 px-3.5 py-3 text-sm text-amber-900 dark:bg-amber-950 dark:text-amber-100">{notice}</p>}
-        <button disabled={createOrg.isPending} onClick={() => createOrg.mutate({ name, description: description || undefined })} className="flex w-full items-center justify-center rounded-xl bg-emerald-700 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-emerald-800/20 transition hover:bg-emerald-600 disabled:opacity-60">
+        <button disabled={createOrg.isPending} onClick={() => createOrg.mutate({ name, description: description || undefined })} className="flex w-full items-center justify-center rounded-xl bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/20 transition hover:bg-primary/90 disabled:opacity-60">
           {createOrg.isPending ? "Creating…" : "Create organization"}
         </button>
       </div>
@@ -108,8 +108,8 @@ function CreateOrgSection({ onSuccess }: { onSuccess: () => void }) {
 function JoinRequestStatus({ request, onCancel }: { request: JoinRequestInfo; onCancel: () => void }) {
   const stateCopy: Record<JoinRequestInfo["status"], { label: string; body: string; classes: string; icon: typeof Hourglass }> = {
     pending: { label: "Waiting for approval", body: `Your request to join ${request.organizationName} was sent to the organization administrator. You will become a member once they accept it.`, classes: "border-amber-200 bg-amber-50/70 text-amber-900 dark:border-amber-950 dark:bg-amber-950/25 dark:text-amber-100", icon: Hourglass },
-    approved: { label: "Membership approved", body: `You are now a member of ${request.organizationName}. Refresh or reopen this page to see your organization workspace.`, classes: "border-emerald-200 bg-emerald-50/70 text-emerald-900 dark:border-emerald-950 dark:bg-emerald-950/25 dark:text-emerald-100", icon: CheckCircle2 },
-    rejected: { label: "Request declined", body: `Your request to join ${request.organizationName} was declined by the organization administrator. You can send a new request below.`, classes: "border-red-200 bg-red-50/70 text-red-900 dark:border-red-950 dark:bg-red-950/25 dark:text-red-100", icon: XCircle },
+    approved: { label: "Membership approved", body: `You are now a member of ${request.organizationName}. Refresh or reopen this page to see your organization workspace.`, classes: "border-border bg-primary/8 text-primary dark:border-primary/25 dark:bg-primary/20", icon: CheckCircle2 },
+    rejected: { label: "Request declined", body: `Your request to join ${request.organizationName} was declined by the organization administrator. You can send a new request below.`, classes: "border-destructive/30 bg-destructive/10 text-destructive dark:border-destructive/30 dark:bg-destructive/15 dark:text-destructive", icon: XCircle },
   };
   const state = stateCopy[request.status];
   const Icon = state.icon;
@@ -143,22 +143,22 @@ function PendingRequestsPanel({ requests, onDecided }: { requests: PendingJoinRe
       <div className="flex items-center gap-3">
         <div className="grid h-10 w-10 place-items-center rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300"><UserPlus size={20} /></div>
         <div>
-          <h2 className="font-bold text-slate-900 dark:text-white">Join requests</h2>
-          <p className="text-sm text-slate-500">{requests.length} pending approval{requests.length !== 1 ? "s" : ""} · accepting adds the member to your organization.</p>
+          <h2 className="font-bold text-foreground">Join requests</h2>
+          <p className="text-sm text-muted-foreground">{requests.length} pending approval{requests.length !== 1 ? "s" : ""} · accepting adds the member to your organization.</p>
         </div>
       </div>
-      {error && <p role="alert" className="mt-4 rounded-xl bg-red-50 px-3.5 py-3 text-sm text-red-700 dark:bg-red-950 dark:text-red-100">{error}</p>}
+      {error && <p role="alert" className="mt-4 rounded-xl bg-destructive/10 px-3.5 py-3 text-sm text-destructive dark:bg-destructive/15 dark:text-destructive">{error}</p>}
       <div className="mt-4 space-y-3">
         {requests.map((r) => (
           <div key={r.id} className="flex flex-wrap items-center gap-3 rounded-xl bg-white px-4 py-3 shadow-sm dark:bg-white/5">
-            <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-emerald-100 text-sm font-bold text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">{(r.userName || "?")[0].toUpperCase()}</div>
+            <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-primary/10 text-sm font-bold text-primary dark:bg-primary/20">{(r.userName || "?")[0].toUpperCase()}</div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-slate-900 dark:text-white">{r.userName || "Unknown user"}</p>
-              <p className="truncate text-xs text-slate-500">{r.userEmail || "no email"} · requested {new Date(r.createdAt).toLocaleString()}</p>
+              <p className="truncate text-sm font-semibold text-foreground">{r.userName || "Unknown user"}</p>
+              <p className="truncate text-xs text-muted-foreground">{r.userEmail || "no email"} · requested {new Date(r.createdAt).toLocaleString()}</p>
             </div>
             <div className="flex gap-2">
-              <button disabled={busyId !== null} onClick={() => { setBusyId(r.id); decide.mutate({ id: r.id, decision: "approved" }); }} className="flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3 py-2 text-xs font-bold text-white transition hover:bg-emerald-600 disabled:opacity-60"><CheckCircle2 size={13} /> Accept</button>
-              <button disabled={busyId !== null} onClick={() => { setBusyId(r.id); decide.mutate({ id: r.id, decision: "rejected" }); }} className="flex items-center gap-1.5 rounded-xl bg-slate-100 px-3 py-2 text-xs font-bold text-slate-600 transition hover:bg-slate-200 disabled:opacity-60 dark:bg-white/10 dark:text-slate-300 dark:hover:bg-white/20"><XCircle size={13} /> Decline</button>
+              <button disabled={busyId !== null} onClick={() => { setBusyId(r.id); decide.mutate({ id: r.id, decision: "approved" }); }} className="flex items-center gap-1.5 rounded-xl bg-primary px-3 py-2 text-xs font-bold text-primary-foreground transition hover:bg-primary/90 disabled:opacity-60"><CheckCircle2 size={13} /> Accept</button>
+              <button disabled={busyId !== null} onClick={() => { setBusyId(r.id); decide.mutate({ id: r.id, decision: "rejected" }); }} className="flex items-center gap-1.5 rounded-xl bg-muted px-3 py-2 text-xs font-bold text-muted-foreground transition hover:bg-muted disabled:opacity-60 dark:bg-white/10 dark:hover:bg-white/20"><XCircle size={13} /> Decline</button>
             </div>
           </div>
         ))}
@@ -180,12 +180,12 @@ function JoinOrgSection({ onSuccess }: { onSuccess: () => void }) {
       <div className="flex items-center gap-3">
         <div className="grid h-10 w-10 place-items-center rounded-xl bg-sky-100 text-sky-700 dark:bg-sky-950 dark:text-sky-300"><KeyRound size={20} /></div>
         <div>
-          <h2 className="font-bold text-slate-900 dark:text-white">Join an organization</h2>
-          <p className="text-sm text-slate-500">Enter an invite code — the administrator will review and approve your request.</p>
+          <h2 className="font-bold text-foreground">Join an organization</h2>
+          <p className="text-sm text-muted-foreground">Enter an invite code — the administrator will review and approve your request.</p>
         </div>
       </div>
       <div className="mt-5 space-y-4">
-        <label className="block"><span className="mb-1.5 block text-sm font-semibold text-slate-700 dark:text-slate-200">Invite code</span><input className={inputClass} required minLength={6} value={code} onChange={(e) => setCode(e.target.value)} placeholder="Paste your invite code here" /></label>
+        <label className="block"><span className="mb-1.5 block text-sm font-semibold text-secondary-foreground">Invite code</span><input className={inputClass} required minLength={6} value={code} onChange={(e) => setCode(e.target.value)} placeholder="Paste your invite code here" /></label>
         {notice && <p className="rounded-xl bg-amber-50 px-3.5 py-3 text-sm text-amber-900 dark:bg-amber-950 dark:text-amber-100">{notice}</p>}
         <button disabled={joinOrg.isPending} onClick={() => joinOrg.mutate({ invite_code: code })} className="flex w-full items-center justify-center rounded-xl bg-sky-700 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-sky-800/20 transition hover:bg-sky-600 disabled:opacity-60">
           {joinOrg.isPending ? "Sending request…" : "Request to join"}
@@ -220,34 +220,34 @@ function InviteIndividualsPanel({ onDecided }: { onDecided: () => void }) {
       <div className="flex items-center gap-3">
         <div className="grid h-10 w-10 place-items-center rounded-xl bg-sky-100 text-sky-700 dark:bg-sky-950 dark:text-sky-300"><UserPlus size={20} /></div>
         <div>
-          <h2 className="font-bold text-slate-900 dark:text-white">Invite individuals</h2>
-          <p className="text-sm text-slate-500">Unaffiliated accounts you can invite — they decide whether to accept.</p>
+          <h2 className="font-bold text-foreground">Invite individuals</h2>
+          <p className="text-sm text-muted-foreground">Unaffiliated accounts you can invite — they decide whether to accept.</p>
         </div>
       </div>
-      {error && <p role="alert" className="mt-4 rounded-xl bg-red-50 px-3.5 py-3 text-sm text-red-700 dark:bg-red-950 dark:text-red-100">{error}</p>}
+      {error && <p role="alert" className="mt-4 rounded-xl bg-destructive/10 px-3.5 py-3 text-sm text-destructive dark:bg-destructive/15 dark:text-destructive">{error}</p>}
       <div className="mt-4 space-y-2">
-        {available.isLoading ? <p className="text-sm text-slate-500">Loading available individuals…</p>
+        {available.isLoading ? <p className="text-sm text-muted-foreground">Loading available individuals…</p>
           : rows.length ? rows.map((row) => (
             <div key={row.id} className="flex flex-wrap items-center gap-3 rounded-xl bg-white px-4 py-3 shadow-sm dark:bg-white/5">
               <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-sky-100 text-sm font-bold text-sky-700 dark:bg-sky-950 dark:text-sky-300">{(row.name || row.email || "?")[0].toUpperCase()}</div>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-semibold text-slate-900 dark:text-white">{row.name || "Unnamed account"}</p>
-                <p className="truncate text-xs text-slate-500">{row.email || "no email"}{row.country ? ` · ${row.country}` : ""}</p>
+                <p className="truncate text-sm font-semibold text-foreground">{row.name || "Unnamed account"}</p>
+                <p className="truncate text-xs text-muted-foreground">{row.email || "no email"}{row.country ? ` · ${row.country}` : ""}</p>
               </div>
               <button disabled={busyId !== null} onClick={() => { setBusyId(row.id); invite.mutate(row.id); }} className="flex items-center gap-1.5 rounded-xl bg-sky-700 px-3 py-2 text-xs font-bold text-white transition hover:bg-sky-600 disabled:opacity-60">
                 <UserPlus size={13} /> {busyId === row.id ? "Inviting…" : "Invite"}
               </button>
             </div>
-          )) : <p className="text-sm text-slate-500">No unaffiliated individuals are waiting right now.</p>}
+          )) : <p className="text-sm text-muted-foreground">No unaffiliated individuals are waiting right now.</p>}
       </div>
       {sent.data && sent.data.length > 0 && (
         <div className="mt-5 border-t border-sky-100 pt-4 dark:border-sky-950">
-          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Invitations sent</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Invitations sent</p>
           <div className="mt-2 space-y-1.5">
             {sent.data.slice(0, 6).map((invitation) => (
               <div key={invitation.id} className="flex items-center justify-between gap-3 text-sm">
-                <span className="truncate text-slate-600 dark:text-slate-300">{invitation.userEmail}</span>
-                <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-bold ${invitation.status === "pending" ? "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200" : invitation.status === "accepted" ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200" : "bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-300"}`}>{invitation.status}</span>
+                <span className="truncate text-muted-foreground">{invitation.userEmail}</span>
+                <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-bold ${invitation.status === "pending" ? "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200" : invitation.status === "accepted" ? "bg-primary/10 text-primary dark:bg-primary/20" : "bg-muted text-muted-foreground dark:bg-white/10"}`}>{invitation.status}</span>
               </div>
             ))}
           </div>
@@ -272,24 +272,24 @@ function MyInvitations({ onDecided }: { onDecided: () => void }) {
   const pending = (invitations.data ?? []).filter((invitation) => invitation.status === "pending");
   if (invitations.isLoading || pending.length === 0) return null;
   return (
-    <div className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-6 dark:border-emerald-950 dark:bg-emerald-950/25">
+    <div className="rounded-2xl border border-border bg-primary/8 p-6 dark:border-primary/25 dark:bg-primary/20">
       <div className="flex items-center gap-3">
-        <div className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"><UserPlus size={20} /></div>
+        <div className="grid h-10 w-10 place-items-center rounded-xl bg-primary/10 text-primary dark:bg-primary/20"><UserPlus size={20} /></div>
         <div>
-          <h2 className="font-bold text-slate-900 dark:text-white">Organization invitations</h2>
-          <p className="text-sm text-slate-500">You have {pending.length} pending invitation{pending.length !== 1 ? "s" : ""} — accept to become a member.</p>
+          <h2 className="font-bold text-foreground">Organization invitations</h2>
+          <p className="text-sm text-muted-foreground">You have {pending.length} pending invitation{pending.length !== 1 ? "s" : ""} — accept to become a member.</p>
         </div>
       </div>
       <div className="mt-4 space-y-3">
         {pending.map((invitation) => (
           <div key={invitation.id} className="flex flex-wrap items-center gap-3 rounded-xl bg-white px-4 py-3 shadow-sm dark:bg-white/5">
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-slate-900 dark:text-white">{invitation.organizationName}</p>
-              <p className="truncate text-xs text-slate-500">Invited by {invitation.invitedByName || "an administrator"} · {new Date(invitation.createdAt).toLocaleString()}</p>
+              <p className="truncate text-sm font-semibold text-foreground">{invitation.organizationName}</p>
+              <p className="truncate text-xs text-muted-foreground">Invited by {invitation.invitedByName || "an administrator"} · {new Date(invitation.createdAt).toLocaleString()}</p>
             </div>
             <div className="flex gap-2">
-              <button disabled={busyId !== null} onClick={() => { setBusyId(invitation.id); decide.mutate({ id: invitation.id, decision: "accepted" }); }} className="flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3 py-2 text-xs font-bold text-white transition hover:bg-emerald-600 disabled:opacity-60"><CheckCircle2 size={13} /> Accept</button>
-              <button disabled={busyId !== null} onClick={() => { setBusyId(invitation.id); decide.mutate({ id: invitation.id, decision: "declined" }); }} className="flex items-center gap-1.5 rounded-xl bg-slate-100 px-3 py-2 text-xs font-bold text-slate-600 transition hover:bg-slate-200 disabled:opacity-60 dark:bg-white/10 dark:text-slate-300 dark:hover:bg-white/20"><XCircle size={13} /> Decline</button>
+              <button disabled={busyId !== null} onClick={() => { setBusyId(invitation.id); decide.mutate({ id: invitation.id, decision: "accepted" }); }} className="flex items-center gap-1.5 rounded-xl bg-primary px-3 py-2 text-xs font-bold text-primary-foreground transition hover:bg-primary/90 disabled:opacity-60"><CheckCircle2 size={13} /> Accept</button>
+              <button disabled={busyId !== null} onClick={() => { setBusyId(invitation.id); decide.mutate({ id: invitation.id, decision: "declined" }); }} className="flex items-center gap-1.5 rounded-xl bg-muted px-3 py-2 text-xs font-bold text-muted-foreground transition hover:bg-muted disabled:opacity-60 dark:bg-white/10 dark:hover:bg-white/20"><XCircle size={13} /> Decline</button>
             </div>
           </div>
         ))}
@@ -328,46 +328,46 @@ function OrgDashboard({ org, currentUserId, isAdmin, isSuperAdmin, onLeave }: { 
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
-              <Building2 size={20} className="text-emerald-700 dark:text-emerald-300" />
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white">{org.name}</h2>
+              <Building2 size={20} className="text-primary" />
+              <h2 className="text-xl font-bold text-foreground">{org.name}</h2>
             </div>
-            {org.description && <p className="mt-2 max-w-xl text-sm text-slate-600 dark:text-slate-300">{org.description}</p>}
+            {org.description && <p className="mt-2 max-w-xl text-sm text-muted-foreground">{org.description}</p>}
             <div className="mt-3 flex flex-wrap gap-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1 text-xs font-bold text-emerald-800 dark:bg-white/10 dark:text-emerald-200"><Users size={13} />{org.memberCount} member{org.memberCount !== 1 ? "s" : ""}</span>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1 text-xs font-bold text-emerald-800 dark:bg-white/10 dark:text-emerald-200"><Globe size={13} />{org.yourRole === "org_admin" ? "Admin" : "Member"}</span>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1 text-xs font-bold text-primary dark:bg-white/10"><Users size={13} />{org.memberCount} member{org.memberCount !== 1 ? "s" : ""}</span>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1 text-xs font-bold text-primary dark:bg-white/10"><Globe size={13} />{org.yourRole === "org_admin" ? "Admin" : "Member"}</span>
             </div>
           </div>
           {org.inviteCode && (
             <div className="rounded-xl bg-white/80 p-4 dark:bg-white/10">
-              <p className="text-xs font-semibold text-slate-500">Invite code</p>
+              <p className="text-xs font-semibold text-muted-foreground">Invite code</p>
               <div className="mt-1.5 flex items-center gap-2">
-                <code className="font-mono text-lg font-bold text-emerald-700 dark:text-emerald-300">{org.inviteCode}</code>
-                <button onClick={copyCode} className="rounded-lg p-1.5 hover:bg-emerald-100 dark:hover:bg-emerald-950" title="Copy">{copied ? <CheckCircle2 size={16} className="text-emerald-600" /> : <Copy size={16} className="text-slate-400" />}</button>
+                <code className="font-mono text-lg font-bold text-primary">{org.inviteCode}</code>
+                <button onClick={copyCode} className="rounded-lg p-1.5 hover:bg-primary/10 dark:hover:bg-primary/20" title="Copy">{copied ? <CheckCircle2 size={16} className="text-primary" /> : <Copy size={16} className="text-muted-foreground" />}</button>
               </div>
-              <p className="mt-1 text-xs text-slate-500">Share with members to join</p>
+              <p className="mt-1 text-xs text-muted-foreground">Share with members to join</p>
             </div>
           )}
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-100 bg-white p-5 dark:border-white/10 dark:bg-white/5">
-        <h3 className="flex items-center gap-2 font-bold text-slate-900 dark:text-white"><Users size={16} /> Members</h3>
-        {removeError && <p role="alert" className="mt-2 rounded-xl bg-red-50 px-3 py-2 text-xs text-red-700 dark:bg-red-950/30 dark:text-red-300">{removeError}</p>}
+      <div className="rounded-2xl border border-border bg-white p-5 dark:border-white/10 dark:bg-white/5">
+        <h3 className="flex items-center gap-2 font-bold text-foreground"><Users size={16} /> Members</h3>
+        {removeError && <p role="alert" className="mt-2 rounded-xl bg-destructive/10 px-3 py-2 text-xs text-destructive dark:bg-destructive/15 dark:text-destructive">{removeError}</p>}
         <div className="mt-4 space-y-2">
           {org.members.map((m) => (
-            <div key={m.id} className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 dark:bg-white/5">
+            <div key={m.id} className="flex items-center justify-between rounded-xl bg-muted/40 px-4 py-3 dark:bg-white/5">
               <div className="flex items-center gap-3">
-                <div className="grid h-8 w-8 place-items-center rounded-full bg-emerald-100 text-sm font-bold text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">{(m.name || "?")[0].toUpperCase()}</div>
+                <div className="grid h-8 w-8 place-items-center rounded-full bg-primary/10 text-sm font-bold text-primary dark:bg-primary/20">{(m.name || "?")[0].toUpperCase()}</div>
                 <div>
-                  <p className="text-sm font-semibold text-slate-900 dark:text-white">{m.name}</p>
-                  <p className="text-xs text-slate-500">{m.country || "No country"} · {m.role === "org_admin" ? "Admin" : "Member"} · {formatLastSignedIn(m.lastSignedIn)}</p>
+                  <p className="text-sm font-semibold text-foreground">{m.name}</p>
+                  <p className="text-xs text-muted-foreground">{m.country || "No country"} · {m.role === "org_admin" ? "Admin" : "Member"} · {formatLastSignedIn(m.lastSignedIn)}</p>
                 </div>
               </div>
               {canRemove(m) && (
                 <button
                   onClick={() => { if (window.confirm(`Remove ${m.name || "this member"} from the organization?`)) removeMember.mutate(m.id); }}
                   disabled={removeMember.isPending}
-                  className="flex items-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-2.5 py-1.5 text-xs font-bold text-red-700 transition hover:bg-red-100 disabled:opacity-60 dark:border-red-950 dark:bg-red-950/30 dark:text-red-300 dark:hover:bg-red-950/50"
+                  className="flex items-center gap-1.5 rounded-lg border border-destructive/30 bg-destructive/10 px-2.5 py-1.5 text-xs font-bold text-destructive transition hover:bg-destructive/15 disabled:opacity-60 dark:border-destructive/30 dark:bg-destructive/15 dark:text-destructive dark:hover:bg-destructive/15"
                   title="Remove from organization"
                 >
                   <UserMinus size={13} />{removeMember.isPending ? "Removing..." : "Remove"}
@@ -378,7 +378,7 @@ function OrgDashboard({ org, currentUserId, isAdmin, isSuperAdmin, onLeave }: { 
         </div>
       </div>
 
-      <button onClick={() => leaveOrg.mutate()} disabled={leaveOrg.isPending} className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-2.5 text-sm font-bold text-red-700 transition hover:bg-red-100 dark:border-red-950 dark:bg-red-950/30 dark:text-red-300 dark:hover:bg-red-950/50">
+      <button onClick={() => leaveOrg.mutate()} disabled={leaveOrg.isPending} className="flex items-center gap-2 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-2.5 text-sm font-bold text-destructive transition hover:bg-destructive/15 dark:border-destructive/30 dark:bg-destructive/15 dark:text-destructive dark:hover:bg-destructive/15">
         <LogOut size={16} />{leaveOrg.isPending ? "Leaving…" : "Leave organization"}
       </button>
     </div>
@@ -406,11 +406,11 @@ export default function Organization() {
     <RepoShell title="Organization">
       <main className="cs-page">
         <Card className="cs-card mx-auto max-w-4xl p-6 sm:p-8">
-          <p className="cs-kicker text-emerald-700">Your organization</p>
-          <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl dark:text-white">
+          <p className="cs-kicker text-primary">Your organization</p>
+          <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
             {org.data ? org.data.name : "Organization workspace"}
           </h1>
-          <p className="mt-3 text-base leading-relaxed text-slate-500">
+          <p className="mt-3 text-base leading-relaxed text-muted-foreground">
             {org.data
               ? "Manage your organization, invite members, and track aggregate climate action."
               : hasPendingRequest
@@ -419,7 +419,7 @@ export default function Organization() {
           </p>
 
           {(org.isLoading || myRequest.isLoading) ? (
-            <div className="mt-6 h-48 animate-pulse rounded-2xl bg-emerald-50 dark:bg-emerald-950/40" />
+            <div className="mt-6 h-48 animate-pulse rounded-2xl bg-primary/8 dark:bg-primary/20/40" />
           ) : org.data ? (
             <div className="mt-7 space-y-6">
               {isAdmin && pending.data && pending.data.length > 0 && (
@@ -447,7 +447,7 @@ export default function Organization() {
             </div>
           )}
 
-          {(org.error || myRequest.error) && <p role="alert" className="mt-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{(org.error ?? myRequest.error)?.message}</p>}
+          {(org.error || myRequest.error) && <p role="alert" className="mt-5 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">{(org.error ?? myRequest.error)?.message}</p>}
         </Card>
       </main>
     </RepoShell>

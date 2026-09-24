@@ -29,7 +29,7 @@ function stageLabel(status: string, verificationStatus?: string) {
 }
 
 function stageClass(status: string, verificationStatus?: string) {
-  if (verificationStatus === "verified") return "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200";
+  if (verificationStatus === "verified") return "bg-primary/10 text-primary dark:bg-primary/20";
   if (status === "completed") return "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200";
   if (status === "accepted") return "bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-200";
   return "bg-violet-100 text-violet-800 dark:bg-violet-950 dark:text-violet-200";
@@ -66,17 +66,17 @@ export default function MyRecommendations() {
       <main className="cs-page">
         <Card className="cs-card mx-auto max-w-4xl p-6 sm:p-8">
           <p className="cs-kicker text-violet-700">Your action tracker</p>
-          <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl dark:text-white">
+          <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
             My Recommendations
           </h1>
-          <p className="mt-3 text-base leading-relaxed text-slate-500">
+          <p className="mt-3 text-base leading-relaxed text-muted-foreground">
             See recommendations assigned by your organization and track your progress. Accept actions to commit, then mark them complete when done.
           </p>
 
           {items.length === 0 && !mine.isLoading && (
-            <div className="mt-6 rounded-2xl bg-slate-50 p-5 text-sm text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+            <div className="mt-6 rounded-2xl bg-muted/40 p-5 text-sm text-muted-foreground dark:bg-white/10">
               No recommendations yet. Your organization administrator can assign actions to you, or you can accept profile-matched suggestions from the{" "}
-              <a href="/recommendations" className="font-semibold text-emerald-700 hover:underline dark:text-emerald-400">Recommendations</a> page.
+              <a href="/recommendations" className="font-semibold text-primary hover:underline">Recommendations</a> page.
             </div>
           )}
 
@@ -85,7 +85,7 @@ export default function MyRecommendations() {
             <section className="mt-7">
               <div className="flex items-center gap-2">
                 <Send size={16} className="text-violet-600" />
-                <h2 className="text-lg font-bold text-slate-900 dark:text-white">Assigned by your organization</h2>
+                <h2 className="text-lg font-bold text-foreground">Assigned by your organization</h2>
                 <span className="rounded-full bg-violet-100 px-2 py-0.5 text-xs font-bold text-violet-700 dark:bg-violet-950 dark:text-violet-300">{assigned.length}</span>
               </div>
               <div className="mt-4 grid gap-4">
@@ -95,14 +95,14 @@ export default function MyRecommendations() {
                     <div key={item._id} className="rounded-2xl border border-violet-100 bg-violet-50/50 p-5 dark:border-violet-950 dark:bg-violet-950/20">
                       <div className="flex flex-wrap items-start justify-between gap-3">
                         <div className="max-w-xl">
-                          <h3 className="font-bold text-slate-900 dark:text-white">{cat?.title || item.recommendation_key}</h3>
-                          <p className="mt-1 text-sm leading-5 text-slate-500">{cat?.description || "An approved recommendation has been assigned to you."}</p>
+                          <h3 className="font-bold text-foreground">{cat?.title || item.recommendation_key}</h3>
+                          <p className="mt-1 text-sm leading-5 text-muted-foreground">{cat?.description || "An approved recommendation has been assigned to you."}</p>
                         </div>
                         <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold ${stageClass(item.status, item.verification_status)}`}>
                           <Clock size={12} />{stageLabel(item.status, item.verification_status)}
                         </span>
                       </div>
-                      <p className="mt-2 text-xs text-slate-400">Assigned {new Date(item.created_at).toLocaleDateString()}</p>
+                      <p className="mt-2 text-xs text-muted-foreground">Assigned {new Date(item.created_at).toLocaleDateString()}</p>
                       <Button
                         size="sm"
                         className="mt-4 bg-violet-700 font-bold hover:bg-violet-800"
@@ -123,7 +123,7 @@ export default function MyRecommendations() {
             <section className="mt-7">
               <div className="flex items-center gap-2">
                 <ClipboardCheck size={16} className="text-sky-600" />
-                <h2 className="text-lg font-bold text-slate-900 dark:text-white">In progress</h2>
+                <h2 className="text-lg font-bold text-foreground">In progress</h2>
                 <span className="rounded-full bg-sky-100 px-2 py-0.5 text-xs font-bold text-sky-700 dark:bg-sky-950 dark:text-sky-300">{accepted.length}</span>
               </div>
               <div className="mt-4 grid gap-4">
@@ -133,14 +133,14 @@ export default function MyRecommendations() {
                     <div key={item._id} className="rounded-2xl border border-sky-100 bg-sky-50/50 p-5 dark:border-sky-950 dark:bg-sky-950/20">
                       <div className="flex flex-wrap items-start justify-between gap-3">
                         <div className="max-w-xl">
-                          <h3 className="font-bold text-slate-900 dark:text-white">{cat?.title || item.recommendation_key}</h3>
-                          <p className="mt-1 text-sm leading-5 text-slate-500">{cat?.description || "You accepted this recommendation."}</p>
+                          <h3 className="font-bold text-foreground">{cat?.title || item.recommendation_key}</h3>
+                          <p className="mt-1 text-sm leading-5 text-muted-foreground">{cat?.description || "You accepted this recommendation."}</p>
                         </div>
                         <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold ${stageClass(item.status, item.verification_status)}`}>
                           <ClipboardCheck size={12} />{stageLabel(item.status, item.verification_status)}
                         </span>
                       </div>
-                      <p className="mt-2 text-xs text-slate-400">Accepted {new Date(item.created_at).toLocaleDateString()}</p>
+                      <p className="mt-2 text-xs text-muted-foreground">Accepted {new Date(item.created_at).toLocaleDateString()}</p>
                       <Button
                         size="sm"
                         className="mt-4 bg-sky-700 font-bold hover:bg-sky-800"
@@ -160,27 +160,27 @@ export default function MyRecommendations() {
           {done.length > 0 && (
             <section className="mt-7">
               <div className="flex items-center gap-2">
-                <CheckCircle2 size={16} className="text-emerald-600" />
-                <h2 className="text-lg font-bold text-slate-900 dark:text-white">Completed</h2>
-                <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-bold text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">{done.length}</span>
+                <CheckCircle2 size={16} className="text-primary" />
+                <h2 className="text-lg font-bold text-foreground">Completed</h2>
+                <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-bold text-primary dark:bg-primary/20">{done.length}</span>
               </div>
               <div className="mt-4 grid gap-4">
                 {done.map((item) => {
                   const cat = catalogMap[item.recommendation_key];
                   return (
-                    <div key={item._id} className="rounded-2xl border border-emerald-100 bg-emerald-50/50 p-5 dark:border-emerald-950 dark:bg-emerald-950/20">
+                    <div key={item._id} className="rounded-2xl border border-border bg-primary/8 p-5 dark:border-primary/25 dark:bg-primary/20">
                       <div className="flex flex-wrap items-start justify-between gap-3">
                         <div className="max-w-xl">
-                          <h3 className="font-bold text-slate-900 dark:text-white">{cat?.title || item.recommendation_key}</h3>
+                          <h3 className="font-bold text-foreground">{cat?.title || item.recommendation_key}</h3>
                           {item.self_reported_change_note && (
-                            <p className="mt-1 text-sm italic text-slate-500">"{item.self_reported_change_note}"</p>
+                            <p className="mt-1 text-sm italic text-muted-foreground">"{item.self_reported_change_note}"</p>
                           )}
                         </div>
                         <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold ${stageClass(item.status, item.verification_status)}`}>
                           <CheckCircle2 size={12} />{stageLabel(item.status, item.verification_status)}
                         </span>
                       </div>
-                      <p className="mt-2 text-xs text-slate-400">
+                      <p className="mt-2 text-xs text-muted-foreground">
                         {item.completed_at ? `Completed ${new Date(item.completed_at).toLocaleDateString()}` : `Completed ${new Date(item.created_at).toLocaleDateString()}`}
                       </p>
                     </div>
@@ -191,7 +191,7 @@ export default function MyRecommendations() {
           )}
 
           {(mine.error || catalog.error) && (
-            <p role="alert" className="mt-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-base text-red-700">
+            <p role="alert" className="mt-5 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-base text-destructive">
               {(mine.error || catalog.error)?.message}
             </p>
           )}

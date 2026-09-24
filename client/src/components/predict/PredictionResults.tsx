@@ -87,7 +87,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
             <h1 className="mt-2 text-4xl font-semibold tracking-tight">
               A number you can work with.
             </h1>
-            <p className="mt-3 text-slate-500">
+            <p className="mt-3 text-muted-foreground">
               Region: <strong>{result.region}</strong> · Currency: <strong>{result.currency}</strong>
             </p>
             {result.qa?.nonPersistent && (
@@ -120,7 +120,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                   {Math.round(result.uncertaintyRange.high)} kgCO₂e/month
                 </p>
               </div>
-              <span className="rounded-full border border-emerald-100/15 bg-emerald-300/10 px-3 py-1 font-mono text-[0.64rem] font-medium tracking-[0.09em] text-emerald-100">
+              <span className="rounded-full border border-border bg-primary/35 px-3 py-1 font-mono text-[0.64rem] font-medium tracking-[0.09em] text-primary">
                 {result.modelVersion}
               </span>
             </div>
@@ -150,7 +150,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
               <span className="text-sm font-semibold">Method & data</span>
             </div>
             <p className="mt-4 text-lg font-semibold">Understand the method behind this result.</p>
-            <p className="mt-3 text-sm leading-6 text-slate-500">
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">
               Review the feature contract, current runtime, assumptions, dataset governance, and
               result interpretation in the CarbonSense methods.
             </p>
@@ -169,7 +169,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                 Two methods, one factor set
               </p>
               <h2 className="mt-2 text-xl font-semibold">AI estimate vs transparent baseline</h2>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-500">
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
                 Both numbers use the same cited emission factors (Ember 2025 grid, IPCC fuel
                 chemistry, Scarborough diet, OWID air bands). The AI model learned the
                 relationship from 10,000 factor-formula examples; the baseline multiplies your
@@ -177,7 +177,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
               </p>
             </div>
             {gapPct !== null && (
-              <span className={`rounded-full px-3 py-1 text-xs font-semibold ${gapPct <= 10 ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300" : "bg-amber-50 text-amber-800 dark:bg-amber-950/60 dark:text-amber-200"}`}>
+              <span className={`rounded-full px-3 py-1 text-xs font-semibold ${gapPct <= 10 ? "bg-primary/8 text-primary dark:bg-primary/20" : "bg-amber-50 text-amber-800 dark:bg-amber-950/60 dark:text-amber-200"}`}>
                 {gapPct <= 10 ? "Methods agree" : "Methods diverge"} · {gapPct}%
               </span>
             )}
@@ -190,29 +190,29 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                 XGBoost on {result.datasetVersion} · uncertainty ±{Math.round(result.uncertaintyRange.high - result.predictedKg)} kg
               </p>
             </div>
-            <div className="rounded-2xl bg-emerald-50 p-5 dark:bg-emerald-950/40">
-              <p className="text-xs font-semibold uppercase tracking-[.12em] text-emerald-700 dark:text-emerald-300">Transparent baseline</p>
+            <div className="rounded-2xl bg-primary/8 p-5 dark:bg-primary/20">
+              <p className="text-xs font-semibold uppercase tracking-[.12em] text-primary">Transparent baseline</p>
               {baselineAvailable ? (
                 <>
-                  <p className="mt-3 text-4xl font-semibold text-emerald-800 dark:text-emerald-200">{baselineTotal} <span className="text-base font-normal text-emerald-600/70 dark:text-emerald-400/70">kgCO₂e</span></p>
-                  <p className="mt-2 text-xs leading-5 text-emerald-700/80 dark:text-emerald-300/80">
+                  <p className="mt-3 text-4xl font-semibold text-primary">{baselineTotal} <span className="text-base font-normal text-primary">kgCO₂e</span></p>
+                  <p className="mt-2 text-xs leading-5 text-primary">
                     Published-factor formula over your answers · deterministic, fully auditable
                   </p>
                 </>
               ) : (
                 <>
-                  <p className="mt-3 text-4xl font-semibold text-emerald-800/50 dark:text-emerald-200/50">— <span className="text-base font-normal text-emerald-600/50 dark:text-emerald-400/50">kgCO₂e</span></p>
+                  <p className="mt-3 text-4xl font-semibold text-primary">— <span className="text-base font-normal text-primary">kgCO₂e</span></p>
                   <Button size="sm" className="mt-3 bg-[#157f54] hover:bg-[#106b47]" onClick={computeBaseline} disabled={computingBase}>
                     {computingBase ? "Calculating…" : "Calculate my baseline"}
                   </Button>
-                  {baseError && <p role="alert" className="mt-2 text-xs text-red-600">{baseError}</p>}
+                  {baseError && <p role="alert" className="mt-2 text-xs text-destructive">{baseError}</p>}
                 </>
               )}
             </div>
           </div>
           {baselineAvailable && (
-            <div className="mt-5 rounded-xl bg-[#f6f8f7] p-4 dark:bg-emerald-950/30">
-              <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">
+            <div className="mt-5 rounded-xl bg-[#f6f8f7] p-4 dark:bg-primary/20">
+              <p className="text-sm leading-6 text-muted-foreground">
                 {gapKg !== null && Math.abs(gapKg) <= 5
                   ? "The model and the formula land within 5 kg of each other on your answers — the learned relationship and the factor arithmetic agree almost exactly here."
                   : gapKg !== null && gapKg > 0
@@ -241,7 +241,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                 Your answers, translated
               </p>
               <h2 className="mt-2 text-xl font-semibold">Which of your choices raised or lowered the estimate?</h2>
-              <p className="mt-2 text-sm leading-6 text-slate-500">
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
                 Each answer you submitted is compared with the average person in the model's training
                 data. Positive amounts pushed your estimate above that average; negative amounts pulled
                 it below.
@@ -250,14 +250,14 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                 <div className="rounded-2xl border border-[#f3ded5] bg-[#fdf6f2] p-5 dark:border-[#ba5b3d]/25 dark:bg-[#ba5b3d]/10">
                   <p className="text-sm font-semibold text-[#ba5b3d]">Pushed your estimate up</p>
                   {pushUps.length === 0 ? (
-                    <p className="mt-3 text-sm text-slate-500">
+                    <p className="mt-3 text-sm text-muted-foreground">
                       Nothing pushed your estimate above the average profile.
                     </p>
                   ) : (
                     <ul className="mt-3 space-y-2.5">
                       {pushUps.map((item: any) => (
                         <li key={item.feature} className="flex items-start justify-between gap-3 text-sm">
-                          <span className="leading-6 text-slate-700 dark:text-slate-200">
+                          <span className="leading-6 text-secondary-foreground">
                             {surveyAnswersText(item.feature, answers)}
                           </span>
                           <span className="shrink-0 font-semibold text-[#ba5b3d]">
@@ -268,17 +268,17 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                     </ul>
                   )}
                 </div>
-                <div className="rounded-2xl border border-[#dcebe3] bg-[#f2f9f5] p-5 dark:border-emerald-300/15 dark:bg-emerald-950/30">
+                <div className="rounded-2xl border border-[#dcebe3] bg-[#f2f9f5] p-5 dark:border-primary/25 dark:bg-primary/20">
                   <p className="text-sm font-semibold text-[#157f54]">Pulled your estimate down</p>
                   {pushDowns.length === 0 ? (
-                    <p className="mt-3 text-sm text-slate-500">
+                    <p className="mt-3 text-sm text-muted-foreground">
                       Nothing pulled your estimate below the average profile.
                     </p>
                   ) : (
                     <ul className="mt-3 space-y-2.5">
                       {pushDowns.map((item: any) => (
                         <li key={item.feature} className="flex items-start justify-between gap-3 text-sm">
-                          <span className="leading-6 text-slate-700 dark:text-slate-200">
+                          <span className="leading-6 text-secondary-foreground">
                             {surveyAnswersText(item.feature, answers)}
                           </span>
                           <span className="shrink-0 font-semibold text-[#157f54]">
@@ -290,7 +290,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                   )}
                 </div>
               </div>
-              <p className="mt-4 text-xs leading-5 text-slate-500 dark:text-slate-400">
+              <p className="mt-4 text-xs leading-5 text-muted-foreground">
                 Amounts are model contributions relative to the training-data average, not savings or
                 offsets. They describe model behavior, not a direct or causal emissions measurement.
               </p>
@@ -304,20 +304,20 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                     </p>
                     <h2 className="mt-2 text-xl font-semibold">What is influencing this result?</h2>
                   </div>
-                  <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800">
+                  <span className="rounded-full bg-primary/8 px-3 py-1 text-xs font-semibold text-primary">
                     Model recalculated
                   </span>
                 </div>
-                <p className="mt-2 text-sm text-slate-500">
+                <p className="mt-2 text-sm text-muted-foreground">
                   Ranked from the answers you just submitted by the frozen model. Run
                   another estimate after changing a value to see the contribution order update.
                 </p>
                 {strongestInfluence && (
-                  <div className="mt-5 rounded-2xl border border-emerald-900/10 bg-emerald-50/70 p-4 dark:border-emerald-300/15 dark:bg-emerald-950/30">
-                    <p className="cs-data-label text-emerald-800 dark:text-emerald-200">
+                  <div className="mt-5 rounded-2xl border border-primary bg-primary/8 p-4 dark:border-primary/25 dark:bg-primary/20">
+                    <p className="cs-data-label text-primary">
                       For this saved result
                     </p>
-                    <p className="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-200">
+                    <p className="mt-2 text-sm leading-6 text-secondary-foreground">
                       <span className="font-semibold">{strongestInfluence.label}</span> is the
                       strongest modeled influence in this submitted profile. It {strongestEffect}
                       the model estimate by approximately{" "}
@@ -326,7 +326,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                       </span>{" "}
                       relative to the model’s base value.
                     </p>
-                    <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">
+                    <p className="mt-2 text-xs leading-5 text-muted-foreground">
                       This explanation is calculated from the live model inference for your
                       submitted answers. It describes model behavior, not a direct or causal
                       emissions measurement.
@@ -341,7 +341,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                     >
                       <div className="flex items-center justify-between">
                         <span className="font-medium">
-                          <span className="mr-2 font-mono text-xs text-slate-400">0{index + 1}</span>
+                          <span className="mr-2 font-mono text-xs text-muted-foreground">0{index + 1}</span>
                           {item.label}
                         </span>
                         <span
@@ -355,7 +355,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                           {item.shapValue} kg
                         </span>
                       </div>
-                      <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-slate-100">
+                      <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-muted">
                         <div
                           className={
                             item.direction === "increases"
@@ -367,7 +367,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                           }}
                         />
                       </div>
-                      <div className="mt-2 flex items-center justify-between text-xs text-slate-500">
+                      <div className="mt-2 flex items-center justify-between text-xs text-muted-foreground">
                         <span>{item.direction === "increases" ? "Raises this result" : "Lowers this result"}</span>
                         <span>Model contribution</span>
                       </div>
@@ -380,7 +380,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                 <p className="mt-4 text-4xl font-semibold">
                   {result.shap.reconciliation} <span className="text-base font-normal">kg</span>
                 </p>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
                   Base value {result.shap.baseValue} + contribution values = predicted value.{" "}
                   {result.shap.note}
                 </p>
@@ -389,7 +389,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                     {result.disclaimer}
                   </p>
                 )}
-                <p className="mt-6 text-sm font-semibold text-slate-900 dark:text-white">
+                <p className="mt-6 text-sm font-semibold text-foreground">
                   Turn this signal into one practical next step.
                 </p>
                 <Link href="/result-recommendations">
@@ -401,7 +401,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                   <Link href="/whatif">
                     <Button
                       variant="outline"
-                      className="mt-3 w-full border-emerald-700 text-emerald-800 hover:bg-emerald-50"
+                      className="mt-3 w-full border-primary text-primary hover:bg-primary/8"
                     >
                       Test a What-if scenario from this result <ArrowRight size={16} className="ml-2" />
                     </Button>
@@ -414,7 +414,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
             {needsBaselineCompute ? (
               <Card className="cs-card mx-auto max-w-3xl border-0 p-7 text-center">
                 <h2 className="text-xl font-semibold">Transparent baseline</h2>
-                <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-500">
+                <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
                   The transparent baseline is a separate, fully auditable calculation using
                   published emission factors - computed on demand from the same answers you
                   submitted, independent of the AI model. It is never averaged with the model
@@ -423,24 +423,24 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                 <Button className="mt-5 bg-[#157f54] hover:bg-[#106b47]" onClick={computeBaseline} disabled={computingBase}>
                   {computingBase ? "Calculating…" : "Calculate my transparent baseline"}
                 </Button>
-                {baseError && <p role="alert" className="mt-4 text-sm text-red-600">{baseError}</p>}
+                {baseError && <p role="alert" className="mt-4 text-sm text-destructive">{baseError}</p>}
               </Card>
             ) : (
             <div className="grid gap-5 py-5 lg:grid-cols-[1.2fr_.8fr]">
               <Card className="border-0 bg-white p-7 shadow-sm">
                 <h2 className="text-xl font-semibold">Transparent baseline</h2>
-                <p className="mt-1 text-xs text-slate-400">
+                <p className="mt-1 text-xs text-muted-foreground">
                   {baselineResult.country ? `Country: ${baselineResult.country.toUpperCase()} · grid ${baselineResult.gridFactorKgPerKwh} kgCO2e/kWh · household ${baselineResult.householdSize}` : ""}
                 </p>
                 <div className="mt-6 space-y-3">
                   {Object.entries(baselineResult.breakdown).map(([label, value]: any) => (
                     <div key={label} className="rounded-xl bg-[#f6f8f7] p-4">
                       <div className="flex items-center justify-between">
-                        <span className="capitalize font-medium text-slate-700">{label}</span>
+                        <span className="capitalize font-medium text-secondary-foreground">{label}</span>
                         <span className="font-semibold">{Math.round(value)} kg</span>
                       </div>
                       {baselineResult.arithmetic?.[label] && (
-                        <p className="mt-1.5 text-xs text-slate-400">{baselineResult.arithmetic[label]}</p>
+                        <p className="mt-1.5 text-xs text-muted-foreground">{baselineResult.arithmetic[label]}</p>
                       )}
                     </div>
                   ))}
@@ -457,7 +457,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                   <CircleHelp size={18} />
                   <span className="font-semibold">Assumptions & sources</span>
                 </div>
-                <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-600">
+                <ul className="mt-5 space-y-3 text-sm leading-6 text-muted-foreground">
                   {baselineResult.assumptions.map((item: string) => (
                     <li key={item} className="flex gap-2">
                       <Check size={16} className="mt-1 shrink-0 text-[#157f54]" />
@@ -467,15 +467,15 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                 </ul>
                 <div className="mt-6 rounded-2xl bg-[#f6f8f7] p-4 text-sm">
                   <p className="font-semibold">Sources</p>
-                  <p className="mt-2 text-slate-500">{baselineResult.sources.join(" · ")}</p>
+                  <p className="mt-2 text-muted-foreground">{baselineResult.sources.join(" · ")}</p>
                   {baselineResult.factorSet && (
-                    <p className="mt-3 font-mono text-xs tracking-[0.04em] text-slate-500">
+                    <p className="mt-3 font-mono text-xs tracking-[0.04em] text-muted-foreground">
                       Factor set: {baselineResult.factorSet.label}
                     </p>
                   )}
                   {baselineResult.sourceReferences?.length > 0 && (
                     <div className="mt-3 space-y-2 text-xs leading-5">
-                      <p className="font-semibold text-slate-700">Primary source links</p>
+                      <p className="font-semibold text-secondary-foreground">Primary source links</p>
                       {baselineResult.sourceReferences.map(
                         (source: { label: string; url: string; coverage: string }) => (
                           <a
@@ -486,7 +486,7 @@ export default function PredictionResults({ result, onReset }: PredictionResults
                             className="block text-[#157f54] underline underline-offset-2"
                           >
                             {source.label}
-                            <span className="block text-slate-500 no-underline">{source.coverage}</span>
+                            <span className="block text-muted-foreground no-underline">{source.coverage}</span>
                           </a>
                         )
                       )}

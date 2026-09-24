@@ -45,14 +45,14 @@ const countries = [
 function AuthBrand() {
   return (
     <Link href="/" className="inline-flex items-center gap-3">
-      <span className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-800 text-lg font-extrabold text-white shadow-lg shadow-emerald-700/25">
+      <span className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-800 text-lg font-extrabold text-white shadow-lg shadow-primary/20">
         C
       </span>
       <span>
-        <span className="block text-xl font-bold tracking-[-0.06em] text-slate-900 dark:text-white">
+        <span className="block text-xl font-bold tracking-[-0.06em] text-foreground">
           CarbonSense
         </span>
-        <span className="block text-[9px] font-bold tracking-[0.16em] text-emerald-700 dark:text-emerald-400">
+        <span className="block text-[9px] font-bold tracking-[0.16em] text-primary">
           INTELLIGENT CLIMATE AI
         </span>
       </span>
@@ -71,7 +71,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 flex items-center justify-between text-sm font-semibold text-slate-700 dark:text-slate-200">
+      <span className="mb-2 flex items-center justify-between text-sm font-semibold text-secondary-foreground">
         <span>{label}</span>
         {right}
       </span>
@@ -83,24 +83,24 @@ function Field({
 function StorageBoundary() {
   return (
     <details className="cs-card mt-5 overflow-hidden p-0 text-left">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-sm font-bold text-slate-900 marker:content-none dark:text-white">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-sm font-bold text-foreground marker:content-none">
         <span className="inline-flex items-center gap-2">
           <ShieldCheck
             size={17}
-            className="text-emerald-700 dark:text-emerald-400"
+            className="text-primary"
           />
           Where your sign-up and sign-in data is stored
         </span>
-        <span className="font-mono text-[0.62rem] font-medium tracking-[0.11em] text-emerald-700 dark:text-emerald-400">
+        <span className="font-mono text-[0.62rem] font-medium tracking-[0.11em] text-primary">
           VIEW DETAILS
         </span>
       </summary>
-      <div className="grid gap-3 border-t border-emerald-950/10 bg-emerald-50/45 p-4 text-xs leading-5 text-slate-600 dark:border-white/10 dark:bg-white/5 dark:text-slate-300">
+      <div className="grid gap-3 border-t border-border bg-primary/8 p-4 text-xs leading-5 text-muted-foreground dark:border-white/10 dark:bg-white/5">
         <article className="rounded-xl bg-white/80 p-4 dark:bg-white/5">
-          <p className="flex items-center gap-2 font-bold text-slate-900 dark:text-white">
+          <p className="flex items-center gap-2 font-bold text-foreground">
             <Database
               size={15}
-              className="text-emerald-700 dark:text-emerald-400"
+              className="text-primary"
             />
             MongoDB Atlas — native account credentials
           </p>
@@ -112,10 +112,10 @@ function StorageBoundary() {
           </p>
         </article>
         <article className="rounded-xl bg-white/80 p-4 dark:bg-white/5">
-          <p className="flex items-center gap-2 font-bold text-slate-900 dark:text-white">
+          <p className="flex items-center gap-2 font-bold text-foreground">
             <HardDrive
               size={15}
-              className="text-emerald-700 dark:text-emerald-400"
+              className="text-primary"
             />
             CarbonSense MongoDB workspace
           </p>
@@ -127,10 +127,10 @@ function StorageBoundary() {
           </p>
         </article>
         <article className="rounded-xl bg-white/80 p-4 dark:bg-white/5">
-          <p className="flex items-center gap-2 font-bold text-slate-900 dark:text-white">
+          <p className="flex items-center gap-2 font-bold text-foreground">
             <ShieldCheck
               size={15}
-              className="text-emerald-700 dark:text-emerald-400"
+              className="text-primary"
             />
             Your browser — session only
           </p>
@@ -142,7 +142,7 @@ function StorageBoundary() {
             scripts. Theme preference may be stored locally, never credentials.
           </p>
         </article>
-        <article className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-950 dark:border-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-100">
+        <article className="rounded-xl border border-border bg-primary/8 p-4 text-primary dark:border-primary/25 dark:bg-primary/20">
           <p className="font-bold">Native CarbonSense account</p>
           <p className="mt-2">
             This clean account flow uses only the email and password you create
@@ -157,7 +157,7 @@ function StorageBoundary() {
 }
 
 const inputClass =
-  "h-11 w-full rounded-xl border border-emerald-950/15 bg-white px-3.5 text-sm text-slate-900 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-200/70 dark:border-white/15 dark:bg-white/10 dark:text-white dark:focus:border-emerald-400 dark:focus:ring-emerald-950";
+  "h-11 w-full rounded-xl border border-border bg-white px-3.5 text-sm text-foreground outline-none transition focus:border-primary focus:ring-4 focus:ring-ring/30 dark:border-white/15 dark:bg-white/10 dark:focus:border-primary dark:focus:ring-ring/30";
 
 export default function RepoAuthPage({ mode }: { mode: AuthMode }) {
   const queryClient = useQueryClient();
@@ -247,12 +247,12 @@ export default function RepoAuthPage({ mode }: { mode: AuthMode }) {
         : "Password recovery will be available from the native account service.";
 
   return (
-    <div className="cs-app-shell min-h-screen px-4 py-6 text-slate-900 dark:text-slate-100 sm:px-6">
+    <div className="cs-app-shell min-h-screen px-4 py-6 text-foreground dark:text-muted-foreground sm:px-6">
       <header className="mx-auto flex max-w-6xl items-center justify-between">
         <AuthBrand />
         <button
           onClick={() => toggleTheme?.()}
-          className="grid h-10 w-10 place-items-center rounded-xl text-slate-600 hover:bg-white/70 dark:text-slate-300 dark:hover:bg-white/10"
+          className="grid h-10 w-10 place-items-center rounded-xl text-muted-foreground hover:bg-white/70 dark:hover:bg-white/10"
           aria-label="Toggle dark mode"
         >
           {theme === "dark" ? (
@@ -266,12 +266,12 @@ export default function RepoAuthPage({ mode }: { mode: AuthMode }) {
         <section className="w-full">
           <Link
             href="/"
-            className="mb-8 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:underline dark:text-emerald-400"
+            className="mb-8 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
           >
             <ArrowLeft size={15} /> Dashboard
           </Link>
           <div className="text-center">
-            <span className="mx-auto grid h-16 w-16 place-items-center rounded-3xl bg-gradient-to-br from-emerald-500 to-emerald-800 text-white shadow-xl shadow-emerald-800/20">
+            <span className="mx-auto grid h-16 w-16 place-items-center rounded-3xl bg-gradient-to-br from-emerald-500 to-emerald-800 text-white shadow-xl shadow-primary/20">
               {mode === "forgot" ? (
                 <KeyRound size={30} />
               ) : mode === "register" ? (
@@ -280,20 +280,20 @@ export default function RepoAuthPage({ mode }: { mode: AuthMode }) {
                 <LockKeyhole size={29} />
               )}
             </span>
-            <h1 className="mt-5 text-4xl font-extrabold tracking-tight sm:text-5xl text-slate-900 dark:text-white">
+            <h1 className="mt-5 text-4xl font-extrabold tracking-tight sm:text-5xl text-foreground">
               {title}
             </h1>
-            <p className="mt-3 text-base leading-relaxed text-slate-600 dark:text-slate-300">
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
               {subtitle}
             </p>
           </div>
 
           {mode === "forgot" ? (
             <div className="cs-card mt-8 p-8">
-              <p className="text-sm font-semibold text-slate-900 dark:text-white">
+              <p className="text-sm font-semibold text-foreground">
                 Account recovery
               </p>
-              <p className="mt-3 text-base leading-relaxed text-slate-600 dark:text-slate-300">
+              <p className="mt-3 text-base leading-relaxed text-muted-foreground">
                 The clean MongoDB-native account service is active.
                 Password-recovery delivery will be added as a separate, verified
                 email feature; credentials are never recoverable from the
@@ -301,7 +301,7 @@ export default function RepoAuthPage({ mode }: { mode: AuthMode }) {
               </p>
               <Link
                 href="/login"
-                className="mt-5 block text-center text-sm font-semibold text-emerald-700 hover:underline dark:text-emerald-400"
+                className="mt-5 block text-center text-sm font-semibold text-primary hover:underline"
               >
                 Return to sign in
               </Link>
@@ -314,11 +314,11 @@ export default function RepoAuthPage({ mode }: { mode: AuthMode }) {
               >
                 {mode === "register" && (
                   <>
-                    <div className="grid grid-cols-2 gap-2 rounded-2xl bg-slate-100 p-1.5 dark:bg-white/5">
+                    <div className="grid grid-cols-2 gap-2 rounded-2xl bg-muted p-1.5 dark:bg-white/5">
                       <button
                         type="button"
                         onClick={() => setAccountType("individual")}
-                        className={`rounded-xl px-3 py-2.5 text-sm font-bold transition ${accountType === "individual" ? "bg-emerald-700 text-white shadow" : "text-slate-600 dark:text-slate-300"}`}
+                        className={`rounded-xl px-3 py-2.5 text-sm font-bold transition ${accountType === "individual" ? "bg-primary text-primary-foreground shadow" : "text-muted-foreground"}`}
                       >
                         <UserRound size={15} className="mr-1.5 inline" />
                         Individual
@@ -326,7 +326,7 @@ export default function RepoAuthPage({ mode }: { mode: AuthMode }) {
                       <button
                         type="button"
                         onClick={() => setAccountType("organization")}
-                        className={`rounded-xl px-3 py-2.5 text-sm font-bold transition ${accountType === "organization" ? "bg-emerald-700 text-white shadow" : "text-slate-600 dark:text-slate-300"}`}
+                        className={`rounded-xl px-3 py-2.5 text-sm font-bold transition ${accountType === "organization" ? "bg-primary text-primary-foreground shadow" : "text-muted-foreground"}`}
                       >
                         <Building2 size={15} className="mr-1.5 inline" />
                         Organization
@@ -349,7 +349,7 @@ export default function RepoAuthPage({ mode }: { mode: AuthMode }) {
                   <span className="relative block">
                     <Mail
                       size={16}
-                      className="absolute left-3.5 top-3 text-slate-400"
+                      className="absolute left-3.5 top-3 text-muted-foreground"
                     />
                     <input
                       className={`${inputClass} pl-10`}
@@ -368,7 +368,7 @@ export default function RepoAuthPage({ mode }: { mode: AuthMode }) {
                     mode === "login" ? (
                       <Link
                         href="/forgot-password"
-                        className="text-xs font-bold text-emerald-700 hover:underline dark:text-emerald-400"
+                        className="text-xs font-bold text-primary hover:underline"
                       >
                         Forgot password?
                       </Link>
@@ -441,7 +441,7 @@ export default function RepoAuthPage({ mode }: { mode: AuthMode }) {
                         />
                       </Field>
                     )}
-                    <p className="rounded-xl bg-emerald-50 px-3.5 py-3 text-xs leading-5 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-100">
+                    <p className="rounded-xl bg-primary/8 px-3.5 py-3 text-xs leading-5 text-primary dark:bg-primary/20">
                       Choose an available organization to join during sign-up,
                       or skip this step and join later from your organization
                       page.
@@ -456,7 +456,7 @@ export default function RepoAuthPage({ mode }: { mode: AuthMode }) {
                 <button
                   disabled={isPending}
                   type="submit"
-                  className="cs-action flex w-full items-center justify-center rounded-xl bg-emerald-700 px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-800/20 transition-colors hover:bg-emerald-600 disabled:cursor-wait disabled:opacity-70"
+                  className="cs-action flex w-full items-center justify-center rounded-xl bg-primary px-4 py-3.5 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/20 transition-colors hover:bg-primary/90 disabled:cursor-wait disabled:opacity-70"
                 >
                   {isPending
                     ? "Please wait…"
@@ -469,14 +469,14 @@ export default function RepoAuthPage({ mode }: { mode: AuthMode }) {
               {mode === "login" && (
                 <Link
                   href="/register"
-                  className="cs-action-secondary mt-4 flex w-full items-center justify-center rounded-xl border border-emerald-700/25 bg-emerald-50/80 px-4 py-3.5 text-sm font-bold text-emerald-800 hover:border-emerald-600 hover:bg-emerald-100 dark:border-emerald-400/25 dark:bg-emerald-950/50 dark:text-emerald-200"
+                  className="cs-action-secondary mt-4 flex w-full items-center justify-center rounded-xl border border-primary bg-primary/8 px-4 py-3.5 text-sm font-bold text-primary hover:border-primary hover:bg-primary/10 dark:border-primary/25 dark:bg-primary/20"
                 >
                   <UserRound size={17} className="mr-2" />
                   Create a CarbonSense account{" "}
                   <ArrowRight size={16} className="ml-2" />
                 </Link>
               )}
-              <p className="mt-6 text-center text-sm text-slate-600 dark:text-slate-300">
+              <p className="mt-6 text-center text-sm text-muted-foreground">
                 {mode === "login" ? (
                   <>Use your secure CarbonSense email and password above.</>
                 ) : (
@@ -484,7 +484,7 @@ export default function RepoAuthPage({ mode }: { mode: AuthMode }) {
                     Already have an account?{" "}
                     <Link
                       href="/login"
-                      className="font-bold text-emerald-700 hover:underline dark:text-emerald-400"
+                      className="font-bold text-primary hover:underline"
                     >
                       Sign in
                     </Link>
