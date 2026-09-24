@@ -8,8 +8,10 @@ import requests
 base = 'http://127.0.0.1:8015/api/v1'
 import os
 uri = os.environ["MONGODB_URI"]  # read from .env - never hardcode credentials
-member_email = 'asha_org_member_2@carbonsense.dev'
-member_password = 'AshaMember123!'
+member_email = os.environ.get("FLOW_MEMBER_EMAIL", "asha_org_member_2@carbonsense.dev")
+member_password = os.environ["FLOW_MEMBER_PASSWORD"]  # set in .env / shell - never hardcode
+admin_email = os.environ.get("FLOW_ADMIN_EMAIL", "testuser@carbonsense.dev")
+admin_password = os.environ["FLOW_ADMIN_PASSWORD"]  # set in .env / shell - never hardcode
 org_id = 'edf615ca-273b-4e37-b133-3a846520783f'
 
 
@@ -85,7 +87,7 @@ try:
     admin = requests.Session()
     adm = admin.post(
         base + '/auth/login',
-        json={'email': 'testuser@carbonsense.dev', 'password': 'TestPass12345'},
+        json={'email': admin_email, 'password': admin_password},
         timeout=30,
     )
     print_step('ADMIN_LOGIN_STATUS', adm.status_code)

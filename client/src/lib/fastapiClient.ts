@@ -252,6 +252,8 @@ export const fastApi = {
         body: { decision },
       }),
     leave: () => fastApiRequest("/organization/leave", { method: "POST" }),
+    removeMember: (memberId: string) =>
+      fastApiRequest(`/organization/members/${memberId}/remove`, { method: "POST" }),
     availableIndividuals: () => fastApiRequest("/organization/available-individuals"),
     inviteIndividual: (input: unknown) =>
       fastApiRequest("/organization/invite", { method: "POST", body: input }),

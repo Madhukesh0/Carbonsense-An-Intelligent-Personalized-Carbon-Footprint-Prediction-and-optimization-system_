@@ -47,7 +47,18 @@ async def dashboard(user: Annotated[dict[str, Any], Depends(require_roles("org_a
 @router.get("/users")
 async def list_users(user: Annotated[dict[str, Any], Depends(require_roles("super_admin"))], db: Annotated[AsyncIOMotorDatabase, Depends(get_database)]) -> list[dict[str, Any]]:
     del user
-    return await db.users.find({}, {"password_hash": 0}).sort("created_at", -1).to_list(100)
+    rows = await db.users.find({}, {"password_hash": 0}).sort("created_at", -1).to_list(100)
+    return [{
+        "id": str(row["_id"]),
+        "name": row.get("name"),
+        "email": row.get("email"),
+        "role": row.get("role"),
+        "country": row.get("country"),
+        "organizationId": row.get("organization_id"),
+        "isActive": row.get("is_active", True),
+        "lastSignedIn": row.get("last_signed_in"),
+        "createdAt": row.get("created_at"),
+    } for row in rows]
 
 
 @router.patch("/users/{user_id}/role")

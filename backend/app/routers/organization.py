@@ -386,6 +386,49 @@ async def leave_organization(
     return {"success": True}
 
 
+@router.post("/members/{member_id}/remove", status_code=status.HTTP_200_OK)
+async def remove_member(
+    member_id: str,
+    user: Annotated[dict[str, Any], Depends(require_roles("org_admin", "super_admin"))],
+    db: Annotated[AsyncIOMotorDatabase, Depends(get_database)],
+) -> dict[str, Any]:
+    """Remove a member from the admin's organization; the ex-member becomes an individual."""
+    if member_id == str(user["_id"]):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="You cannot remove yourself. Use leave instead.")
+    target = await db.users.find_one({"_id": member_id})
+    if not target:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Member not found.")
+    if user["role"] != "super_admin":
+        if not user.get("organization_id"):
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="You are not a member of any organization.")
+        if target.get("organization_id") != user.get("organization_id"):
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="That user is not a member of your organization.")
+    if not target.get("organization_id"):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="That user does not belong to an organization.")
+    if target.get("role") == "org_admin" and user["role"] != "super_admin":
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only a super administrator can remove an organization administrator.")
+    now = utc_now()
+    await db.users.update_one(
+        {"_id": member_id},
+        {"$set": {"organization_id": None, "role": "individual", "updated_at": now}},
+    )
+    await db.organizations.update_one(
+        {"_id": target["organization_id"]},
+        {"$inc": {"member_count": -1}},
+    )
+    await db.governance_audit_logs.insert_one({
+        "_id": str(uuid4()),
+        "actor_user_id": str(user["_id"]),
+        "organization_id": target["organization_id"],
+        "entity_type": "membership",
+        "entity_id": member_id,
+        "action": "remove_member",
+        "details": f"{user.get('name')} removed {target.get('email') or member_id} from the organization.",
+        "created_at": now,
+    })
+    return {"success": True, "userId": member_id}
+
+
 @router.get("/me")
 async def my_organization(
     user: Annotated[dict[str, Any], Depends(get_current_user)],
@@ -406,7 +449,7 @@ async def my_organization(
         "description": org.get("description"),
         "inviteCode": org.get("invite_code") if user.get("role") in ("org_admin", "super_admin") else None,
         "memberCount": len(members),
-        "members": [{"id": str(m["_id"]), "name": m.get("name"), "role": m.get("role"), "country": m.get("country")} for m in members],
+        "members": [{"id": str(m["_id"]), "name": m.get("name"), "role": m.get("role"), "country": m.get("country"), "lastSignedIn": m.get("last_signed_in")} for m in members],
         "yourRole": user.get("role"),
     }
 
@@ -423,7 +466,7 @@ async def org_members(
     """List members in the admin's organization."""
     query = {} if user["role"] == "super_admin" else {"organization_id": user.get("organization_id")}
     members = await db.users.find(query, {"password_hash": 0}).to_list(200)
-    return [{"id": str(m["_id"]), "name": m.get("name"), "email": m.get("email"), "role": m.get("role"), "country": m.get("country")} for m in members]
+    return [{"id": str(m["_id"]), "name": m.get("name"), "email": m.get("email"), "role": m.get("role"), "country": m.get("country"), "lastSignedIn": m.get("last_signed_in")} for m in members]
 
 
 # ---------------------------------------------------------------------------

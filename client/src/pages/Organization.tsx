@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { fastApi } from "@/lib/fastapiClient";
 import { useFastApiQuery } from "@/hooks/useFastApi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Building2, CheckCircle2, Copy, Globe, Hourglass, KeyRound, LogOut, Plus, UserPlus, Users, XCircle } from "lucide-react";
+import { Building2, CheckCircle2, Copy, Globe, Hourglass, KeyRound, LogOut, Plus, UserMinus, UserPlus, Users, XCircle } from "lucide-react";
 import { useState } from "react";
 
 type OrgData = {
@@ -14,7 +14,7 @@ type OrgData = {
   description: string | null;
   inviteCode: string | null;
   memberCount: number;
-  members: { id: string; name: string; role: string; country: string | null }[];
+  members: { id: string; name: string; role: string; country: string | null; lastSignedIn: string | null }[];
   yourRole: string;
 };
 
@@ -298,12 +298,27 @@ function MyInvitations({ onDecided }: { onDecided: () => void }) {
   );
 }
 
-function OrgDashboard({ org, onLeave }: { org: OrgData; onLeave: () => void }) {
+function formatLastSignedIn(value: string | null): string {
+  if (!value) return "Never signed in";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Never signed in";
+  return `Last signed in ${date.toLocaleDateString()} ${date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`;
+}
+
+function OrgDashboard({ org, currentUserId, isAdmin, isSuperAdmin, onLeave }: { org: OrgData; currentUserId: string; isAdmin: boolean; isSuperAdmin: boolean; onLeave: () => void }) {
   const [copied, setCopied] = useState(false);
+  const [removeError, setRemoveError] = useState("");
   const leaveOrg = useMutation({
     mutationFn: fastApi.organization.leave,
     onSuccess: onLeave,
   });
+  const removeMember = useMutation({
+    mutationFn: fastApi.organization.removeMember,
+    onSuccess: () => { setRemoveError(""); onLeave(); },
+    onError: (err: any) => setRemoveError(err.message || "Failed to remove the member."),
+  });
+  const canRemove = (m: OrgData["members"][number]) =>
+    isAdmin && m.id !== currentUserId && (m.role !== "org_admin" || isSuperAdmin);
   const copyCode = () => {
     if (org.inviteCode) { navigator.clipboard.writeText(org.inviteCode); setCopied(true); setTimeout(() => setCopied(false), 2000); }
   };
@@ -337,6 +352,7 @@ function OrgDashboard({ org, onLeave }: { org: OrgData; onLeave: () => void }) {
 
       <div className="rounded-2xl border border-slate-100 bg-white p-5 dark:border-white/10 dark:bg-white/5">
         <h3 className="flex items-center gap-2 font-bold text-slate-900 dark:text-white"><Users size={16} /> Members</h3>
+        {removeError && <p role="alert" className="mt-2 rounded-xl bg-red-50 px-3 py-2 text-xs text-red-700 dark:bg-red-950/30 dark:text-red-300">{removeError}</p>}
         <div className="mt-4 space-y-2">
           {org.members.map((m) => (
             <div key={m.id} className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 dark:bg-white/5">
@@ -344,9 +360,19 @@ function OrgDashboard({ org, onLeave }: { org: OrgData; onLeave: () => void }) {
                 <div className="grid h-8 w-8 place-items-center rounded-full bg-emerald-100 text-sm font-bold text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">{(m.name || "?")[0].toUpperCase()}</div>
                 <div>
                   <p className="text-sm font-semibold text-slate-900 dark:text-white">{m.name}</p>
-                  <p className="text-xs text-slate-500">{m.country || "No country"} · {m.role === "org_admin" ? "Admin" : "Member"}</p>
+                  <p className="text-xs text-slate-500">{m.country || "No country"} · {m.role === "org_admin" ? "Admin" : "Member"} · {formatLastSignedIn(m.lastSignedIn)}</p>
                 </div>
               </div>
+              {canRemove(m) && (
+                <button
+                  onClick={() => { if (window.confirm(`Remove ${m.name || "this member"} from the organization?`)) removeMember.mutate(m.id); }}
+                  disabled={removeMember.isPending}
+                  className="flex items-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-2.5 py-1.5 text-xs font-bold text-red-700 transition hover:bg-red-100 disabled:opacity-60 dark:border-red-950 dark:bg-red-950/30 dark:text-red-300 dark:hover:bg-red-950/50"
+                  title="Remove from organization"
+                >
+                  <UserMinus size={13} />{removeMember.isPending ? "Removing..." : "Remove"}
+                </button>
+              )}
             </div>
           ))}
         </div>
@@ -400,7 +426,13 @@ export default function Organization() {
                 <PendingRequestsPanel requests={pending.data} onDecided={refresh} />
               )}
               {isAdmin && <InviteIndividualsPanel onDecided={refresh} />}
-              <OrgDashboard org={org.data} onLeave={refresh} />
+              <OrgDashboard
+                org={org.data}
+                currentUserId={auth.user?.id ?? ""}
+                isAdmin={isAdmin}
+                isSuperAdmin={auth.user?.role === "super_admin"}
+                onLeave={refresh}
+              />
             </div>
           ) : (
             <div className="mt-7 space-y-6">
