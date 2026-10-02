@@ -90,6 +90,8 @@ class FakeDatabase:
         self.users = FakeCollection()
         self.sessions = FakeCollection()
         self.organizations = FakeCollection()
+        self.organization_join_requests = FakeCollection()
+        self.login_events = FakeCollection()
 
 
 class FastApiNativeAuthBehaviorTests(unittest.IsolatedAsyncioTestCase):
@@ -114,7 +116,7 @@ class FastApiNativeAuthBehaviorTests(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(any(f"{REFRESH_COOKIE}=" in cookie and "HttpOnly" in cookie for cookie in cookies))
         self.assertTrue(any(f"{CSRF_COOKIE}=" in cookie and "HttpOnly" not in cookie for cookie in cookies))
 
-    async def test_registration_can_attach_a_member_to_an_existing_organization(self) -> None:
+    async def test_registration_with_an_organization_creates_a_pending_join_request(self) -> None:
         org = {"_id": "org-1", "name": "Green Horizon Collective", "invite_code": "join-code", "member_count": 1}
         await self.db.organizations.insert_one(org)
 
@@ -126,10 +128,15 @@ class FastApiNativeAuthBehaviorTests(unittest.IsolatedAsyncioTestCase):
             organization_id="org-1",
         ), Response(), self.db)
 
-        self.assertEqual(joined.user.organization_id, "org-1")
-        self.assertEqual(self.db.users.documents[-1]["organization_id"], "org-1")
-        updated_org = self.db.organizations.documents[0]
-        self.assertEqual(updated_org["member_count"], 2)
+        self.assertIsNone(joined.user.organization_id)
+        new_member = self.db.users.documents[-1]
+        self.assertIsNone(new_member["organization_id"])
+        self.assertEqual(new_member["role"], "individual")
+        join_request = self.db.organization_join_requests.documents[0]
+        self.assertEqual(join_request["organization_id"], "org-1")
+        self.assertEqual(join_request["user_email"], "aisha@example.invalid")
+        self.assertEqual(join_request["status"], "pending")
+        self.assertEqual(self.db.organizations.documents[0]["member_count"], 1)
 
     async def test_duplicate_email_and_wrong_password_are_rejected(self) -> None:
         await self.create_user()
@@ -138,11 +145,11 @@ class FastApiNativeAuthBehaviorTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(duplicate.exception.status_code, 409)
 
         with self.assertRaises(HTTPException) as wrong_password:
-            await login(LoginRequest(email=self.payload.email, password="WrongPass1234"), Response(), self.db)
+            await login(LoginRequest(email=self.payload.email, password="WrongPass1234"), request_with_cookies({}), Response(), self.db)
         self.assertEqual(wrong_password.exception.status_code, 401)
 
         login_response = Response()
-        signed_in = await login(LoginRequest(email=self.payload.email, password=self.payload.password), login_response, self.db)
+        signed_in = await login(LoginRequest(email=self.payload.email, password=self.payload.password), request_with_cookies({}), login_response, self.db)
         self.assertEqual(signed_in.user.email, self.payload.email)
         self.assertEqual(len(self.db.sessions.documents), 2)
         self.assertTrue(any(f"{ACCESS_COOKIE}=" in cookie for cookie in login_response.headers.getlist("set-cookie")))

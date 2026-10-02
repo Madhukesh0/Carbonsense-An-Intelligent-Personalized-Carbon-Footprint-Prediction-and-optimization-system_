@@ -215,6 +215,8 @@ export const fastApi = {
   profile: {
     update: (input: unknown) =>
       fastApiRequest("/profile", { method: "PATCH", body: input }),
+    delete: (input: unknown) =>
+      fastApiRequest<void>("/profile", { method: "DELETE", body: input }),
   },
   admin: {
     dashboard: () => fastApiRequest("/admin/dashboard"),

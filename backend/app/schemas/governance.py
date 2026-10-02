@@ -20,6 +20,12 @@ class ActiveUpdateRequest(BaseModel):
     is_active: bool
 
 
+class AccountDeleteRequest(BaseModel):
+    """Password confirmation required for self-service account deletion."""
+
+    password: str = Field(min_length=1, max_length=128)
+
+
 class PasswordResetRequest(BaseModel):
     password: str = Field(min_length=12, max_length=128)
 
