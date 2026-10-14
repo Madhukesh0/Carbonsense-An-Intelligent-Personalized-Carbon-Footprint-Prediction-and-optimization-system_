@@ -162,7 +162,7 @@ export default function Predict() {
           <Progress className="mt-8 h-2 bg-[#dce8e3]" value={((step + 1) / sections.length) * 100} />
           <details className="mt-5 rounded-2xl border border-[#dce8e3] bg-white px-5 py-4">
             <summary className="cursor-pointer text-sm font-semibold text-[#157f54]">
-              View the exact 26-column contract
+              How your answers become model inputs (26 columns)
             </summary>
             <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
               {contractColumns.map((column, index) => (
@@ -180,9 +180,10 @@ export default function Predict() {
               ))}
             </div>
             <p className="mt-4 text-xs leading-5 text-muted-foreground">
-              The 16 calculated columns are intentionally read-only. Editing them would break the
-              frozen feature-engineering contract; they update only from your interactive source
-              answers.
+              You answer 15 questions. Those answers produce these 26 input columns: 17 come from
+              direct answers and 9 are calculated from your recycling and cooking choices. The
+              server then expands them into the 36 features the v25 model uses. Calculated columns
+              are read-only, since they update only from your interactive source answers.
             </p>
           </details>
 
